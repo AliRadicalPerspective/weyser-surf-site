@@ -104,3 +104,4 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - The Google reviews now show the reviewers' Google profile photos: assets/img/reviewer-*.jpg, 96px, shown at 44px. Rocío has no photo on Google, so she keeps the initial.
 - The level-card buttons stay on one line. CSS version is now ?v=20261001d.
 - Mini Surf Camp prices: **$200** for just you (was $210) and **$170 per person** for the group camp (was $180). Both save $25 compared with 3 single lessons. Updated on the price cards, the booking form, "Best fit", the guide pages and the JSON-LD (offers and priceRange).
+- Fonts: Montserrat is the only font, for headings and body, same as the live site. The unused "Kiona" heading-font reference is gone. Fonts are self-hosted in assets/fonts (no Google Fonts call), and the 400 and 700 weights are preloaded.

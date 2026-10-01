@@ -1,8 +1,6 @@
 /* Weyser Surf Coach · weysersurf.com · built by Cocoia Creative Agency
    site-v5.css: redesigned homepage + guide pages. The Spanish page keeps site.css until it is redone. */
 
-/* KIONA: drop kiona.woff2 into assets/fonts, then uncomment the next line. Until then headings use Montserrat. */
-/* @font-face{font-family:"Kiona";src:url("fonts/kiona.woff2") format("woff2");font-weight:400;font-display:swap} */
 @font-face{font-family:"Montserrat";src:url("fonts/montserrat-400.woff2") format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Montserrat";src:url("fonts/montserrat-500.woff2") format("woff2");font-weight:500;font-display:swap}
 @font-face{font-family:"Montserrat";src:url("fonts/montserrat-600.woff2") format("woff2");font-weight:600;font-display:swap}
@@ -12,7 +10,7 @@
 :root{
   --navy:#063F5C; --navy-deep:#042C41; --blue:#419EBD; --orange:#F27F0C; --orange-soft:#FF9533;
   --ink:#242320; --ink-soft:#4A4843; --paper:#F2ECE1; --paper-deep:#E8DFCF; --white:#FFFFFF;
-  --display:"Kiona","Montserrat",system-ui,sans-serif;
+  --display:"Montserrat",system-ui,sans-serif;
   --body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
   --radius:22px; --radius-sm:14px;
   --shadow:0 1px 2px rgba(6,63,92,.06),0 10px 30px -12px rgba(6,63,92,.22);
@@ -248,7 +246,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
   .reveal{opacity:1;transform:none}
 }
 
-/* display weights for the Montserrat fallback (Kiona is single weight) */
+/* display weights for Montserrat headings */
 .price .amt,.quote,.door .num,.stat b{font-weight:700}
 .door .num{font-weight:600}
 @media (max-width:700px){.hero .hero-img{top:-16%;height:120%;object-position:56% 50%}}
