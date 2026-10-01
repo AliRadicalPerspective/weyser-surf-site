@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+ <url>
+  <loc>https://weysersurf.com/</loc>
+  <lastmod>2026-10-01</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://weysersurf.com/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://weysersurf.com/es/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://weysersurf.com/"/>
+  <image:image><image:loc>https://weysersurf.com/assets/img/student-cheer-1200.webp</image:loc></image:image>
+  <image:image><image:loc>https://weysersurf.com/assets/img/weyser-portrait-1000.webp</image:loc></image:image>
+ </url>
+ <url>
+  <loc>https://weysersurf.com/es/</loc>
+  <lastmod>2026-09-28</lastmod>
+  <xhtml:link rel="alternate" hreflang="en" href="https://weysersurf.com/"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://weysersurf.com/es/"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://weysersurf.com/"/>
+ </url>
+ <url>
+  <loc>https://weysersurf.com/first-surf-lesson-santa-teresa/</loc>
+  <lastmod>2026-10-01</lastmod>
+  <image:image><image:loc>https://weysersurf.com/assets/img/walking-in-1400.webp</image:loc></image:image>
+ </url>
+ <url>
+  <loc>https://weysersurf.com/kids-family-surf-lessons-santa-teresa/</loc>
+  <lastmod>2026-10-01</lastmod>
+  <image:image><image:loc>https://weysersurf.com/assets/img/family-walk-in-1600.webp</image:loc></image:image>
+ </url>
+ <url>
+  <loc>https://weysersurf.com/beginner-surf-beaches-santa-teresa/</loc>
+  <lastmod>2026-10-01</lastmod>
+  <image:image><image:loc>https://weysersurf.com/assets/img/palm-point-lineup-1600.webp</image:loc></image:image>
+ </url>
+</urlset>
