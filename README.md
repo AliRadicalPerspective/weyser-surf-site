@@ -16,7 +16,7 @@ The preview is set to noindex, so search engines won't list it next to the real 
 
 ## Pages
 
-- Homepage
+- Homepage (English) and `/es/` (Spanish)
 - Your first surf lesson in Santa Teresa: what to expect
 - Kids and family surf lessons in Santa Teresa
 - Beginner surf beaches in Santa Teresa

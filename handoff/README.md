@@ -13,9 +13,10 @@ Allow about an hour, including testing.
 ```
 README.md          this file
 CHANGES.md         what changed on the homepage and why, section by section
-TO-CONFIRM.md      what is still needed before launch (photos, permissions, the Spanish price update)
+TO-CONFIRM.md      what is still needed before launch (photos, permissions, a read-through of the Spanish page)
 site/
   index.html                                        new English homepage (replaces /index.html)
+  es/index.html                                     new Spanish homepage (replaces /es/index.html)
   kids-family-surf-lessons-santa-teresa/index.html  new page
   beginner-surf-beaches-santa-teresa/index.html     new page
   first-surf-lesson-santa-teresa/index.html         new page
@@ -28,28 +29,21 @@ site/
 preview/           the same four pages with relative links, for clicking through (don't upload this)
 ```
 
-## Important: the Spanish page is not part of this update
+## The Spanish page is included
 
-`/es/` still uses `assets/site.css` and `assets/site.js`. **Do not delete or overwrite those two files.**
-The new pages use `site-v5.css` and `site-v5.js` instead, so the Spanish page keeps working exactly as it does now.
-A Spanish version of the redesign will follow as a separate update.
+`site/es/index.html` is the new Spanish homepage: the same design, content, prices and booking form as the English one,
+written in neutral, friendly Spanish (*tú*). It replaces the current `/es/index.html`.
 
-### Spanish page: price update (do this the same day the new homepage goes live)
-
-The Mini Surf Camp (still "Bloque de Progreso" on `/es/`) now costs less. So the two languages don't show different prices,
-make these edits in `/es/index.html`. Nothing else on that page changes.
-
-| Find | Replace with | Where |
-|---|---|---|
-| `<p class="amt">$210</p>` | `<p class="amt">$200</p>` | "Bloque de Progreso" price card |
-| `<p class="amt">$180</p>` | `<p class="amt">$170</p>` | "Bloque de Progreso grupal" price card |
-| `"price": "210"` (2 times) | `"price": "200"` | structured data in the `<head>` |
-| `"price": "180"` (2 times) | `"price": "170"` | structured data in the `<head>` |
-| `"priceRange": "$65 to $210"` | `"priceRange": "$65 to $200"` | structured data in the `<head>` |
+- It uses `site-v5.css` and `site-v5.js`, like the English page. The booking form writes its WhatsApp message in Spanish
+  on this page (the script checks `<html lang="es">`).
+- Weyser's bio and quote are his own words from the old Spanish page.
+- The three guide pages are only in English for now. The Spanish page links to them and says "(en inglés)".
+- `assets/site.css` and `assets/site.js` are no longer used by any page after this update. **Leave them on the server
+  anyway** for a few weeks: old cached pages and any other page you know of may still point to them.
 
 ## See it first (no setup)
 
-- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all four pages, links work between them; hidden from search engines)
+- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all five pages, English and Spanish, links work between them; hidden from search engines)
 - **Offline:** open `preview/index.html` in a browser. It is the same site with relative links, so it runs from a folder.
   (Browsers sometimes block web fonts from local files, so the headings may show in a fallback font there. That's normal.)
 - **Exactly as the server will run it:** in a terminal, `cd site` then `python3 -m http.server 8000`, and open http://localhost:8000
@@ -64,13 +58,12 @@ to the Pages project, the same way the current site was published.
 1. **Back up**: download the current deployment, or note the commit or deployment ID you can roll back to.
 2. **Add the files**: copy everything in `site/` into the project's output folder (or the repo, if Pages deploys from Git),
    overwriting when asked.
-   - Overwriting is safe. The only existing files that change are `/index.html` and `/sitemap.xml`. Every image and font in
+   - Overwriting is safe. The only existing files that change are `/index.html`, `/es/index.html` and `/sitemap.xml`. Every image and font in
      `site/assets/` that already exists is an identical copy, included so the folder previews completely.
-   - `assets/site.css`, `assets/site.js`, `es/`, `404.html` and the favicons are **not** in this folder, so the Spanish page
-     and the custom 404 page stay untouched.
+   - `assets/site.css`, `assets/site.js`, `404.html` and the favicons are **not** in this folder, so they stay untouched.
    - The three guide pages arrive as folders (`/first-surf-lesson-santa-teresa/`, `/kids-family-surf-lessons-santa-teresa/`,
      `/beginner-surf-beaches-santa-teresa/`, each with an `index.html`), so their addresses end in a slash.
-3. **Check the `<head>` of the old homepage** for anything the new one doesn't have, such as the Cloudflare Web Analytics
+3. **Check the `<head>` of the old homepage (and of the old `/es/` page)** for anything the new one doesn't have, such as the Cloudflare Web Analytics
    beacon, and copy it across. There's a comment marking where the beacon goes.
 4. **Deploy.** Pages clears its cache on every deploy, so there's nothing to purge. The CSS and JS also carry `?v=20261001c`.
 5. **Tell Google and Bing:** submit the sitemap in Google Search Console and Bing Webmaster Tools, and request indexing
@@ -108,7 +101,8 @@ Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
 On a real phone, over mobile data:
 
-- [ ] Homepage, all three guides and `/es/` all load, with no 404s in the browser console
+- [ ] Homepage, `/es/` and all three guides load, with no 404s in the browser console
+- [ ] On `/es/`, the booking form's WhatsApp message is in Spanish (send one test)
 - [ ] "Book a session" (hero, sticky bar, price cards, level cards) scrolls to the booking picker with the right choices already selected
 - [ ] The picker's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ

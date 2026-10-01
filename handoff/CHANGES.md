@@ -107,3 +107,12 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - Fonts: Montserrat is the only font, for headings and body, same as the live site. The unused "Kiona" heading-font reference is gone. Fonts are self-hosted in assets/fonts (no Google Fonts call), and the 400 and 700 weights are preloaded.
 - Floating "Book a session" button: hidden from 860px up, like the live site, because the header button is showing there. On phones it stays as the sticky bottom bar, and the footer gets 96px of bottom padding so the bar never covers it. This restores the developer's rules from the live site.css. CSS version is now ?v=20261001e.
 - README: added a Brand section with the colours and fonts from the Canva logo kit.
+
+## 2026-10-01: Spanish homepage
+- New `es/index.html`: the redesigned homepage in Spanish, with the same sections, prices and booking form as the English page. It replaces the old Spanish page, so the two languages no longer show different names or prices.
+- Neutral, friendly Spanish with *tú*, readable for Costa Ricans and for visitors from the rest of Latin America and from Spain. Local words stay where they help: *pipa* (coco fresco), *licra*.
+- Weyser's bio and his quote ("La vas a pasar bien y lo vas a disfrutar.") are kept word for word from the old Spanish page.
+- The camp keeps its name, **Mini Surf Camp** (and **Mini Surf Camp grupal**), so Weyser sees the same name from both languages.
+- Reviews: the three English reviews are shown in Spanish, labelled "Reseña de Google, traducida del inglés". Daniela's review is in Spanish already and is shown as written.
+- The booking form on `/es/` writes the WhatsApp message in Spanish. For example: "¡Hola, Weyser! Te encontré en tu sitio web. Quién: Familia con niños, 3 personas (niños: 8 y 11). Clase: Mini Surf Camp grupal. Cuándo: 20 dic al 23 dic". site-v5.js picks the language from `<html lang>`, so the English page is unchanged.
+- Structured data on `/es/`: Spanish descriptions, offers and an FAQ list that matches the 18 questions on the page.

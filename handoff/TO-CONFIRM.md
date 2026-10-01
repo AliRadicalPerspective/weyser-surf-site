@@ -8,7 +8,7 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 - [ ] Written OK from parents for the photos of kids: hero (student-cheer), family-walk-in, first-timer-waiting
 - [ ] Full-size original of the hero photo (student-cheer), 2000px wide or more
 - [ ] One photo each of Playa Hermosa and Mar Azul (beaches guide; Playa Carmen and Playa Santa Teresa are done)
-- [ ] Spanish page: update the Mini Surf Camp prices on /es/ the same day the new homepage goes live (README, "Spanish page: price update")
+- [ ] Spanish page: have Weyser (or any native speaker) read /es/ once before launch. It is a new page, in neutral Spanish with tú
 
 ## Later, when ready
 

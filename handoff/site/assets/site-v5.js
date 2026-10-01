@@ -3,6 +3,22 @@
   var doc = document.documentElement;
   doc.classList.remove('no-js');
   var lang = doc.lang === 'es' ? 'es' : 'en';
+  /* words the booking picker writes; Spanish on /es/ */
+  var T = lang === 'es' ? {
+    hi: '¡Hola, Weyser! Te encontré en tu sitio web.', who: 'Quién: ', people: ' personas', peopleLine: 'Personas: ',
+    kids: ' (niños: ', kidsEnd: ')', session: 'Clase: ', notSure: 'No sé, ¿me ayudas a elegir?', to: ' al ', when: 'Cuándo: ',
+    start: '3 toques y listo para WhatsApp', of: ' de 3 listos', done: 'Todo listo: 3 de 3 ✓', send: 'Enviar a Weyser', sendWa: 'Enviar por WhatsApp',
+    fewer: 'Menos preguntas', locale: 'es-CR',
+    v: { 'First timer': 'Primera vez', 'Family with kids': 'Familia con niños', 'Surfed before': 'Ya he surfeado', 'Private': 'Privada',
+         'Group or family': 'Grupo o familia', 'Group Mini Surf Camp': 'Mini Surf Camp grupal', 'Tomorrow': 'Mañana',
+         'This week': 'Esta semana', '4 or more': '4 o más' }
+  } : {
+    hi: 'Hi Weyser! Found you on your website.', who: 'Who: ', people: ' people', peopleLine: 'People: ',
+    kids: ' (kids ', kidsEnd: ')', session: 'Session: ', notSure: 'Not sure, can you help me pick?', to: ' to ', when: 'When: ',
+    start: '3 quick taps, then WhatsApp', of: ' of 3 done', done: 'All set: 3 of 3 done ✓', send: 'Send to Weyser', sendWa: 'Send on WhatsApp',
+    fewer: 'Fewer questions', locale: 'en-US', v: {}
+  };
+  var tx = function (v) { return T.v[v] || v; };
 
   /* header state */
   var header = document.querySelector('.site-header');
@@ -44,7 +60,7 @@
     var fmt = function (v) {
       if (!v) return '';
       var p = v.split('-');
-      return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(T.locale, { month: 'short', day: 'numeric' });
     };
     var val = function (name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ''; };
     var pick = function (name, value) {
@@ -54,21 +70,22 @@
     var groupish = function () { return /Group/.test(val('session')) || val('level') === 'Family with kids'; };
     var message = function () {
       var level = val('level'), session = val('session');
-      var lines = ['Hi Weyser! Found you on your website.'];
+      var lines = [T.hi];
       if (level) {
-        var who = level;
-        if (groupish()) who += ', ' + val('people') + ' people';
+        var who = tx(level);
+        if (groupish()) who += ', ' + tx(val('people')) + T.people;
         var k = form.elements.kids.value.trim();
-        if (level === 'Family with kids' && k) who += ' (kids ' + k + ')';
-        lines.push('Who: ' + who);
-      } else if (groupish()) lines.push('People: ' + val('people'));
-      if (session) lines.push('Session: ' + (session === 'Not sure' ? 'Not sure, can you help me pick?' : session));
+        if (level === 'Family with kids' && k) who += T.kids + k + T.kidsEnd;
+        lines.push(T.who + who);
+      } else if (groupish()) lines.push(T.peopleLine + tx(val('people')));
+      if (session) lines.push(T.session + (session === 'Not sure' ? T.notSure : tx(session)));
       var when = val('when');
       if (when === 'dates') {
         var f = fmt(fromIn.value), t = fmt(toIn.value);
-        when = f ? (t && t !== f ? f + ' to ' + t : f) : '';
+        when = f ? (t && t !== f ? f + T.to + t : f) : '';
+      } else if (when) { when = tx(when);
       }
-      if (when) lines.push('When: ' + when);
+      if (when) lines.push(T.when + when);
       return lines.join('\n');
     };
     var refresh = function () {
@@ -81,8 +98,8 @@
       /* progress: how many of the 3 steps are done, and a button that says so */
       var done = [val('level'), val('session'), val('when')].filter(Boolean).length;
       var prog = form.querySelector('.book-progress'), label = form.querySelector('button[type=submit] > span:not(.sr-only)');
-      if (prog) { prog.textContent = done === 0 ? '3 quick taps, then WhatsApp' : done < 3 ? done + ' of 3 done' : 'All set: 3 of 3 done ✓'; prog.classList.toggle('done', done === 3); }
-      if (label) label.textContent = done === 3 ? 'Send to Weyser' : 'Send on WhatsApp';
+      if (prog) { prog.textContent = done === 0 ? T.start : done < 3 ? done + T.of : T.done; prog.classList.toggle('done', done === 3); }
+      if (label) label.textContent = done === 3 ? T.send : T.sendWa;
     };
     form.addEventListener('change', function (e) {
       /* first timers and families who have not picked a session get "Not sure" */
@@ -114,7 +131,7 @@
   if (more && extra) more.addEventListener('click', function () {
     var open = extra.classList.toggle('open');
     more.setAttribute('aria-expanded', open);
-    more.textContent = open ? 'Fewer questions' : more.getAttribute('data-label');
+    more.textContent = open ? T.fewer : more.getAttribute('data-label');
   });
   if (more) more.setAttribute('data-label', more.textContent);
 
