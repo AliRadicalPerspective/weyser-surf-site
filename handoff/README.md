@@ -13,7 +13,7 @@ Allow about an hour, including testing.
 ```
 README.md          this file
 CHANGES.md         what changed on the homepage and why, section by section
-TO-CONFIRM.md      every placeholder still waiting for Weyser's answer (shown in red on the pages)
+TO-CONFIRM.md      what is still needed before launch (photos, permissions, the Spanish price update)
 site/
   index.html                                        new English homepage (replaces /index.html)
   kids-family-surf-lessons-santa-teresa/index.html  new page
@@ -22,7 +22,7 @@ site/
   sitemap.xml                                       replaces /sitemap.xml (adds the 3 new pages)
   assets/site-v5.css                                new stylesheet (site.css stays, see below)
   assets/site-v5.js                                 new script (site.js stays, see below)
-  assets/img/     34 images (18 new, 16 identical copies of what's on the server)
+  assets/img/     40 images (24 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
   assets/video/   drone-loop.mp4 + its poster image
 preview/           the same four pages with relative links, for clicking through (don't upload this)
@@ -34,9 +34,22 @@ preview/           the same four pages with relative links, for clicking through
 The new pages use `site-v5.css` and `site-v5.js` instead, so the Spanish page keeps working exactly as it does now.
 A Spanish version of the redesign will follow as a separate update.
 
+### Spanish page: price update (do this the same day the new homepage goes live)
+
+The Mini Surf Camp (still "Bloque de Progreso" on `/es/`) now costs less. So the two languages don't show different prices,
+make these edits in `/es/index.html`. Nothing else on that page changes.
+
+| Find | Replace with | Where |
+|---|---|---|
+| `<p class="amt">$210</p>` | `<p class="amt">$200</p>` | "Bloque de Progreso" price card |
+| `<p class="amt">$180</p>` | `<p class="amt">$170</p>` | "Bloque de Progreso grupal" price card |
+| `"price": "210"` (2 times) | `"price": "200"` | structured data in the `<head>` |
+| `"price": "180"` (2 times) | `"price": "170"` | structured data in the `<head>` |
+| `"priceRange": "$65 to $210"` | `"priceRange": "$65 to $200"` | structured data in the `<head>` |
+
 ## See it first (no setup)
 
-- **Online:** https://claude.ai/artifact/PVDiBBw3NNwFsymsYczHxh (all four pages, links work between them)
+- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all four pages, links work between them; hidden from search engines)
 - **Offline:** open `preview/index.html` in a browser. It is the same site with relative links, so it runs from a folder.
   (Browsers sometimes block web fonts from local files, so the headings may show in a fallback font there. That's normal.)
 - **Exactly as the server will run it:** in a terminal, `cd site` then `python3 -m http.server 8000`, and open http://localhost:8000
@@ -79,18 +92,17 @@ to the Pages project, the same way the current site was published.
 - **Logo:** the header wordmark and footer lockup are the same inline SVGs and CSS rules as the live `site.css`.
 - **Forecast strip:** `site-v5.js` uses the live forecast code unchanged: `/api/forecast` (the Cloudflare function) first,
   `window.__FC` if it's present, the public Open-Meteo API as backup, and the `fc-wait` state until data arrives.
-- **Structured data:** based on the live JSON-LD (including `priceSpecification`). Only the descriptions, the page name and the FAQ list change.
+- **Structured data:** based on the live JSON-LD (including `priceSpecification`). Only the descriptions, the page name, the FAQ list and the Mini Surf Camp offers (new name and prices) change.
 - **WhatsApp:** every link and the booking picker go to +506 6008 4391, the same number as the live site.
 
-## Red text = not confirmed yet
+## Placeholders
 
-Anything in **red with a dashed underline** is draft copy that Weyser still has to confirm (prices of extras,
-kids' minimum age and so on). It's all listed in `TO-CONFIRM.md`.
+There is no draft copy left: all text on the four pages is confirmed, and the old red placeholder style is gone from the CSS.
+Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
-- **Don't launch with red text visible.** The three homepage reviews are samples and must be replaced with real ones or removed.
-- When an answer comes in: edit the text, then remove the wrapper around it, `<span class="tbc">…</span>`.
-- Once no `class="tbc"` is left in any page, delete the two `.tbc` rules in `site-v5.css` (search for `TO CONFIRM`).
-- The beaches page has three red "PHOTO NEEDED" boxes. Swap each one for a photo of that beach, exported the same way as the others (see below).
+- The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). Swap each one for a photo of that beach,
+  exported the same way as the others (see "Adding photos later" below).
+- The kids' photos need written OK from the parents before launch.
 
 ## Test before and after going live
 

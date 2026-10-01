@@ -269,9 +269,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .credit a{display:inline-flex;align-items:center;min-height:44px}
 
 /* ===== v2 additions ===== */
-/* TO CONFIRM: red, dashed underline = placeholder copy. Delete this rule's colour once confirmed. */
-.tbc{color:#C8102E;text-decoration:underline dashed 1px;text-underline-offset:3px}
-.hero .tbc,.on-dark .tbc,.price.feature .tbc,.site-footer .tbc{color:#FF8A8A}
 
 /* hero */
 .hero .sub{margin:18px 0 10px}

@@ -34,13 +34,13 @@ first few screens, and the longer story follows for people who keep scrolling.
   - A 3-photo sequence: walk in, pop up, head home.
   - On phones it swipes sideways.
 - **Reviews** (new)
-  - Heading: "Stood up on day one."
-  - Three review cards. They're **samples for now** (see TO-CONFIRM).
+  - Heading: "Hands down the best surf coach." (a line from a real review)
+  - Four real Google reviews, word for word, with the reviewers' Google photos and a link to all reviews on Google.
 - **Prices**
   - "Group or family" is the highlighted card, with a "Best for families" badge and the only solid button.
   - Added a "Bad waves? Free reschedule" promise above the cards.
   - Private shows "per session".
-  - The blocks say "Three sessions is where it clicks".
+  - The Mini Surf Camps say "Three sessions is where it clicks".
   - "Included" is now one line of checkmarks.
   - Extras have prices.
 - **Booking picker** (new, `#book`)
@@ -100,7 +100,7 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - **Sticky bar:** also hides while the picker is visible.
 
 ## 2026-10-01: Mini Surf Camp, reviewer photos
-- "Progression Block" is now **Mini Surf Camp**, and "Group Progression Block" is now **Group Mini Surf Camp**. The rename covers the price cards, the booking form (so the WhatsApp message uses the new name), the FAQ, the JSON-LD offers and the guide pages. Prices are unchanged.
+- "Progression Block" is now **Mini Surf Camp**, and "Group Progression Block" is now **Group Mini Surf Camp**. The rename covers the price cards, the booking form (so the WhatsApp message uses the new name), the FAQ, the JSON-LD offers and the guide pages.
 - The Google reviews now show the reviewers' Google profile photos: assets/img/reviewer-*.jpg, 96px, shown at 44px. Rocío has no photo on Google, so she keeps the initial.
 - The level-card buttons stay on one line. CSS version is now ?v=20261001d.
 - Mini Surf Camp prices: **$200** for just you (was $210) and **$170 per person** for the group camp (was $180). Both save $25 compared with 3 single lessons. Updated on the price cards, the booking form, "Best fit", the guide pages and the JSON-LD (offers and priceRange).
