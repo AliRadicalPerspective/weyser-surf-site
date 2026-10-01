@@ -26,7 +26,7 @@ site/
   assets/img/     40 images (24 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
   assets/video/   drone-loop.mp4 + its poster image
-preview/           the same four pages with relative links, for clicking through (don't upload this)
+preview/           the same five pages with relative links, for clicking through (don't upload this)
 ```
 
 ## The Spanish page is included
@@ -90,7 +90,7 @@ to the Pages project, the same way the current site was published.
 
 ## Placeholders
 
-There is no draft copy left: all text on the four pages is confirmed, and the old red placeholder style is gone from the CSS.
+There is no draft copy left: all text on the five pages is confirmed, and the old red placeholder style is gone from the CSS.
 Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
 - The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). Swap each one for a photo of that beach,
@@ -109,7 +109,7 @@ On a real phone, over mobile data:
 - [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It stays on the still image with data saver, 2G or "reduce motion" on; that's intended. With iPhone Low Power Mode it starts on the first tap.
 - [ ] The guide links work: level cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
-- [ ] Structured data passes Google's Rich Results Test for all four pages
+- [ ] Structured data passes Google's Rich Results Test for all five pages
 
 ## Speed: what's already done, and how to keep it fast
 
@@ -118,7 +118,7 @@ Already done in these files:
 - **Images:** WebP in two widths with `srcset` and `sizes`, so phones download the small one (25 to 60KB each). All have
   `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
-- **Script:** one small file (about 3KB compressed), loaded with `defer`.
+- **Script:** one small file (about 4KB compressed), loaded with `defer`.
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
   2G, or when "reduce motion" is on. People in those cases see the poster image instead.
 - **Result:** the first screen on a phone is about 100KB compressed.
