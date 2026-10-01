@@ -139,10 +139,17 @@
   /* drone loop plays only while on screen, and never for people who prefer reduced motion */
   var loop = document.querySelector('.closing video.bg');
   var conn = navigator.connection || {};
-  var slow = conn.saveData || /(^|-)2g|3g/.test(conn.effectiveType || '');
+  /* data saver or a 2G connection only: phones often report "3g" on normal mobile data */
+  var slow = conn.saveData || /2g/.test(conn.effectiveType || '');
   if (loop && !slow && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var loopOn = false;
     new IntersectionObserver(function (e) {
-      if (e[0].isIntersecting) { var p = loop.play(); if (p && p.catch) p.catch(function () {}); } else loop.pause();
+      loopOn = e[0].isIntersecting;
+      if (loopOn) { var p = loop.play(); if (p && p.catch) p.catch(function () {
+        var retry = function () { if (loopOn && loop.paused) { var q = loop.play(); if (q && q.catch) q.catch(function () {}); } };
+        document.addEventListener('touchend', retry, { once: true, passive: true });
+        document.addEventListener('click', retry, { once: true });
+      }); } else loop.pause();
     }, { threshold: 0.2 }).observe(loop);
   }
 

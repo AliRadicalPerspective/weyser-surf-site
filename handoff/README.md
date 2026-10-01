@@ -106,7 +106,7 @@ On a real phone, over mobile data:
 - [ ] "Book a session" (hero, sticky bar, price cards, level cards) scrolls to the booking picker with the right choices already selected
 - [ ] The picker's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
-- [ ] The drone video plays behind "See you in the water." (it stays paused on data saver and reduced motion; that's intended)
+- [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It stays on the still image with data saver, 2G or "reduce motion" on; that's intended. With iPhone Low Power Mode it starts on the first tap.
 - [ ] The guide links work: level cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
 - [ ] Structured data passes Google's Rich Results Test for all four pages
@@ -120,7 +120,7 @@ Already done in these files:
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
 - **Script:** one small file (about 3KB compressed), loaded with `defer`.
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
-  2G/3G, or when "reduce motion" is on. People in those cases see the poster image instead.
+  2G, or when "reduce motion" is on. People in those cases see the poster image instead.
 - **Result:** the first screen on a phone is about 100KB compressed.
 
 Adding photos later:
