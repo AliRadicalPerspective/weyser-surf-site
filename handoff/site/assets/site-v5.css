@@ -495,6 +495,12 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .rv .avatar{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:1rem;border:0;padding:0}
 .rv figcaption small{font-weight:500;color:var(--ink-soft)}
 img.avatar{object-fit:cover;flex:none}
+/* from the live site.css (developer's rules): desktop keeps the header button, so no floating pill;
+   on phones the footer gets room so the sticky bar never covers its last lines */
+@media (min-width:860px){.wa-bar{display:none}}
+.site-footer{padding-bottom:96px}
+@media (min-width:820px){.site-footer{padding-bottom:52px}}
+.credit{line-height:1.6}
 /* level-card CTAs stay on one line; narrow 3-up cards get a little less padding */
 .door .btn{white-space:nowrap}
 @media (min-width:820px) and (max-width:1000px){.door .door-body{padding:20px 18px 22px}.door .btn{padding-left:16px;padding-right:16px}}

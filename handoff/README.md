@@ -133,3 +133,16 @@ When the original turns up, export `student-cheer-1600.webp` and add `1600w` to 
 - `playa-santa-teresa-sunset-800/1600.webp`: "Playa Santa Teresa" by Vixitaly, via Wikimedia Commons, licensed CC BY 3.0.
   **The credit line under the photo on the beaches page is required by the licence: keep it.** Source: https://commons.wikimedia.org/wiki/File:Playa_Santa_Teresa_-_panoramio.jpg
 - Every other photo and video is Weyser's own (sent 2026-09-30) or already on the live site.
+
+## Brand (from Weyser's Canva logo kit)
+
+| Use | Value |
+|---|---|
+| Navy | `#063F5C` (`--navy`) |
+| Orange | `#F27F0C` (`--orange`), the logo on cream and navy, and the main buttons |
+| Blue | `#419EBD` (`--blue`) |
+| Charcoal | `#2E2E2E` (the kit's one-colour logo; the site's body text uses the live site's `#242320`) |
+| Wordmark font | KIONA SemiBold. It appears only inside the logo, which is an SVG with the letters drawn as shapes, so no font file is needed. Don't load KIONA as a web font. |
+| "SURF COACH" and site text | Montserrat (self-hosted in `/assets/fonts/`) |
+
+The logo kit pairs the colours like this: orange or blue logo on navy, navy logo on orange or blue, and any of the four colours on a light background. The site uses an orange logo on the cream header and an orange logo on the navy footer, which both fit the kit.

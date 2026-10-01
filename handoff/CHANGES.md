@@ -105,3 +105,5 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - The level-card buttons stay on one line. CSS version is now ?v=20261001d.
 - Mini Surf Camp prices: **$200** for just you (was $210) and **$170 per person** for the group camp (was $180). Both save $25 compared with 3 single lessons. Updated on the price cards, the booking form, "Best fit", the guide pages and the JSON-LD (offers and priceRange).
 - Fonts: Montserrat is the only font, for headings and body, same as the live site. The unused "Kiona" heading-font reference is gone. Fonts are self-hosted in assets/fonts (no Google Fonts call), and the 400 and 700 weights are preloaded.
+- Floating "Book a session" button: hidden from 860px up, like the live site, because the header button is showing there. On phones it stays as the sticky bottom bar, and the footer gets 96px of bottom padding so the bar never covers it. This restores the developer's rules from the live site.css. CSS version is now ?v=20261001e.
+- README: added a Brand section with the colours and fonts from the Canva logo kit.
