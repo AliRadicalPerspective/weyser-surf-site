@@ -36,7 +36,7 @@ written in neutral, friendly Spanish (*tú*). It replaces the current `/es/index
 
 - It uses `site-v5.css` and `site-v5.js`, like the English page. The booking form writes its WhatsApp message in Spanish
   on this page (the script checks `<html lang="es">`).
-- Weyser's bio and quote are his own words from the old Spanish page.
+- Weyser's bio is his own words from the old Spanish page. His quote is the updated one ("La vas a pasar genial y te vas a reír.").
 - The three guide pages are only in English for now. The Spanish page links to them and says "(en inglés)".
 - `assets/site.css` and `assets/site.js` are no longer used by any page after this update. **Leave them on the server
   anyway** for a few weeks: old cached pages and any other page you know of may still point to them.
