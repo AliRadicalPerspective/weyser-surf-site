@@ -111,10 +111,15 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 ## 2026-10-01: Spanish homepage
 - New `es/index.html`: the redesigned homepage in Spanish, with the same sections, prices and booking form as the English page. It replaces the old Spanish page, so the two languages no longer show different names or prices.
 - Neutral, friendly Spanish with *tú*, readable for Costa Ricans and for visitors from the rest of Latin America and from Spain. Local words stay where they help: *pipa* (coco fresco), *licra*.
-- Weyser's bio and his quote ("La vas a pasar bien y lo vas a disfrutar.") are kept word for word from the old Spanish page.
+- Weyser's bio is kept word for word from the old Spanish page. (His quote was updated later the same day, see below.)
 - The camp keeps its name, **Mini Surf Camp** (and **Mini Surf Camp grupal**), so Weyser sees the same name from both languages.
 - Reviews: the three English reviews are shown in Spanish, labelled "Reseña de Google, traducida del inglés". Daniela's review is in Spanish already and is shown as written.
 - The booking form on `/es/` writes the WhatsApp message in Spanish. For example: "¡Hola, Weyser! Te encontré en tu sitio web. Quién: Familia con niños, 3 personas (niños: 8 y 11). Clase: Mini Surf Camp grupal. Cuándo: 20 dic al 23 dic". site-v5.js picks the language from `<html lang>`, so the English page is unchanged.
 - Structured data on `/es/`: Spanish descriptions, offers and an FAQ list that matches the 18 questions on the page.
 - Drone video: it now also plays on phones that report a "3g" connection, which many do on normal mobile data (only data saver and 2G keep it off). If the phone blocks autoplay (iPhone Low Power Mode), it starts on the visitor's first tap. Tested in Chrome on desktop and phone sizes, in English and Spanish. CSS and JS version is now ?v=20261001g.
 - Guide titles now include "Costa Rica": "Surf Lessons for Kids & Families in Santa Teresa, Costa Rica" and "First Surf Lesson in Santa Teresa, Costa Rica: What to Expect" (all three guides now match).
+
+## 2026-10-01: credentials, lessons count, quote
+- Weyser's **ISA certification** (International Surfing Association surf instructor) is now on the site: the hero trust line ("ISA & lifeguard certified"), the "Meet Weyser" stats, the safety FAQ answer, the guide pages' coach details, the Spanish page, and the structured data (`hasCredential`, recognised by the International Surfing Association).
+- Lessons taught: **650+** everywhere (was 800+).
+- Weyser's quote is now "You're going to have a great time, and you're going to laugh." (Spanish: "La vas a pasar genial y te vas a reír.")

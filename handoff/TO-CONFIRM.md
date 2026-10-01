@@ -4,7 +4,6 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 
 ## Before launch
 
-- [ ] 800+ lessons: confirm the number he is happy to publish (it appears on the homepage and all three guides)
 - [ ] Written OK from parents for the photos of kids: hero (student-cheer), family-walk-in, first-timer-waiting
 - [ ] Full-size original of the hero photo (student-cheer), 2000px wide or more
 - [ ] One landscape photo each of Playa Hermosa and Mar Azul, for the two placeholder boxes on the beaches guide. Swap them in before that page goes live (README: "Swapping in the two beach photos")
