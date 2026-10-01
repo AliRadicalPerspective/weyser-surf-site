@@ -93,9 +93,25 @@ to the Pages project, the same way the current site was published.
 There is no draft copy left: all text on the five pages is confirmed, and the old red placeholder style is gone from the CSS.
 Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
-- The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). Swap each one for a photo of that beach,
-  exported the same way as the others (see "Adding photos later" below).
+- The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). They stay until Weyser sends the photos.
+  Visitors see the words "PHOTO NEEDED", so swap them before the beaches page goes live (steps below).
 - The kids' photos need written OK from the parents before launch.
+
+### Swapping in the two beach photos (about 10 minutes)
+
+In `beginner-surf-beaches-santa-teresa/index.html`, each placeholder is a `<div class="ph">…</div>` at the top of its beach card.
+The Playa Carmen card just above them shows the finished version.
+
+1. Export each photo as two landscape WebP files, 800 and 1600px wide (quality 75 to 80, squoosh.app works), into `assets/img/`:
+   `playa-hermosa-800.webp`, `playa-hermosa-1600.webp`, `mar-azul-800.webp`, `mar-azul-1600.webp`.
+2. Replace the whole `<div class="ph">…</div>` (from `<div class="ph">` to its closing `</div>`) with:
+   ```html
+   <div class="b-img"><img src="/assets/img/playa-hermosa-800.webp" srcset="/assets/img/playa-hermosa-800.webp 800w, /assets/img/playa-hermosa-1600.webp 1600w" sizes="(min-width: 880px) 340px, 100vw" width="1600" height="1067" alt="Surfers in the gentle whitewater at Playa Hermosa, Santa Teresa" loading="lazy" decoding="async"></div>
+   ```
+   For Mar Azul, use the `mar-azul` file names and an alt text such as "The surf at Mar Azul, by the big rock, Santa Teresa".
+3. Set `width` and `height` to the real size of the 1600 file (1600 and its height), so the page doesn't jump while loading.
+4. Optional: add both images to the beaches page entry in `sitemap.xml`, the same way as the other `<image:image>` lines.
+5. If the photo is someone else's, add a credit line under it like the Playa Santa Teresa one, and note it under "Image credits" below.
 
 ## Test before and after going live
 
