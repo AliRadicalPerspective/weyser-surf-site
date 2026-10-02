@@ -8,7 +8,7 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 - [ ] Full-size original of the hero photo (student-cheer), 2000px wide or more
 - [ ] One landscape photo each of Playa Hermosa and Mar Azul, for the two placeholder boxes on the beaches guide. Swap them in before that page goes live (README: "Swapping in the two beach photos")
 - [ ] Spanish pages: have Weyser (or any native speaker) read /es/ and /es/clases-de-surf-avanzado-santa-teresa/ once before launch. Both are new, in neutral Spanish with tú
-- [ ] Weyser reads the new Meet Weyser text once, especially "within arm's reach the whole session"
+- [ ] Weyser reads the coaching guide (/surf-coaching-santa-teresa/ and its Spanish version) once: it is written in his voice ("I"), so it should sound like him
 
 ## Later, when ready
 

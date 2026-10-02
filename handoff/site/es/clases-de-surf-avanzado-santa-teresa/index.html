@@ -75,6 +75,14 @@
    "mainEntity": [
     {
      "@type": "Question",
+     "name": "¿Qué nivel necesito?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Si te paras en olas de espuma, ya puedes empezar. ¿No sabes bien? Elige “No sé” al reservar y yo te ubico."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "¿Cuántas clases necesito para mejorar?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -86,7 +94,7 @@
      "name": "¿Dónde surfean quienes quieren mejorar?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Depende de la marea y del swell. Mar Azul es la playa para nivel intermedio, y Playa Santa Teresa, la playa principal, sirve para todos los niveles según la marea y la hora del día. Weyser elige el lugar contigo cada día."
+      "text": "Depende de la marea y del swell. Mar Azul es la playa para nivel intermedio, y Playa Santa Teresa, la playa principal, sirve para todos los niveles según la marea y la hora del día. Elijo el lugar contigo cada día."
      }
     },
     {
@@ -94,7 +102,7 @@
      "name": "¿Y si las olas están muy grandes?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Te lo dice claramente, y busca un lugar donde las olas sean para ti."
+      "text": "Te lo digo claramente, y busco un lugar donde las olas sean para ti."
      }
     },
     {
@@ -127,29 +135,44 @@
  <div class="wrap">
   <p class="crumbs"><a href="/es/">Inicio</a> › Clases para mejorar</p>
   <h1>Clases de surf en Santa Teresa para mejorar.</h1>
-  <p class="answer">¿Ya surfeas, pero pasas la mañana tragando espuma o viendo pasar las buenas olas? Weyser da clases a quienes quieren mejorar, en grupos de máximo tres personas, y corrige lo que te frena: posición, timing, agarrar olas verdes, y después giros, velocidad y días de olas más grandes. Con tres clases todo encaja: el Mini Surf Camp cuesta $200 solo para ti, o $170 por persona para 2 o más.</p>
+  <p class="answer">Weyser da clases a quienes ya se ponen de pie pero sienten que no avanzan: se caen en la espuma, se les pasan las buenas olas o reman por olas que nunca los llevan. Las clases duran unos 90 minutos, con máximo tres personas, en el lugar que mejor va con la marea y el swell ese día, a menudo Mar Azul o Playa Santa Teresa. Con tres clases todo encaja: el Mini Surf Camp cuesta $200 solo para ti, o $170 por persona para 2 o más.</p>
   <div class="cta-row">
-   <a class="btn" href="https://wa.me/50660084391?text=%C2%A1Hola%2C%20Weyser%21%20Ya%20he%20surfeado%20y%20quiero%20clases%20para%20mejorar.%20%28Encontr%C3%A9%20tu%20p%C3%A1gina%20de%20clases%20para%20mejorar%29" data-track="es-coaching:cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span>Pregunta por las clases</span><span class="sr-only"> (abre WhatsApp)</span></a>
+   <a class="btn" href="https://wa.me/50660084391?text=%C2%A1Hola%2C%20Weyser%21%20Ya%20he%20surfeado%20y%20quiero%20clases%20para%20mejorar.%20%28Encontr%C3%A9%20tu%20p%C3%A1gina%20de%20clases%20para%20mejorar%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span>Pregunta por las clases</span><span class="sr-only"> (abre WhatsApp)</span></a>
    <a class="btn btn-ghost" href="/es/?level=Surfed%20before&amp;session=Not%20sure&amp;src=improver#book">Reservar con el formulario</a>
   </div>
   <div class="topic-hero"><img src="/assets/img/hero-drone-turn-800.webp" srcset="/assets/img/hero-drone-turn-800.webp 800w, /assets/img/hero-drone-turn-1600.webp 1600w" sizes="(min-width: 1160px) 1080px, 100vw" width="1600" height="898" alt="Toma aérea con dron de Weyser haciendo un giro en una ola en Santa Teresa, Costa Rica" fetchpriority="high" decoding="async"></div>
 
+  <figure class="coach-voice"><figcaption>De Weyser</figcaption><blockquote lang="es"><p>Llevo 18 años surfeando estas playas y 7 dando clases. Nadie me enseñó, así que sé lo que es estar estancado sin saber por qué. A la mayoría de los surfistas que vienen conmigo no les falta talento. Les faltan una o dos cosas pequeñas: dónde se sientan, cuándo salen a la ola, cómo se paran. Cuando las encontramos, todo se vuelve más fácil.</p></blockquote></figure>
+
   <div class="split-img">
    <div class="prose">
-    <h2>Todos nos estancamos. Nadie tiene que quedarse ahí.</h2>
-    <ul class="stuck-list"><li>Tragando espuma toda la mañana.</li><li>Viendo pasar todas las buenas olas.</li><li>Remando como loco por olas que nunca terminan de llevarte.</li></ul>
-    <p>Weyser lleva 18 años en el agua. Conoce todas las formas de estancarse, y todas las salidas.</p>
+    <h2>Dónde se estanca la mayoría, y qué hacemos al respecto</h2>
+    <ul class="stuck-list fixes">
+     <li><strong>Tragando espuma toda la mañana.</strong> Casi nunca son tus brazos. Es el camino que tomas y el momento. Te enseño a leer las series desde la playa, dónde está el canal y cuándo salir, para que llegues al pico con energía para surfear.</li>
+     <li><strong>Viendo pasar todas las buenas olas.</strong> Casi siempre es la posición. Trabajamos dónde sentarte en cada pico, cómo ver una ola temprano y cuándo girar y remar, para que estés en el lugar correcto cuando llegue.</li>
+     <li><strong>Remando como loco por olas que nunca terminan de llevarte.</strong> Se trata de las últimas remadas: dónde va tu peso en la tabla, cuánto remas cuando la ola te levanta y el ángulo con el que entras. Cambios pequeños, gran diferencia.</li>
+    </ul>
    </div>
    <div class="pic"><img src="/assets/img/stuck-whitewater-800.webp" srcset="/assets/img/stuck-whitewater-800.webp 800w, /assets/img/stuck-whitewater-1066.webp 1066w" sizes="(min-width: 880px) 540px, 100vw" width="1066" height="711" alt="Dos surfistas remando junto a la espuma en Santa Teresa" loading="lazy" decoding="async"></div>
   </div>
 
   <div class="prose"><h2>Tres etapas. Un solo coach.</h2></div>
   <div class="cards3 stages-guide">
-   <article class="stage"><div class="photo-in"><img src="/assets/img/lineup-three-800.webp" srcset="/assets/img/lineup-three-800.webp 800w, /assets/img/lineup-three-1600.webp 1600w" sizes="(min-width: 820px) 360px, 100vw" width="1600" height="1067" alt="Tres alumnos sentados en sus tablas, esperando una ola" loading="lazy" decoding="async"></div><div class="body"><span class="tag">01</span><h3>Ponte de pie.</h3><p>Pararte, encontrar el equilibrio y tus primeras olas de verdad.</p></div></article>
-   <article class="stage"><div class="photo-in"><img src="/assets/img/stage-green-wave-700.webp" srcset="/assets/img/stage-green-wave-700.webp 700w, /assets/img/stage-green-wave-1200.webp 1200w" sizes="(min-width: 820px) 360px, 100vw" width="1200" height="800" alt="Un surfista en una ola verde en Santa Teresa" loading="lazy" decoding="async"></div><div class="body"><span class="tag">02</span><h3>Agarra tus propias olas.</h3><p>Remar mar adentro, elegir tus olas y surfear olas verdes, sin robarle la ola a nadie.</p></div></article>
-   <article class="stage"><div class="photo-in"><img src="/assets/img/stage-level-up-700.webp" srcset="/assets/img/stage-level-up-700.webp 700w, /assets/img/stage-level-up-1200.webp 1200w" sizes="(min-width: 820px) 360px, 100vw" width="1200" height="800" alt="Weyser levantando agua en un giro potente" loading="lazy" decoding="async"></div><div class="body"><span class="tag">03</span><h3>Sube de nivel.</h3><p>Giros, velocidad, días de olas más grandes. Las olas por las que viniste.</p></div></article>
+   <article class="stage"><div class="photo-in"><img src="/assets/img/lineup-three-800.webp" srcset="/assets/img/lineup-three-800.webp 800w, /assets/img/lineup-three-1600.webp 1600w" sizes="(min-width: 820px) 360px, 100vw" width="1600" height="1067" alt="Tres alumnos sentados en sus tablas, esperando una ola" loading="lazy" decoding="async"></div><div class="body"><span class="tag">01</span><h3>Ponte de pie.</h3><p>Pararte, la postura y el equilibrio en la espuma, y después girar la tabla para ir a lo largo de la ola en vez de directo a la playa.</p><p class="ready">Pasas a la siguiente etapa cuando te paras en la mayoría de las olas y puedes dirigir un poco.</p></div></article>
+   <article class="stage"><div class="photo-in"><img src="/assets/img/stage-green-wave-700.webp" srcset="/assets/img/stage-green-wave-700.webp 700w, /assets/img/stage-green-wave-1200.webp 1200w" sizes="(min-width: 820px) 360px, 100vw" width="1200" height="800" alt="Un surfista en una ola verde en Santa Teresa" loading="lazy" decoding="async"></div><div class="body"><span class="tag">02</span><h3>Agarra tus propias olas.</h3><p>Remar mar adentro, leer las series, posicionarte y entrar en olas verdes, sin romper, por tu cuenta. También trabajamos el trim a la izquierda y a la derecha por la pared de la ola.</p><p class="ready">Pasas a la siguiente etapa cuando agarras olas verdes por tu cuenta y vas a lo largo de ellas.</p></div></article>
+   <article class="stage"><div class="photo-in"><img src="/assets/img/stage-level-up-700.webp" srcset="/assets/img/stage-level-up-700.webp 700w, /assets/img/stage-level-up-1200.webp 1200w" sizes="(min-width: 820px) 360px, 100vw" width="1200" height="800" alt="Weyser levantando agua en un giro potente" loading="lazy" decoding="async"></div><div class="body"><span class="tag">03</span><h3>Sube de nivel.</h3><p>Bottom turn, top turn, generar velocidad y surfear días más grandes con confianza. También hablamos de tablas: qué usar a medida que avanzas.</p><p class="ready">Desde aquí se trata de horas en el agua, con alguien que mira cada ola.</p></div></article>
   </div>
   <p class="method-note">Cada etapa incluye lo que muchos se saltan: corrientes, reglas del agua y dónde no meterse.</p>
+
+  <div class="prose"><h2>Cómo funciona una clase</h2></div>
+  <ol class="timeline">
+   <li><span class="when">Antes</span><h3>Cuéntame en qué estás trabajando</h3><p>Mándame un WhatsApp con tu nivel y lo que se te hace difícil. Reviso la marea y el swell y elijo el lugar que mejor te va ese día.</p></li>
+   <li><span class="when">En la playa</span><h3>Leemos el mar juntos</h3><p>Dónde está el pico, por dónde corre la corriente, por dónde remar mar adentro y dónde no meterse. Después, una o dos metas para la clase.</p></li>
+   <li><span class="when">En el agua, unos 90 minutos</span><h3>Comentarios en cada ola</h3><p>Con máximo tres personas, veo cada ola que agarras o que se te pasa, y te digo qué cambiar en la siguiente.</p></li>
+   <li><span class="when">Después</span><h3>Qué practicar</h3><p>Te vas con una o dos cosas para trabajar. El análisis de video ($30) te muestra exactamente lo que vi; las fotos de tu clase tienen un costo adicional.</p></li>
+  </ol>
+
+  <div class="prose"><h2>Por qué funcionan tres clases</h2><p>En la primera clase encontramos lo que más te frena y empezamos a corregirlo. En la segunda, empieza a volverse un hábito. En la tercera, lo juntas todo en olas distintas, y ahí es cuando encaja. Por eso armé el Mini Surf Camp: tres clases planeadas como una sola, $200 solo para ti, o $170 por persona para 2 o más.</p></div>
 
   <table class="facts">
    <caption>De un vistazo</caption>
@@ -158,14 +181,14 @@
    <tr><th scope="row">Dónde</th><td>Se elige cada día según la marea y el swell: a menudo Mar Azul, la playa para nivel intermedio, o Playa Santa Teresa</td></tr>
    <tr><th scope="row">La mejor opción</th><td>Mini Surf Camp: 3 clases planeadas como una sola, $200 solo para ti, o $170 por persona para 2 o más</td></tr>
    <tr><th scope="row">Una clase</th><td>Privada $75 · Grupo o familia $65 por persona · Unos 90 minutos</td></tr>
-   <tr><th scope="row">Tu coach</th><td>Weyser: 18 años surfeando, 7 años dando clases, más de 650 clases, coach de surf certificado por la ISA, salvavidas certificado, con RCP</td></tr>
+   <tr><th scope="row">Tu coach</th><td>Weyser: 18 años surfeando, 7 años dando clases, más de 800 clases, coach de surf certificado por la ISA, salvavidas certificado, con RCP</td></tr>
   </table>
 
   <figure class="quote-card"><p class="stars" aria-label="5 de 5 estrellas">★★★★★</p>
    <blockquote lang="es">“Nos ayudó muchísimo a mi esposa, a mí y a mis hijos a llevar nuestro surf al siguiente nivel: corrigió nuestros malos hábitos y sumó las habilidades que nos faltaban. Nos ayudó a leer la ola, a posicionarnos, con el take off y el pop up, y después a aprender a hacer trim a la izquierda y a la derecha, y nos enseñó el bottom turn y el top turn.”</blockquote>
    <figcaption>Cameron L. · <a href="https://www.google.com/maps?cid=4010852819318329176" target="_blank" rel="noopener">Reseña de Google</a>, traducida del inglés (fragmento)</figcaption></figure>
 
-  <div class="prose"><h2>¿Cuántas clases necesito para mejorar?</h2><p>Notas la diferencia desde la primera. Con tres todo encaja de verdad, y justo para eso existe el Mini Surf Camp.</p><h2>¿Dónde surfean quienes quieren mejorar?</h2><p>Depende de la marea y del swell. Mar Azul es la playa para nivel intermedio, y Playa Santa Teresa, la playa principal, sirve para todos los niveles según la marea y la hora del día. Weyser elige el lugar contigo cada día.</p><h2>¿Y si las olas están muy grandes?</h2><p>Te lo dice claramente, y busca un lugar donde las olas sean para ti.</p><h2>¿Puedo tener fotos o video de mi clase?</h2><p>Sí. Las fotos de tu clase tienen un costo adicional, y el análisis de video cuesta $30, para que veas exactamente qué corregir.</p></div>
+  <div class="prose"><h2>¿Qué nivel necesito?</h2><p>Si te paras en olas de espuma, ya puedes empezar. ¿No sabes bien? Elige “No sé” al reservar y yo te ubico.</p><h2>¿Cuántas clases necesito para mejorar?</h2><p>Notas la diferencia desde la primera. Con tres todo encaja de verdad, y justo para eso existe el Mini Surf Camp.</p><h2>¿Dónde surfean quienes quieren mejorar?</h2><p>Depende de la marea y del swell. Mar Azul es la playa para nivel intermedio, y Playa Santa Teresa, la playa principal, sirve para todos los niveles según la marea y la hora del día. Elijo el lugar contigo cada día.</p><h2>¿Y si las olas están muy grandes?</h2><p>Te lo digo claramente, y busco un lugar donde las olas sean para ti.</p><h2>¿Puedo tener fotos o video de mi clase?</h2><p>Sí. Las fotos de tu clase tienen un costo adicional, y el análisis de video cuesta $30, para que veas exactamente qué corregir.</p></div>
 
   <div class="duo">
    <div class="pic"><img src="/assets/img/spray-turn-800.webp" srcset="/assets/img/spray-turn-800.webp 800w, /assets/img/spray-turn-1600.webp 1600w" sizes="(min-width: 760px) 360px, 50vw" width="1600" height="1067" alt="Un surfista levantando agua en un giro en Santa Teresa" loading="lazy" decoding="async"></div>
@@ -173,15 +196,15 @@
   </div>
 
   <section class="book-band">
-   <h2>Sal del estancamiento esta semana.</h2>
-   <p>Cuéntale a Weyser en qué estás trabajando. Él elige el lugar y la hora para tu nivel.</p>
+   <h2>Cuéntame en qué estás trabajando.</h2>
+   <p>Mándame un mensaje con tu nivel y tus fechas. Yo elijo el lugar y la hora.</p>
    <div class="cta-row" style="margin-top:18px">
-    <a class="btn" href="https://wa.me/50660084391?text=%C2%A1Hola%2C%20Weyser%21%20Ya%20he%20surfeado%20y%20quiero%20clases%20para%20mejorar.%20%28Encontr%C3%A9%20tu%20p%C3%A1gina%20de%20clases%20para%20mejorar%29" data-track="es-coaching:cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span>Pregunta por las clases</span><span class="sr-only"> (abre WhatsApp)</span></a>
+    <a class="btn" href="https://wa.me/50660084391?text=%C2%A1Hola%2C%20Weyser%21%20Ya%20he%20surfeado%20y%20quiero%20clases%20para%20mejorar.%20%28Encontr%C3%A9%20tu%20p%C3%A1gina%20de%20clases%20para%20mejorar%29" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg><span>Pregunta por las clases</span><span class="sr-only"> (abre WhatsApp)</span></a>
     <a class="btn btn-ghost" href="/es/#sessions">Ver todas las clases</a>
    </div>
    <p class="guides-row"><a href="/beginner-surf-beaches-santa-teresa/">Compara las playas (en inglés)</a><a href="/first-surf-lesson-santa-teresa/">¿Vienes con alguien que empieza? (en inglés)</a></p>
   </section>
-  <p class="updated">Actualizado el 2 de octubre de 2026. Escrito con Weyser: 18 años surfeando en Santa Teresa, 7 años dando clases, más de 650 clases.</p>
+  <p class="updated">Actualizado el 2 de octubre de 2026. Escrito por Weyser: 18 años surfeando en Santa Teresa, 7 años dando clases, más de 800 clases.</p>
  </div>
 </article>
 <section class="forecast on-dark fc-wait" aria-label="Mañana en Santa Teresa">

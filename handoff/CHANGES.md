@@ -143,3 +143,14 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - **Tracking:** `data-track` on every WhatsApp link and a `track()` stub in site-v5.js. See README, "Measuring bookings".
 - Removed photos that are no longer used: jeep-boards, lineup-wave-hello.
 - Mobile homepage is about 23% shorter (from about 15,500px to 11,900px tall on a 390px phone).
+
+## 2026-10-02 (later): homepage layout restored, coaching guide rewritten
+- **Homepage layout back to the earlier version** (Ali's call): all three "Who is surfing?" cards, the original section order,
+  "Three stages", "Everyone gets stuck", the photo strip, the forecast, and Weyser's own bio in Meet Weyser (with the ISA stat).
+  The "Surfed before" card now links to the coaching guide ("Coaching for improvers →"). The jeep and lineup photos are back.
+- **Kept from the revision:** WhatsApp source tags and tracking stub, the bulleted message, optional "Staying where?" step,
+  the sticky bar opening WhatsApp on phones, the coaching guide (EN and ES), and the form preselect link.
+- **Lessons taught: 800+**, confirmed by Weyser. It appears in the hero and the Meet Weyser stats (not repeated elsewhere).
+- **Coaching guide rewritten in Weyser's voice:** a note from Weyser, where surfers get stuck and how he fixes it, what each of
+  the three stages covers and when you're ready for the next, how a coaching session works, why three sessions work, and 5 FAQs.
+  Spanish and English come from one structure in build_pages.py.
