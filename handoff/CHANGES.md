@@ -123,3 +123,4 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - Weyser's **ISA certification** (International Surfing Association surf instructor) is now on the site: the hero trust line ("ISA & lifeguard certified"), the "Meet Weyser" stats, the safety FAQ answer, the guide pages' coach details, the Spanish page, and the structured data (`hasCredential`, recognised by the International Surfing Association).
 - Lessons taught: **650+** everywhere (was 800+).
 - Weyser's quote is now "You're going to have a great time, and you're going to laugh." (Spanish: "La vas a pasar genial y te vas a reír.")
+- Buttons stay on one line on the smallest phones (320px): slightly tighter button padding there, and the beaches guide button now reads "Ask which beach to surf". CSS and JS version is now ?v=20261002a.
