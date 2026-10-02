@@ -5,20 +5,30 @@
   var lang = doc.lang === 'es' ? 'es' : 'en';
   /* words the booking picker writes; Spanish on /es/ */
   var T = lang === 'es' ? {
-    hi: '¡Hola, Weyser! Te encontré en tu sitio web.', who: 'Quién: ', people: ' personas', peopleLine: 'Personas: ',
+    hi: '¡Hola, Weyser! Quiero reservar una clase de surf.', found: 'Te encontré en tu sitio web', stay: 'Me quedo en: ', who: 'Quién: ', people: ' personas', peopleLine: 'Personas: ',
     kids: ' (niños: ', kidsEnd: ')', session: 'Clase: ', notSure: 'No sé, ¿me ayudas a elegir?', to: ' al ', when: 'Cuándo: ',
     start: '3 toques y listo para WhatsApp', of: ' de 3 listos', done: 'Todo listo: 3 de 3 ✓', send: 'Enviar a Weyser', sendWa: 'Enviar por WhatsApp',
     fewer: 'Menos preguntas', locale: 'es-CR',
     v: { 'First timer': 'Primera vez', 'Family with kids': 'Familia con niños', 'Surfed before': 'Ya he surfeado', 'Private': 'Privada',
          'Group or family': 'Grupo o familia', 'Group Mini Surf Camp': 'Mini Surf Camp grupal', 'Tomorrow': 'Mañana',
-         'This week': 'Esta semana', '4 or more': '4 o más' }
+         'This week': 'Esta semana', '4 or more': '4 o más', 'Other': 'Otro lugar' }
   } : {
-    hi: 'Hi Weyser! Found you on your website.', who: 'Who: ', people: ' people', peopleLine: 'People: ',
+    hi: 'Hi Weyser! I’d like to book a surf lesson.', found: 'Found you on your website', stay: 'Staying in: ', who: 'Who: ', people: ' people', peopleLine: 'People: ',
     kids: ' (kids ', kidsEnd: ')', session: 'Session: ', notSure: 'Not sure, can you help me pick?', to: ' to ', when: 'When: ',
     start: '3 quick taps, then WhatsApp', of: ' of 3 done', done: 'All set: 3 of 3 done ✓', send: 'Send to Weyser', sendWa: 'Send on WhatsApp',
     fewer: 'Fewer questions', locale: 'en-US', v: {}
   };
   var tx = function (v) { return T.v[v] || v; };
+
+  /* tracking stub: every WhatsApp link has data-track="<source>". Nothing is loaded here. If Plausible is added
+     to the page, clicks are counted as the custom event "WhatsApp" with a "source" property. */
+  var track = window.weyserTrack = function (event, source) {
+    if (window.plausible) window.plausible(event, { props: { source: source } });
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-track]');
+    if (a) track('WhatsApp', a.getAttribute('data-track'));
+  });
 
   /* header state */
   var header = document.querySelector('.site-header');
@@ -68,24 +78,23 @@
       if (r) r.checked = true;
     };
     var groupish = function () { return /Group/.test(val('session')) || val('level') === 'Family with kids'; };
+    var src = 'form';   /* which button opened the form: sent as a tag at the end of the message */
     var message = function () {
-      var level = val('level'), session = val('session');
+      var level = val('level'), session = val('session'), when = val('when'), stay = val('stay');
       var lines = [T.hi];
-      if (level) {
-        var who = tx(level);
-        if (groupish()) who += ', ' + tx(val('people')) + T.people;
-        var k = form.elements.kids.value.trim();
-        if (level === 'Family with kids' && k) who += T.kids + k + T.kidsEnd;
-        lines.push(T.who + who);
-      } else if (groupish()) lines.push(T.peopleLine + tx(val('people')));
-      if (session) lines.push(T.session + (session === 'Not sure' ? T.notSure : tx(session)));
-      var when = val('when');
+      if (level) lines.push('• ' + T.who + tx(level));
+      if (session) lines.push('• ' + T.session + (session === 'Not sure' ? T.notSure : tx(session)));
       if (when === 'dates') {
         var f = fmt(fromIn.value), t = fmt(toIn.value);
         when = f ? (t && t !== f ? f + T.to + t : f) : '';
-      } else if (when) { when = tx(when);
+      } else if (when) { when = tx(when); }
+      if (when) lines.push('• ' + T.when + when);
+      if (groupish()) {
+        var k = form.elements.kids.value.trim();
+        lines.push('• ' + T.peopleLine + tx(val('people')) + (level === 'Family with kids' && k ? T.kids + k + T.kidsEnd : ''));
       }
-      if (when) lines.push(T.when + when);
+      if (stay) lines.push('• ' + T.stay + tx(stay));
+      lines.push('(' + T.found + ' · ' + src + ')');
       return lines.join('\n');
     };
     var refresh = function () {
@@ -107,12 +116,16 @@
       refresh();
     });
     form.addEventListener('input', refresh);
+    var qs = new URLSearchParams(location.search);
+    pick('level', qs.get('level')); pick('session', qs.get('session'));
+    if (qs.get('src')) src = qs.get('src');
     refresh();
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var url = 'https://wa.me/50660084391?text=' + encodeURIComponent(message());
       /* new tab for WhatsApp (app, or WhatsApp Web on desktop); this page stays open behind it.
          No 'noopener' feature here: with it, window.open always returns null and the page would navigate away too. */
+      track('WhatsApp', 'form · ' + src);
       var w = window.open(url, '_blank');
       if (w) { try { w.opener = null; } catch (err) {} } else { window.location.href = url; }
     });
@@ -121,6 +134,7 @@
       a.addEventListener('click', function () {
         pick('level', a.getAttribute('data-level'));
         pick('session', a.getAttribute('data-session'));
+        if (a.getAttribute('data-src')) src = a.getAttribute('data-src');
         refresh();
       });
     });

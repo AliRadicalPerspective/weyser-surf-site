@@ -588,6 +588,11 @@ img.avatar{object-fit:cover;flex:none}
 .checklist svg{flex:none;width:20px;height:20px;margin-top:2px;color:#1B8A5A}
 .guides-row{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px}
 .guides-row a{color:#fff;font-weight:600;text-underline-offset:4px;text-decoration-color:var(--blue)}
+/* coaching guide: homepage stage cards and stuck list on a light page */
+.stages-guide{margin-top:24px}
+.topic .stage{box-shadow:var(--shadow)}
+.topic .method-note{background:var(--white);border:1px solid rgba(6,63,92,.08);box-shadow:var(--shadow);color:var(--ink)}
+.prose .stuck-list{padding-left:0;color:var(--ink)}
 @media (max-width:560px){
   .cta-row .btn{width:100%}
   .facts{font-size:.92rem}
@@ -608,3 +613,13 @@ img.avatar{object-fit:cover;flex:none}
 @media (min-width:820px){.site-footer .wrap{grid-template-columns:1.3fr 1fr 1fr 1fr}}
 /* smallest phones (320px): a little less button padding so CTAs stay on one line */
 @media (max-width:360px){.btn{padding-left:14px;padding-right:14px;font-size:.9rem;gap:8px}.btn svg{width:18px;height:18px}.book-band{padding-left:18px;padding-right:18px}}
+
+/* ===== homepage revision 2026-10-02 ===== */
+/* two audience cards, then a one-line link for improvers */
+@media (min-width:820px){.doors .cards3{grid-template-columns:repeat(2,1fr);max-width:860px}}
+.doors-more{margin:22px 0 0;font-weight:600;color:var(--ink-soft)}
+.doors-more a{color:var(--navy);text-underline-offset:3px}
+/* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
+@media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
+@media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}
+legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}

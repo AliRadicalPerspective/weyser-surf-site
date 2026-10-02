@@ -20,13 +20,15 @@ site/
   kids-family-surf-lessons-santa-teresa/index.html  new page
   beginner-surf-beaches-santa-teresa/index.html     new page
   first-surf-lesson-santa-teresa/index.html         new page
-  sitemap.xml                                       replaces /sitemap.xml (adds the 3 new pages)
+  surf-coaching-santa-teresa/index.html             new page (coaching for improvers)
+  es/clases-de-surf-avanzado-santa-teresa/index.html new page (the coaching guide in Spanish)
+  sitemap.xml                                       replaces /sitemap.xml (adds the 5 new pages)
   assets/site-v5.css                                new stylesheet (site.css stays, see below)
   assets/site-v5.js                                 new script (site.js stays, see below)
-  assets/img/     40 images (24 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
+  assets/img/     37 images (21 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
   assets/video/   drone-loop.mp4 + its poster image
-preview/           the same five pages with relative links, for clicking through (don't upload this)
+preview/           the same seven pages with relative links, for clicking through (don't upload this)
 ```
 
 ## The Spanish page is included
@@ -37,13 +39,14 @@ written in neutral, friendly Spanish (*tú*). It replaces the current `/es/index
 - It uses `site-v5.css` and `site-v5.js`, like the English page. The booking form writes its WhatsApp message in Spanish
   on this page (the script checks `<html lang="es">`).
 - Weyser's bio is his own words from the old Spanish page. His quote is the updated one ("La vas a pasar genial y te vas a reír.").
-- The three guide pages are only in English for now. The Spanish page links to them and says "(en inglés)".
+- The coaching guide also has a Spanish version: `/es/clases-de-surf-avanzado-santa-teresa/`. The other three guides are only in English
+  for now; the Spanish pages link to them and say "(en inglés)".
 - `assets/site.css` and `assets/site.js` are no longer used by any page after this update. **Leave them on the server
   anyway** for a few weeks: old cached pages and any other page you know of may still point to them.
 
 ## See it first (no setup)
 
-- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all five pages, English and Spanish, links work between them; hidden from search engines)
+- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all seven pages, English and Spanish, links work between them; hidden from search engines)
 - **Offline:** open `preview/index.html` in a browser. It is the same site with relative links, so it runs from a folder.
   (Browsers sometimes block web fonts from local files, so the headings may show in a fallback font there. That's normal.)
 - **Exactly as the server will run it:** in a terminal, `cd site` then `python3 -m http.server 8000`, and open http://localhost:8000
@@ -61,13 +64,14 @@ to the Pages project, the same way the current site was published.
    - Overwriting is safe. The only existing files that change are `/index.html`, `/es/index.html` and `/sitemap.xml`. Every image and font in
      `site/assets/` that already exists is an identical copy, included so the folder previews completely.
    - `assets/site.css`, `assets/site.js`, `404.html` and the favicons are **not** in this folder, so they stay untouched.
-   - The three guide pages arrive as folders (`/first-surf-lesson-santa-teresa/`, `/kids-family-surf-lessons-santa-teresa/`,
-     `/beginner-surf-beaches-santa-teresa/`, each with an `index.html`), so their addresses end in a slash.
+   - The guide pages arrive as folders (`/first-surf-lesson-santa-teresa/`, `/kids-family-surf-lessons-santa-teresa/`,
+     `/beginner-surf-beaches-santa-teresa/`, `/surf-coaching-santa-teresa/`, `/es/clases-de-surf-avanzado-santa-teresa/`, each with an
+     `index.html`), so their addresses end in a slash.
 3. **Check the `<head>` of the old homepage (and of the old `/es/` page)** for anything the new one doesn't have, such as the Cloudflare Web Analytics
    beacon, and copy it across. There's a comment marking where the beacon goes.
-4. **Deploy.** Pages clears its cache on every deploy, so there's nothing to purge. The CSS and JS also carry `?v=20261001c`.
+4. **Deploy.** Pages clears its cache on every deploy, so there's nothing to purge. The CSS and JS also carry `?v=` version numbers, so browsers fetch the new files.
 5. **Tell Google and Bing:** submit the sitemap in Google Search Console and Bing Webmaster Tools, and request indexing
-   for the three new addresses. Bing matters because ChatGPT search uses it.
+   for the new addresses (the four guides and the Spanish coaching page). Bing matters because ChatGPT search uses it.
 
 ## Hosting fixes found while checking the live site (1 October 2026)
 
@@ -90,7 +94,7 @@ to the Pages project, the same way the current site was published.
 
 ## Placeholders
 
-There is no draft copy left: all text on the five pages is confirmed, and the old red placeholder style is gone from the CSS.
+There is no draft copy left: all text on the seven pages is confirmed, and the old red placeholder style is gone from the CSS.
 Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
 - The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). They stay until Weyser sends the photos.
@@ -117,15 +121,35 @@ The Playa Carmen card just above them shows the finished version.
 
 On a real phone, over mobile data:
 
-- [ ] Homepage, `/es/` and all three guides load, with no 404s in the browser console
+- [ ] Homepage, `/es/`, the four guides and the Spanish coaching page load, with no 404s in the browser console
 - [ ] On `/es/`, the booking form's WhatsApp message is in Spanish (send one test)
-- [ ] "Book a session" (hero, sticky bar, price cards, level cards) scrolls to the booking picker with the right choices already selected
+- [ ] "Book" buttons (hero, level cards, price cards, Meet Weyser) scroll to the booking form with the right choices already selected
+- [ ] On a phone, the sticky bar "WhatsApp Weyser · from $65" opens WhatsApp directly
+- [ ] On the coaching page, "Plan it in the booking form" opens the homepage form with "Surfed before" and "Not sure" selected
 - [ ] The picker's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
 - [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It stays on the still image with data saver, 2G or "reduce motion" on; that's intended. With iPhone Low Power Mode it starts on the first tap.
 - [ ] The guide links work: level cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
-- [ ] Structured data passes Google's Rich Results Test for all five pages
+- [ ] Structured data passes Google's Rich Results Test for all seven pages
+
+## Measuring bookings (tracking)
+
+Nothing is tracked yet, and no analytics script is loaded. Two things are already in place:
+
+- **Every WhatsApp message says where it came from.** The booking form ends with a tag naming the button that opened it,
+  for example "(Found you on your website · family)". The other WhatsApp links are tagged the same way ("· sticky",
+  "· standby", "· footer"), and the guide pages name the page. Weyser can count these in WhatsApp with no setup at all.
+- **Every WhatsApp link has a `data-track="<source>"` attribute**, and `site-v5.js` has a small `track()` function. When
+  `window.plausible` exists, it sends a custom event "WhatsApp" with a `source` property. Otherwise it does nothing.
+
+To turn on click counts, we suggest **Plausible**: one small script, no cookies, so no cookie banner is needed.
+1. Create the site in Plausible, then add this line to the `<head>` of every page:
+   `<script defer data-domain="weysersurf.com" src="https://plausible.io/js/script.js"></script>`
+2. In Plausible, add a custom event goal named `WhatsApp` and the custom property `source`.
+
+Cloudflare Web Analytics, which the site may already use, counts page views but not button clicks. It can run
+alongside Plausible.
 
 ## Speed: what's already done, and how to keep it fast
 

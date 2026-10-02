@@ -124,3 +124,22 @@ Everything from `site.js` is still in it: header, reveal on scroll, the forecast
 - Lessons taught: **650+** everywhere (was 800+).
 - Weyser's quote is now "You're going to have a great time, and you're going to laugh." (Spanish: "La vas a pasar genial y te vas a reír.")
 - Buttons stay on one line on the smallest phones (320px): slightly tighter button padding there, and the beaches guide button now reads "Ask which beach to surf". CSS and JS version is now ?v=20261002a.
+
+## 2026-10-02: homepage revision (families first)
+- **New homepage order:** hero, Who is surfing? (first timer, family), Meet Weyser, your first lesson, reviews, prices, booking form, FAQ, closing.
+  The headline stays "Actually learn to surf."
+- **Improver content has its own page:** `/surf-coaching-santa-teresa/`, plus the Spanish version `/es/clases-de-surf-avanzado-santa-teresa/`.
+  "Three stages", "Everyone gets stuck", the advanced photos and the "Tomorrow in Santa Teresa" forecast moved there; the forecast code is
+  unchanged. On the homepage the "Surfed before" card is now one line: "Surfed before and stuck? See coaching for improvers →".
+  The new page is in the footer Guides list and in the sitemap.
+- **Meet Weyser, safety first:** lifeguard, CPR and ISA certification come first, then how first timers and kids learn
+  (Playa Hermosa or Playa Carmen), then his story. The new Spanish quote is "Te vas a divertir y te vas a reír."
+- **"650+ lessons"** now appears only in the hero and the Meet Weyser stats.
+- **Booking form:**
+  - optional step 4, "Staying where?" (Santa Teresa, Malpaís, Playa Carmen, Playa Hermosa, Other);
+  - the message is now a bulleted list, ending with a tag that names the button that opened the form;
+  - other pages can preselect the form with a link like `/?level=Surfed%20before&session=Not%20sure&src=improver#book`.
+- **Sticky bar on phones** opens WhatsApp directly: "WhatsApp Weyser · from $65". It is still hidden from 860px up, where the header button shows.
+- **Tracking:** `data-track` on every WhatsApp link and a `track()` stub in site-v5.js. See README, "Measuring bookings".
+- Removed photos that are no longer used: jeep-boards, lineup-wave-hello.
+- Mobile homepage is about 23% shorter (from about 15,500px to 11,900px tall on a 390px phone).

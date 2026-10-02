@@ -7,7 +7,8 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 - [ ] Written OK from parents for the photos of kids: hero (student-cheer), family-walk-in, first-timer-waiting
 - [ ] Full-size original of the hero photo (student-cheer), 2000px wide or more
 - [ ] One landscape photo each of Playa Hermosa and Mar Azul, for the two placeholder boxes on the beaches guide. Swap them in before that page goes live (README: "Swapping in the two beach photos")
-- [ ] Spanish page: have Weyser (or any native speaker) read /es/ once before launch. It is a new page, in neutral Spanish with tú
+- [ ] Spanish pages: have Weyser (or any native speaker) read /es/ and /es/clases-de-surf-avanzado-santa-teresa/ once before launch. Both are new, in neutral Spanish with tú
+- [ ] Weyser reads the new Meet Weyser text once, especially "within arm's reach the whole session"
 
 ## Later, when ready
 
