@@ -605,8 +605,22 @@ img.avatar{object-fit:cover;flex:none}
 .door .fit-label{display:block;margin-bottom:4px;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
 .door .door-body .guide-link{flex:none;margin:0 0 18px;padding-top:14px;border-top:1px solid rgba(6,63,92,.1)}
 .door .door-body .fit{flex:none}
-.door .guide-link a{text-decoration:none;font-weight:700}
-.door .guide-link a:hover,.door .guide-link a:focus-visible{text-decoration:underline}
+.door .guide-link a{font-weight:700;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+/* from tablets up, the three cards share one row grid (subgrid): number, title, description, price, link and button
+   sit on the same line in every card, whatever the description length */
+@supports (grid-template-rows: subgrid){
+  @media (min-width:820px){
+    .doors .cards3{grid-template-rows:repeat(7,auto);row-gap:0}
+    .door{display:grid;grid-row:span 7;grid-template-rows:subgrid;row-gap:0}
+    .door .door-body{display:contents}
+    .door .door-body > *{margin-left:24px;margin-right:24px}
+    .door .door-body > .num{margin-top:22px}
+    .door .door-body > p:not(.fit):not(.guide-link){margin-bottom:16px}
+    .door .door-body > .fit{align-self:start}
+    .door .door-body > .guide-link{align-self:start;margin:0 24px 18px}
+    .door .door-body > .btn{justify-self:start;align-self:end;margin-top:0;margin-bottom:24px}
+  }
+}
 /* photo strip: three photos from tablets up */
 @media (min-width:900px){.strip{grid-template-columns:repeat(3,1fr)}}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}
