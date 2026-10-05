@@ -407,16 +407,6 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .price.feature .badge{background:#fff;color:var(--navy)}
 .price.feature .btn-ghost{color:#fff}
 
-/* first lesson as a photo sequence */
-.seq{list-style:none;margin:28px calc(var(--gutter) * -1) 0;padding:4px var(--gutter) 16px;display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
-.seq::-webkit-scrollbar{display:none}
-.seq li{scroll-snap-align:center}
-.seq figure{margin:0;border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:var(--shadow)}
-.seq img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.seq figcaption{display:flex;align-items:center;gap:12px;padding:16px 18px;font-weight:600;color:var(--navy)}
-.seq figcaption b{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-size:.85rem}
-@media (min-width:820px){.seq{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);overflow:visible;margin:34px 0 0;padding:0}}
-
 /* drone loop behind the closing call */
 .closing video.bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover}
 
@@ -594,22 +584,22 @@ img.avatar{object-fit:cover;flex:none}
 /* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
 @media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
 @media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}
-/* "Your first lesson": a vertical list of steps (photo left, text right) instead of a third row of three cards */
-.seq{display:flex;flex-direction:column;gap:16px;max-width:820px;margin:28px 0 0;padding:0;overflow:visible}
-.seq li{display:block}
-.seq figure{display:grid;grid-template-columns:clamp(116px,34%,280px) 1fr;align-items:stretch;transform:none}
-.seq img{height:100%;aspect-ratio:3/2;min-height:96px}
-.seq figcaption{padding:18px 22px;font-size:clamp(1rem,1.6vw,1.15rem);gap:14px}
-.seq figcaption b{width:34px;height:34px;font-size:.9rem}
-@media (min-width:820px){.seq{display:flex;grid-template-columns:none;margin-top:34px}}
-/* desktop: heading and intro on the left, the steps on the right (fills the width, no third row of three columns) */
-@media (min-width:1000px){
-  .lesson .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,6vw,88px);align-items:start}
-  .lesson .h2{grid-column:1;grid-row:1;font-size:clamp(2.1rem,3.6vw,3.2rem)}
-  .lesson .lead{grid-column:1;grid-row:2}
-  .lesson .guide-link{grid-column:1;grid-row:3}
-  .lesson .seq{grid-column:2;grid-row:1 / span 4;margin-top:0;max-width:none}
-}
+/* "Your first lesson": one large photo beside a connected timeline */
+.lesson-grid{display:grid;gap:28px;margin-top:28px}
+@media (min-width:900px){.lesson-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,80px);align-items:center;margin-top:36px}}
+.lesson-photo{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lift);aspect-ratio:3/2;background:var(--paper-deep)}
+@media (min-width:900px){.lesson-photo{aspect-ratio:1/1}}
+.lesson-photo img{width:100%;height:100%;object-fit:cover;object-position:12% 50%}
+.lesson-timeline{list-style:none;margin:0;padding:0;counter-reset:lstep}
+.lesson-timeline li{position:relative;counter-increment:lstep;padding:0 0 30px 58px}
+.lesson-timeline li::before{content:counter(lstep);position:absolute;left:0;top:0;width:38px;height:38px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.lesson-timeline li::after{content:"";position:absolute;left:18px;top:46px;bottom:6px;width:2px;background:rgba(6,63,92,.18)}
+.lesson-timeline li:last-child{padding-bottom:0}
+.lesson-timeline li:last-child::after{display:none}
+.lesson-timeline .when{display:block;margin:2px 0 4px;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.lesson-timeline h3{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:clamp(1.12rem,1.6vw,1.3rem);margin:0 0 6px;color:var(--navy)}
+.lesson-timeline p{margin:0;color:var(--ink-soft)}
+.lesson-steps .guide-link{margin:26px 0 0 58px}
 /* the link under the first-lesson cards reads as a real next step */
 .lesson .guide-link{font-size:1.05rem}
 /* level cards: plain bold price line under a small label; the guide link on its own row, above the button */
@@ -633,8 +623,6 @@ img.avatar{object-fit:cover;flex:none}
     .door .door-body > .btn{justify-self:start;align-self:end;margin-top:0;margin-bottom:24px}
   }
 }
-/* photo strip: three photos from tablets up */
-@media (min-width:900px){.strip{grid-template-columns:repeat(3,1fr)}}
 /* "Bad waves? Free reschedule." on one line on desktop: the box hugs the sentence instead of a 720px cap */
 @media (min-width:1000px){.promise{max-width:none;width:fit-content}}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}

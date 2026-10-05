@@ -7,7 +7,7 @@ is a description of the end result, not a to-do list. (Still needed before launc
 ## Homepage (`index.html`)
 
 **Section order:** Hero · Who's surfing (3 cards) · Your first lesson · Reviews · Prices + booking form · Meet Weyser ·
-Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
+Three stages · Tomorrow's forecast · Everyone gets stuck · Photo strip · FAQ · Closing.
 
 - **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
   families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
@@ -18,8 +18,9 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
   a bold "Best for you" price line, one link to the matching guide, and a Book button that opens the booking form with
   that choice already selected. Links and buttons line up across the cards.
-- **Your first lesson, start to finish:** three steps as a vertical list, photo beside text (walk in, pop up, head home).
-  On desktop the heading sits on the left and the steps on the right, which breaks up the three-column rows.
+- **Your first lesson, start to finish:** one large photo (the pop-up, Weyser close by) beside a connected timeline:
+  "On the sand · about 15 minutes", "In the water · about 90 minutes", "After", each with a title and one line. On phones
+  the photo sits above the steps.
 - **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
@@ -31,7 +32,7 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
 - **Meet Weyser:** his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
   certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
 - **Three stages / Everyone gets stuck:** plainer words, less surf jargon. "Level up" shows the aerial drone shot of Weyser.
-- **Photo strip:** jungle walk-out, jeep, palm-point lineup. No photo appears twice on the page.
+- **Photo strip:** walking in with Weyser, jungle walk-out, jeep, sunset after the lesson. No photo appears twice on the page.
 - **FAQ:** 18 questions; the 6 families ask most show first, the other 12 sit behind "More questions". Includes the
   lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
