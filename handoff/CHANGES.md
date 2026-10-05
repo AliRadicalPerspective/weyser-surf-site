@@ -16,7 +16,7 @@ Three stages · Tomorrow's forecast · Everyone gets stuck · Photo strip · FAQ
   certified"; the stars link to his Google profile. Buttons: "Book a lesson" (to the booking form) and "See prices".
   On phones the photo sits above the text.
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
-  a bold "Best for you" price line, one link to the matching guide, and a Book button that opens the booking form with
+  a bold price line under a small "Recommended" label, one link to the matching guide, and a Book button that opens the booking form with
   that choice already selected. Links and buttons line up across the cards.
 - **Your first lesson, start to finish:** one large photo (the pop-up, Weyser close by) beside a connected timeline:
   "On the sand · about 15 minutes", "In the water · about 90 minutes", "After", each with a title and one line. On phones
