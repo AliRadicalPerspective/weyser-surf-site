@@ -1,6 +1,7 @@
 # Weyser site update: start here
 
-This folder holds a redesigned English homepage and three new guide pages for weysersurf.com.
+This folder holds the redesigned weysersurf.com: new English and Spanish homepages, four new guide pages, and a
+Spanish version of the coaching guide.
 Everything in `site/` mirrors the web server root, so each file goes to the same path on the server.
 
 Nothing here needs a build step. It is plain HTML, CSS and JavaScript, following the site's current
@@ -12,7 +13,7 @@ Allow about an hour, including testing.
 
 ```
 README.md          this file
-CHANGES.md         what changed on the homepage and why, section by section
+CHANGES.md         what's different from the live site, page by page
 TO-CONFIRM.md      what is still needed before launch (photos, permissions, a read-through of the Spanish page)
 site/
   index.html                                        new English homepage (replaces /index.html)
@@ -38,7 +39,7 @@ written in neutral, friendly Spanish (*tú*). It replaces the current `/es/index
 
 - It uses `site-v5.css` and `site-v5.js`, like the English page. The booking form writes its WhatsApp message in Spanish
   on this page (the script checks `<html lang="es">`).
-- Weyser's bio is his own words from the old Spanish page. His quote is the updated one ("La vas a pasar genial y te vas a reír.").
+- Weyser's bio is his own words from the old Spanish page. His quote is "Te vas a divertir y te vas a reír."
 - The coaching guide also has a Spanish version: `/es/clases-de-surf-avanzado-santa-teresa/`. The other three guides are only in English
   for now; the Spanish pages link to them and say "(en inglés)".
 - `assets/site.css` and `assets/site.js` are no longer used by any page after this update. **Leave them on the server
@@ -86,11 +87,11 @@ to the Pages project, the same way the current site was published.
 
 ## Things kept exactly as they are on the live site
 
-- **Logo:** the header wordmark and footer lockup are the same inline SVGs and CSS rules as the live `site.css`.
+- **Logo:** the header and footer use the same inline SVG lockup and CSS rules as the live `site.css`.
 - **Forecast strip:** `site-v5.js` uses the live forecast code unchanged: `/api/forecast` (the Cloudflare function) first,
   `window.__FC` if it's present, the public Open-Meteo API as backup, and the `fc-wait` state until data arrives.
 - **Structured data:** based on the live JSON-LD (including `priceSpecification`). Only the descriptions, the page name, the FAQ list and the Mini Surf Camp offers (new name and prices) change.
-- **WhatsApp:** every link and the booking picker go to +506 6008 4391, the same number as the live site.
+- **WhatsApp:** every link and the booking form go to +506 6008 4391, the same number as the live site.
 
 ## Placeholders
 
@@ -126,12 +127,52 @@ On a real phone, over mobile data:
 - [ ] "Book" buttons (hero, level cards, price cards, Meet Weyser) scroll to the booking form with the right choices already selected
 - [ ] On a phone, the sticky bar "WhatsApp Weyser · from $65" opens WhatsApp directly
 - [ ] On the coaching page, "Plan it in the booking form" opens the homepage form with "Surfed before" and "Not sure" selected
-- [ ] The picker's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
+- [ ] The booking form's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
 - [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It stays on the still image with data saver, 2G or "reduce motion" on; that's intended. With iPhone Low Power Mode it starts on the first tap.
-- [ ] The guide links work: level cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
+- [ ] The guide links work: the three homepage cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
 - [ ] Structured data passes Google's Rich Results Test for all seven pages
+
+## Editing the site by hand
+
+There's no build step: edit the HTML files directly. A few things live in more than one place, so here's where.
+
+**English and Spanish are separate files.** Any change to `index.html` also needs making in `es/index.html`, and a change
+to `surf-coaching-santa-teresa/` also in `es/clases-de-surf-avanzado-santa-teresa/`.
+
+**Changing a price.** Prices appear as text and in the structured data (the `<script type="application/ld+json">` block
+in the `<head>`). In every page below, search for the old price with the dollar sign (for example `$75`), and on the two
+homepages also for `"price": "75"` (it appears twice per product) and `"priceRange"`.
+
+| Price | Pages to search |
+|---|---|
+| Private $75, Group or family $65 | both homepages, all four guides, the Spanish coaching page |
+| Mini Surf Camp $200, Group Mini Surf Camp $170 | both homepages, the first-lesson, kids and coaching guides (English and Spanish) |
+
+The "save $25" lines on the price cards are three sessions at the single price minus the camp price; update them if either
+price changes. The sticky bar says "from $65" (the lowest price).
+
+**Changing the lessons count (800+)** or other facts about Weyser: search all pages for the old value. It appears in the hero,
+the Meet Weyser stats, the screen-reader sentence just above them, and the "Last updated" lines on the guides.
+
+**The booking form** (`#book` on both homepages):
+- Options are radio buttons. Their `value` attributes stay in English on both pages: the script uses them as keys and
+  translates them for the Spanish message (the `T.v` table at the top of `site-v5.js`).
+- To add an option, copy a `<label class="chip">` line; for Spanish, add its translation to `T.v`.
+- The message wording (greeting, line labels) is in the `T` table at the top of `site-v5.js`, in English and Spanish.
+- Any link with `href="#book"` can preselect the form: `data-level="First timer"`, `data-session="Private"`, and
+  `data-src="..."` to name it in the message's last line.
+
+**Adding a WhatsApp link:** use `https://wa.me/50660084391?text=` plus the URL-encoded message, end the message with where it
+came from (for example `(Found you on your website · instagram)`), and add `data-track="instagram"` to the link.
+
+**The stylesheet** (`site-v5.css`) is plain CSS: base styles first, then sections that refine them. When a selector appears
+twice, the later rule wins, so add new rules at the end. Colours are CSS variables at the top (`--navy`, `--orange`, ...).
+The guide-page styles are in the "topic pages" section.
+
+**Cache:** when you change `site-v5.css` or `site-v5.js`, raise the `?v=` number on every page that links them, so returning
+visitors get the new file.
 
 ## Measuring bookings (tracking)
 

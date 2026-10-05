@@ -1,5 +1,6 @@
 /* Weyser Surf Coach · weysersurf.com · built by Cocoia Creative Agency
-   site-v5.css: redesigned homepage + guide pages. The Spanish page keeps site.css until it is redone. */
+   site-v5.css: every page of the redesign (homepage, Spanish homepage, guides). The old site.css is not used by any page.
+   Base styles come first, then refinements in sections; when a selector appears twice, the later rule wins. */
 
 @font-face{font-family:"Montserrat";src:url("fonts/montserrat-400.woff2") format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Montserrat";src:url("fonts/montserrat-500.woff2") format("woff2");font-weight:500;font-display:swap}
@@ -40,13 +41,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .section{padding:clamp(72px,11vw,136px) 0}
 
 /* eyebrow with the wave motif */
-.eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 18px;font-size:.74rem;font-weight:700;letter-spacing:.243em;text-transform:uppercase;color:var(--navy)}
-.eyebrow::before{content:"";width:30px;height:12px;flex:none;background:currentColor;
-  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 12'><path d='M1 8c3.5 0 3.5-5 7-5s3.5 5 7 5 3.5-5 7-5 3.5 5 7 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/></svg>") center/contain no-repeat;
-          mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 12'><path d='M1 8c3.5 0 3.5-5 7-5s3.5 5 7 5 3.5-5 7-5 3.5 5 7 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/></svg>") center/contain no-repeat}
-.on-dark .eyebrow,.eyebrow.light{color:#fff}
-.on-dark .eyebrow::before,.eyebrow.light::before{background:var(--orange)}
-.eyebrow::before{background:var(--orange)}
 
 .h2{font-size:clamp(2.05rem,5.6vw,3.9rem);margin-bottom:22px}
 .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--ink-soft);max-width:36em}
@@ -104,11 +98,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .fc-chip small{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
 .fc-src{width:100%;margin:0;font-size:.68rem;opacity:.6;order:9}
 .fc-src a{color:inherit}
-.forecast.no-data .fc-data,.forecast.no-data .fc-src{display:none}
 
 /* plateau */
 .split{display:grid;gap:clamp(32px,6vw,80px);align-items:center}
-@media (min-width:900px){.split{grid-template-columns:1.05fr 1fr}.split.rev>:first-child{order:2}}
+@media (min-width:900px){.split{grid-template-columns:1.05fr 1fr}}
 .stuck-list{list-style:none;margin:26px 0 30px;padding:0;display:grid;gap:12px}
 .stuck-list li{position:relative;padding:14px 18px 14px 50px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow);font-weight:500}
 .stuck-list li::before{content:"";position:absolute;left:18px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;border:2px solid var(--orange)}
@@ -144,17 +137,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .method-note{margin:36px 0 0;padding:20px 24px;border-radius:var(--radius-sm);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-weight:500;max-width:780px}
 
 /* why */
-.reasons{display:grid;gap:16px;margin-top:30px}
-.reason{padding:22px 24px;background:var(--white);border-radius:var(--radius-sm);box-shadow:var(--shadow)}
-.reason h3{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:1.1rem;font-weight:700;margin-bottom:6px;color:var(--navy)}
-.reason p{margin:0;color:var(--ink-soft)}
+
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
 .stat{padding:18px 12px;text-align:center;border-radius:var(--radius-sm);background:var(--navy);color:#fff}
 .stat b{display:block;font-family:var(--display);font-size:clamp(1.7rem,4vw,2.3rem);line-height:1;color:var(--orange)}
 .stat b.word{font-size:clamp(1.05rem,2.6vw,1.4rem);line-height:1.2;padding-top:.3em}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.inc p{margin:0}
-.inc strong{color:var(--navy)}
+
 .stat span{display:block;margin-top:8px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 
 /* coach */
@@ -168,24 +157,19 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 @media (min-width:1080px){.prices{grid-template-columns:repeat(4,1fr)}}
 .price{position:relative;display:flex;flex-direction:column;padding:28px 24px 24px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .price:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
-.price .kind{font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+
 .price h3{font-size:1.45rem;margin:10px 0 4px}
 .price .amt{font-family:var(--display);font-size:2.9rem;line-height:1;color:var(--navy);margin:10px 0 2px}
 .price .per{font-size:.85rem;color:var(--ink-soft);margin-bottom:14px}
 .price p{flex:1;color:var(--ink-soft)}
 .price .btn{width:100%}
 .price.feature{background:var(--navy);color:#fff}
-.price.feature .kind,.price.feature .per,.price.feature p{color:rgba(255,255,255,.82)}
+.price.feature .per,.price.feature p{color:rgba(255,255,255,.82)}
 .price.feature h3,.price.feature .amt{color:#fff}
 .price.feature::after{content:"";position:absolute;right:-30px;top:-20px;width:170px;height:70px;opacity:.12;background:#fff;
   -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 12'><path d='M1 8c3.5 0 3.5-5 7-5s3.5 5 7 5 3.5-5 7-5 3.5 5 7 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/></svg>") center/contain no-repeat;
           mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 12'><path d='M1 8c3.5 0 3.5-5 7-5s3.5 5 7 5 3.5-5 7-5 3.5 5 7 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/></svg>") center/contain no-repeat}
 .badge{position:absolute;top:18px;right:18px;padding:5px 11px;border-radius:999px;background:var(--orange);color:var(--ink);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-.inc{display:grid;gap:16px;margin-top:26px}
-@media (min-width:820px){.inc{grid-template-columns:1fr 1fr 1fr}}
-.inc div{padding:20px 22px;border-radius:var(--radius-sm);background:var(--paper-deep)}
-.inc h3{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:1rem;font-weight:700;margin-bottom:6px}
-.inc p{margin:0;color:var(--ink-soft)}
 
 /* gallery */
 .gallery{padding:0 0 clamp(72px,11vw,136px)}
@@ -210,7 +194,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .closing .bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .closing::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,44,65,.55),rgba(4,44,65,.82))}
 .closing .h2{color:#fff;font-size:clamp(2.4rem,7vw,5rem)}
-.closing .eyebrow{justify-content:center}
+
 .standby{max-width:560px;margin:46px auto 0;padding:26px 24px;border-radius:var(--radius);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .standby p{margin:0 0 16px;font-size:1.02rem}
 .standby strong{color:var(--orange)}
@@ -268,7 +252,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .site-footer ul{gap:0}
 .credit a{display:inline-flex;align-items:center;min-height:44px}
 
-/* ===== v2 additions ===== */
+/* ===== level cards, stages, reviews, booking form ===== */
 
 /* hero */
 .hero .sub{margin:18px 0 10px}
@@ -321,8 +305,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .dates label{display:grid;gap:6px;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
 .dates input{display:block;width:100%;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;min-height:50px;padding:10px 12px;border:2px solid rgba(6,63,92,.18);border-radius:14px;background:var(--paper);font:inherit;font-size:16px;color:var(--ink)}
 .dates input:focus{outline:3px solid var(--orange);outline-offset:1px}
-.flexi{display:flex;align-items:center;gap:10px;min-height:44px;margin-top:8px;font-weight:500;cursor:pointer}
-.flexi input{width:22px;height:22px;accent-color:var(--navy)}
+
 .book-preview{margin:0 0 18px;padding:14px 16px;border-radius:14px;background:#E7F6EE;color:#0B3D2A;font-size:.92rem;white-space:pre-line}
 .book-preview::before{content:"Your message";display:block;margin-bottom:4px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
 .book .btn[type=submit]{width:100%}
@@ -341,7 +324,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
   .price .amt{font-size:2.5rem}
 }
 
-/* ===== v3 additions ===== */
+/* ===== phones: hero layout ===== */
 .hero .sub{margin:18px 0 10px}
 .promise{display:flex;gap:14px;align-items:flex-start;margin:6px 0 0;padding:18px 20px;border-radius:var(--radius-sm);background:#E7F6EE;color:#0B3D2A;max-width:720px}
 .promise svg{flex:none;width:26px;height:26px;margin-top:2px}
@@ -375,7 +358,7 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
   .hero::before{background:linear-gradient(90deg,rgba(4,44,65,.78) 0%,rgba(4,44,65,.35) 45%,rgba(4,44,65,0) 70%),linear-gradient(180deg,rgba(4,44,65,.45) 0%,rgba(4,44,65,0) 22%,rgba(4,44,65,0) 55%,rgba(4,44,65,.6) 100%)}
 }
 
-/* ===== v4 additions ===== */
+/* ===== photos, video, reviewer photos, included list ===== */
 /* placeholders for photos and videos still to shoot */
 .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;text-align:center;background:#FDECEE;border:2px dashed #C8102E;color:#C8102E;font-size:.85rem;font-weight:600;line-height:1.35}
 .ph svg{width:30px;height:30px}
@@ -392,21 +375,10 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 /* first lesson video */
 .lesson{background:var(--paper)}
 .lesson .h2{margin-bottom:14px}
-.vid{position:relative;display:block;margin-top:28px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lift);aspect-ratio:4/5;background:var(--navy-deep)}
-@media (min-width:700px){.vid{aspect-ratio:16/9}}
-.vid img{width:100%;height:100%;object-fit:cover;opacity:.55}
-.vid .play{position:absolute;left:50%;top:42%;width:76px;height:76px;margin:-38px 0 0 -38px;display:grid;place-items:center;border-radius:50%;background:var(--orange);color:var(--ink);box-shadow:0 12px 30px -8px rgba(0,0,0,.5)}
-.vid .play svg{width:34px;height:34px;margin-left:4px}
-.vid .ph{position:absolute;left:14px;right:14px;bottom:14px;border-radius:14px;background:rgba(253,236,238,.95)}
-.steps{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;counter-reset:s}
-@media (min-width:700px){.steps{grid-template-columns:repeat(4,1fr)}}
-.steps li{counter-increment:s;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--radius-sm);background:var(--white);box-shadow:var(--shadow);font-weight:600;font-size:.92rem;color:var(--navy)}
-.steps li::before{content:counter(s);flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--orange);color:var(--ink);font-size:.8rem;font-weight:700}
 
 /* meet Weyser: intro video over his photo */
 .coach .photo{isolation:isolate}
-.coach .photo .play{position:absolute;left:50%;top:20%;z-index:2;width:72px;height:72px;margin:-36px 0 0 -36px;display:grid;place-items:center;border-radius:50%;background:var(--orange);color:var(--ink);box-shadow:0 12px 30px -8px rgba(0,0,0,.5)}
-.coach .photo .play svg{width:32px;height:32px;margin-left:4px}
+
 .coach .photo .ph{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;border-radius:14px;background:rgba(253,236,238,.95)}
 
 /* reviewer photos */
@@ -420,9 +392,9 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .incl svg{width:18px;height:18px;color:#1B8A5A}
 .extras{margin:0;font-size:.92rem;color:var(--ink-soft)}
 
-/* ===== v5 additions ===== */
+/* ===== colour rules, logo, booking form details, reviews layout ===== */
 /* orange is only for things you tap to book; decoration moves to the ocean blue and navy */
-.eyebrow::before,.on-dark .eyebrow::before,.eyebrow.light::before{background:var(--blue)}
+
 .fc-dot{background:var(--blue);animation:none;box-shadow:none}
 .stuck-list li::before{border-color:var(--blue)}
 .stage .tag{color:var(--blue)}
@@ -450,14 +422,12 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 
 /* real logo (inline SVG): same rules and order as the live site.css */
 .brand{color:var(--orange)}
-.brand .logo-word{height:34px;width:auto;display:block}
+
 .site-header.scrolled .brand{color:var(--navy)}
 .brand-foot{color:var(--orange);min-height:0}
 .brand-foot .logo-lockup{height:92px;width:auto;display:block}
 .site-footer .brand-foot{color:var(--orange)}
-.brand .logo-word{height:38px;filter:drop-shadow(0 1px 8px rgba(4,44,65,.35))}
-.site-header.scrolled .brand .logo-word{filter:none}
-@media (min-width:860px){.brand .logo-word{height:44px}}
+
 /* nav logo: the official stacked lockup (wave above WEYSER / SURF COACH), same artwork as the footer */
 .site-header .brand .logo-nav{height:50px;width:auto;display:block;filter:drop-shadow(0 1px 8px rgba(4,44,65,.35))}
 .site-header.scrolled .brand .logo-nav,.page .brand .logo-nav{filter:none}
@@ -476,14 +446,12 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .hero{overflow:hidden}
 /* the logo stays Weyser orange everywhere, including the scrolled header and the guide pages */
 .site-header.scrolled .brand,.page .site-header .brand{color:var(--orange)}
-.page .brand .logo-word{filter:none}
 
 /* four stats: 2 x 2 on phones, one row from tablets up */
 .coach .stats{grid-template-columns:repeat(2,1fr)}
 @media (min-width:700px){.coach .stats{grid-template-columns:repeat(4,1fr)}}
 .g-stars{color:inherit;text-underline-offset:3px}
 
-/* real reviews: 4 cards, 2 x 2 from tablets up; initials instead of photos */
 /* phones swipe through the cards: each card only as tall as its review */
 .rv-list{align-items:start}
 @media (min-width:820px){.rv-list{grid-template-columns:repeat(2,1fr);align-items:stretch}}
@@ -502,7 +470,7 @@ img.avatar{object-fit:cover;flex:none}
 .door .btn{white-space:nowrap}
 @media (min-width:820px) and (max-width:1000px){.door .door-body{padding:20px 18px 22px}.door .btn{padding-left:16px;padding-right:16px}}
 
-/* booking form v6: numbered steps, WhatsApp-style message bubble, progress line, reassurance */
+/* booking form: numbered steps, WhatsApp-style message bubble, progress line, reassurance */
 .book legend{display:flex;align-items:center;gap:10px}
 .book .step{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-size:.78rem;letter-spacing:0;flex:none}
 .wa-bubble{position:relative;margin:4px 0 14px;max-width:440px;padding:12px 14px 14px;border-radius:14px 14px 14px 4px;background:#DCF8C6;color:#111B21;box-shadow:0 1px 1px rgba(0,0,0,.08)}
@@ -559,6 +527,7 @@ img.avatar{object-fit:cover;flex:none}
 .book-band{margin-top:clamp(56px,8vw,96px);padding:clamp(28px,5vw,48px);border-radius:var(--radius);background:var(--navy);color:#fff}
 .book-band h2{color:#fff;font-size:clamp(1.7rem,4.4vw,2.6rem);margin-bottom:10px}
 .book-band p{color:rgba(255,255,255,.85);max-width:36em}
+.book-band .cta-row{margin-top:18px}
 .book-band .btn-ghost{color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.8)}
 .updated{margin-top:28px;font-size:.85rem;color:var(--ink-soft)}
 .beaches{display:grid;gap:18px;margin-top:28px}
@@ -610,7 +579,7 @@ img.avatar{object-fit:cover;flex:none}
   .facts.wide th,.facts.wide td{padding:10px 8px;font-size:.84rem}
 }
 
-/* ===== handoff additions ===== */
+/* ===== guide links, forecast loading state, small phones ===== */
 /* forecast strip stays hidden until the data is in (same as the live site.css) */
 .forecast.fc-wait{display:none}
 .guide-link{flex:none;margin:-6px 0 14px;font-size:.9rem;font-weight:600}
@@ -621,7 +590,7 @@ img.avatar{object-fit:cover;flex:none}
 /* smallest phones (320px): a little less button padding so CTAs stay on one line */
 @media (max-width:360px){.btn{padding-left:14px;padding-right:14px;font-size:.9rem;gap:8px}.btn svg{width:18px;height:18px}.book-band{padding-left:18px;padding-right:18px}}
 
-/* ===== homepage revision 2026-10-02 ===== */
+/* ===== booking form step 4, sticky bar label ===== */
 /* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
 @media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
 @media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}

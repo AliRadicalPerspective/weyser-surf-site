@@ -1,156 +1,78 @@
-# What changed on the homepage, and why
+# What's different from the live site
 
-The redesign is aimed at the main customers: **first timers and families**. The goals are more WhatsApp bookings,
-and being findable in Google and AI search for "surf lessons Santa Teresa".
+The redesign is aimed at Weyser's main customers, **first timers and families**. The goals are more WhatsApp bookings,
+and being found in Google and AI search for "surf lessons Santa Teresa". Each new page replaces the old one whole, so this
+is a description of the end result, not a to-do list. (Still needed before launch: `TO-CONFIRM.md`.)
 
-The new `index.html` replaces the old one whole, so this list is for review, not a to-do list.
+## Homepage (`index.html`)
 
-## New page order
+**Section order:** Hero · Who's surfing (3 cards) · Your first lesson · Reviews · Prices + booking form · Meet Weyser ·
+Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
 
-| Old | New |
-|---|---|
-| Hero · forecast · stuck · levels · stages · why · meet · prices · FAQ · closing | Hero · **Who is surfing** · **First lesson, start to finish** · **Reviews** · **Prices + booking picker** · Meet Weyser · forecast · stages · stuck · **gallery** · FAQ · closing |
+- **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
+  families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
+- **Hero:** a student standing up while Weyser cheers (it shows beginners the result). Subline "First timers and families
+  welcome. Three people max, always." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
+  certified"; the stars link to his Google profile. Buttons: "Book a session" (to the booking form) and "See prices".
+  On phones the photo sits above the text.
+- **Who's surfing?** Three cards (First timer, Family & kids, Surfed before), each with a photo, a "Best fit" price, a
+  link to the matching guide, and a Book button that opens the booking form with that choice already selected.
+- **Your first lesson, start to finish:** three photos (walk in, pop up, head home). Swipes sideways on phones.
+- **Reviews:** four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
+- **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
+  sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
+  Extras and payment in one line. (The Mini Surf Camp was "Progression Block" at $210 / $180 on the live site.)
+- **Booking form** (`#book`): who's surfing, session, group size and kids' ages (for groups and families), when, and an
+  optional "Staying where?". It opens WhatsApp with a complete, bulleted message, so no more "My level: ___" blanks. The
+  last line names the button that opened the form (see README, "Measuring bookings"). Email and Instagram for people
+  without WhatsApp.
+- **Meet Weyser:** his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
+  certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
+- **Three stages / Everyone gets stuck:** plainer words, less surf jargon.
+- **Photo strip:** aerial turn, jungle walk-out, jeep, spray turn.
+- **FAQ:** 18 questions; the 6 families ask most show first, the other 12 sit behind "More questions". Includes the
+  lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
+- **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
+- **Logo:** the same inline SVG lockup and rules as the live site, in Weyser orange.
+- **Footer:** WhatsApp, email, Instagram, Google Maps, and a "Guides" column with the four guides.
+- **Sticky bar (phones):** "WhatsApp Weyser · from $65" opens WhatsApp directly. From 860px wide it's hidden, because
+  the header button shows instead.
+- **Colour:** orange is used only for things you tap to book; decorative marks are ocean blue and navy.
 
-Why: most visitors are beginners and families deciding quickly on a phone. Levels, proof and prices now come in the
-first few screens, and the longer story follows for people who keep scrolling.
+## Spanish homepage (`es/index.html`)
 
-## Section by section
-
-- **Head / SEO**
-  - Title: "Surf Lessons & Coaching".
-  - The description now mentions first timers and families.
-  - FAQ structured data is updated to match the 18 questions on the page.
-- **Hero**
-  - The photo is now a student standing up with Weyser cheering, instead of the aerial shot. It shows beginners the result.
-  - New subline: "First timers and families welcome".
-  - Added a proof line: "800+ lessons taught · ★★★★★ on Google · From $65 · Lifeguard certified". The stars link to his Google profile, so they're checkable.
-  - Two buttons: "Book a session" (goes to the picker) and "See prices".
-  - On phones the photo sits above the text, so the headline never covers the student.
-- **Who is surfing?**
-  - Three cards: First timer, **Family & kids** (new), and Surfed before (merges "back for more" and "stuck").
-  - Each card has a photo, a "Best fit" price, and a "Book" button that opens the picker with that choice selected.
-  - Links to the two new guides.
-- **Your first lesson, start to finish** (new)
-  - A 3-photo sequence: walk in, pop up, head home.
-  - On phones it swipes sideways.
-- **Reviews** (new)
-  - Heading: "Hands down the best surf coach." (a line from a real review)
-  - Four real Google reviews, word for word, with the reviewers' Google photos and a link to all reviews on Google.
-- **Prices**
-  - "Group or family" is the highlighted card, with a "Best for families" badge and the only solid button.
-  - Added a "Bad waves? Free reschedule" promise above the cards.
-  - Private shows "per session".
-  - The Mini Surf Camps say "Three sessions is where it clicks".
-  - "Included" is now one line of checkmarks.
-  - Extras have prices.
-- **Booking picker** (new, `#book`)
-  - The visitor taps who is surfing, the session, group size, kids' ages and when (Tomorrow, This week, or dates).
-  - It opens WhatsApp with a complete message. Before, the message had blanks like "My level: ___".
-  - Includes a "Not sure, help me pick" option.
-  - Offers email or Instagram for people without WhatsApp.
-- **Meet Weyser**
-  - Merged with the old "Why paddle out" section.
-  - Keeps the live bio and quote.
-  - Adds four stats (18 years surfing, 7 coaching, 800+ lessons, lifeguard and CPR).
-- **Stages / stuck**
-  - Plainer words ("Catch your own waves", "Watching every good wave go past you"), with less surf jargon for beginners.
-- **Gallery** (new)
-  - Four photos: jungle walk-out, jeep, aerial turn, spray turn.
-- **FAQ**
-  - 18 questions in all.
-  - The 6 that families ask most show first (kids, safety, families of four or more, bad waves, length).
-  - The other 12 are behind "More questions".
-  - Cancellation is 3 hours, as on the live site.
-- **Closing**
-  - A muted drone loop plays behind "See you in the water."
-  - Adds a reply-time line.
-- **Header and footer logo**
-  - The real Weyser logo (the same inline SVGs as the live site).
-- **Footer**
-  - Adds an email address, Google Maps and TripAdvisor links (still to add), and a new "Guides" column.
-- **Sticky bar**
-  - "Book a session · from $65", which goes to the picker. It hides while the picker is on screen.
-- **Colour**
-  - Orange is now used only for things you tap to book.
-  - Decorative marks (wave icons, numbers, stars, quote border) moved to the ocean blue and navy.
+The same design, sections, prices and booking form, written in neutral, friendly Spanish with *tú*. Weyser's bio comes
+from the old Spanish page; his quote is "Te vas a divertir y te vas a reír." The booking form writes its WhatsApp message
+in Spanish. The three English-only guides are linked with "(en inglés)".
 
 ## New pages
 
-- `/first-surf-lesson-santa-teresa/`, `/kids-family-surf-lessons-santa-teresa/` and `/beginner-surf-beaches-santa-teresa/`
-- The first-lesson page walks through the lesson step by step (a numbered timeline), with a "what to bring" checklist.
-- They answer the questions families and beginners type into Google and ask AI assistants.
-- Each has:
-  - a short, quotable answer at the top
-  - an "At a glance" facts table
-  - Q&A sections
-  - a booking button
-  - a "Last updated" date
-  - Article, Breadcrumb and FAQ structured data
-- They're linked from the homepage level cards, the lesson section, four FAQ answers and a "Guides" footer column on every page.
-- They link back to the homepage and to each other.
+| Address | Page |
+|---|---|
+| `/first-surf-lesson-santa-teresa/` | Your first surf lesson: what to expect, step by step, with a "what to bring" checklist |
+| `/kids-family-surf-lessons-santa-teresa/` | Surf lessons for kids and families |
+| `/beginner-surf-beaches-santa-teresa/` | The beaches compared by level (two photos still to come) |
+| `/surf-coaching-santa-teresa/` | Coaching for improvers, in Weyser's own voice, with the forecast |
+| `/es/clases-de-surf-avanzado-santa-teresa/` | The coaching guide in Spanish |
+
+Each guide has a short, quotable answer at the top, an "At a glance" table, questions and answers, booking buttons, a
+"Last updated" date, and Article, Breadcrumb and FAQ structured data. They're linked from the homepage cards, the lesson
+section, four FAQ answers and the footer of every page, and they link back to the homepage and to each other.
 
 ## Script (`site-v5.js`)
 
-Everything from `site.js` is still in it: header, reveal on scroll, the forecast strip, and the sticky bar. It adds:
+Everything `site.js` did is still there (header, reveal on scroll, the forecast code unchanged, the sticky bar). Added:
 
-- **Booking picker:** writes the WhatsApp message, and shows or hides the group size, kids' ages and dates fields.
-- **Book buttons:** every `href="#book"` button with `data-level` or `data-session` selects those choices in the picker.
+- **Booking form:** builds the WhatsApp message in English or Spanish (it reads `<html lang>`), and shows the group-size,
+  kids' ages and date fields only when they apply.
+- **Book buttons:** every `href="#book"` link with `data-level` / `data-session` preselects those choices; `data-src`
+  names the button in the message. A link from another page can preselect too: `/?level=...&session=...&src=...#book`.
 - **FAQ toggle** ("More questions").
-- **Drone loop:** plays only while on screen. It stays off with reduced motion, data saver and slow connections.
-- **Sticky bar:** also hides while the picker is visible.
+- **Drone loop:** plays only while on screen; stays off with reduced motion, data saver and 2G; if the phone blocks
+  autoplay (iPhone Low Power Mode) it starts on the visitor's first tap.
+- **Tracking stub:** `track()` sends a "WhatsApp" event with a `source` property if Plausible is added; otherwise nothing.
 
-## 2026-10-01: Mini Surf Camp, reviewer photos
-- "Progression Block" is now **Mini Surf Camp**, and "Group Progression Block" is now **Group Mini Surf Camp**. The rename covers the price cards, the booking form (so the WhatsApp message uses the new name), the FAQ, the JSON-LD offers and the guide pages.
-- The Google reviews now show the reviewers' Google profile photos: assets/img/reviewer-*.jpg, 96px, shown at 44px. Rocío has no photo on Google, so she keeps the initial.
-- The level-card buttons stay on one line. CSS version is now ?v=20261001d.
-- Mini Surf Camp prices: **$200** for just you (was $210) and **$170 per person** for the group camp (was $180). Both save $25 compared with 3 single lessons. Updated on the price cards, the booking form, "Best fit", the guide pages and the JSON-LD (offers and priceRange).
-- Fonts: Montserrat is the only font, for headings and body, same as the live site. The unused "Kiona" heading-font reference is gone. Fonts are self-hosted in assets/fonts (no Google Fonts call), and the 400 and 700 weights are preloaded.
-- Floating "Book a session" button: hidden from 860px up, like the live site, because the header button is showing there. On phones it stays as the sticky bottom bar, and the footer gets 96px of bottom padding so the bar never covers it. This restores the developer's rules from the live site.css. CSS version is now ?v=20261001e.
-- README: added a Brand section with the colours and fonts from the Canva logo kit.
+## Removed compared with the live site
 
-## 2026-10-01: Spanish homepage
-- New `es/index.html`: the redesigned homepage in Spanish, with the same sections, prices and booking form as the English page. It replaces the old Spanish page, so the two languages no longer show different names or prices.
-- Neutral, friendly Spanish with *tú*, readable for Costa Ricans and for visitors from the rest of Latin America and from Spain. Local words stay where they help: *pipa* (coco fresco), *licra*.
-- Weyser's bio is kept word for word from the old Spanish page. (His quote was updated later the same day, see below.)
-- The camp keeps its name, **Mini Surf Camp** (and **Mini Surf Camp grupal**), so Weyser sees the same name from both languages.
-- Reviews: the three English reviews are shown in Spanish, labelled "Reseña de Google, traducida del inglés". Daniela's review is in Spanish already and is shown as written.
-- The booking form on `/es/` writes the WhatsApp message in Spanish. For example: "¡Hola, Weyser! Te encontré en tu sitio web. Quién: Familia con niños, 3 personas (niños: 8 y 11). Clase: Mini Surf Camp grupal. Cuándo: 20 dic al 23 dic". site-v5.js picks the language from `<html lang>`, so the English page is unchanged.
-- Structured data on `/es/`: Spanish descriptions, offers and an FAQ list that matches the 18 questions on the page.
-- Drone video: it now also plays on phones that report a "3g" connection, which many do on normal mobile data (only data saver and 2G keep it off). If the phone blocks autoplay (iPhone Low Power Mode), it starts on the visitor's first tap. Tested in Chrome on desktop and phone sizes, in English and Spanish. CSS and JS version is now ?v=20261001g.
-- Guide titles now include "Costa Rica": "Surf Lessons for Kids & Families in Santa Teresa, Costa Rica" and "First Surf Lesson in Santa Teresa, Costa Rica: What to Expect" (all three guides now match).
-
-## 2026-10-01: credentials, lessons count, quote
-- Weyser's **ISA certification** (International Surfing Association surf instructor) is now on the site: the hero trust line ("ISA & lifeguard certified"), the "Meet Weyser" stats, the safety FAQ answer, the guide pages' coach details, the Spanish page, and the structured data (`hasCredential`, recognised by the International Surfing Association).
-- Lessons taught: **650+** everywhere (was 800+).
-- Weyser's quote is now "You're going to have a great time, and you're going to laugh." (Spanish: "La vas a pasar genial y te vas a reír.")
-- Buttons stay on one line on the smallest phones (320px): slightly tighter button padding there, and the beaches guide button now reads "Ask which beach to surf". CSS and JS version is now ?v=20261002a.
-
-## 2026-10-02: homepage revision (families first)
-- **New homepage order:** hero, Who is surfing? (first timer, family), Meet Weyser, your first lesson, reviews, prices, booking form, FAQ, closing.
-  The headline stays "Actually learn to surf."
-- **Improver content has its own page:** `/surf-coaching-santa-teresa/`, plus the Spanish version `/es/clases-de-surf-avanzado-santa-teresa/`.
-  "Three stages", "Everyone gets stuck", the advanced photos and the "Tomorrow in Santa Teresa" forecast moved there; the forecast code is
-  unchanged. On the homepage the "Surfed before" card is now one line: "Surfed before and stuck? See coaching for improvers →".
-  The new page is in the footer Guides list and in the sitemap.
-- **Meet Weyser, safety first:** lifeguard, CPR and ISA certification come first, then how first timers and kids learn
-  (Playa Hermosa or Playa Carmen), then his story. The new Spanish quote is "Te vas a divertir y te vas a reír."
-- **"650+ lessons"** now appears only in the hero and the Meet Weyser stats.
-- **Booking form:**
-  - optional step 4, "Staying where?" (Santa Teresa, Malpaís, Playa Carmen, Playa Hermosa, Other);
-  - the message is now a bulleted list, ending with a tag that names the button that opened the form;
-  - other pages can preselect the form with a link like `/?level=Surfed%20before&session=Not%20sure&src=improver#book`.
-- **Sticky bar on phones** opens WhatsApp directly: "WhatsApp Weyser · from $65". It is still hidden from 860px up, where the header button shows.
-- **Tracking:** `data-track` on every WhatsApp link and a `track()` stub in site-v5.js. See README, "Measuring bookings".
-- Removed photos that are no longer used: jeep-boards, lineup-wave-hello.
-- Mobile homepage is about 23% shorter (from about 15,500px to 11,900px tall on a 390px phone).
-
-## 2026-10-02 (later): homepage layout restored, coaching guide rewritten
-- **Homepage layout back to the earlier version** (Ali's call): all three "Who is surfing?" cards, the original section order,
-  "Three stages", "Everyone gets stuck", the photo strip, the forecast, and Weyser's own bio in Meet Weyser (with the ISA stat).
-  The "Surfed before" card now links to the coaching guide ("Coaching for improvers →"). The jeep and lineup photos are back.
-- **Kept from the revision:** WhatsApp source tags and tracking stub, the bulleted message, optional "Staying where?" step,
-  the sticky bar opening WhatsApp on phones, the coaching guide (EN and ES), and the form preselect link.
-- **Lessons taught: 800+**, confirmed by Weyser. It appears in the hero and the Meet Weyser stats (not repeated elsewhere).
-- **Coaching guide rewritten in Weyser's voice:** a note from Weyser, where surfers get stuck and how he fixes it, what each of
-  the three stages covers and when you're ready for the next, how a coaching session works, why three sessions work, and 5 FAQs.
-  Spanish and English come from one structure in build_pages.py.
+- The "Why paddle out with Weyser?" section (its points live in Meet Weyser and the cards).
+- The TripAdvisor footer link: there's no listing yet. Add it back once there is (TO-CONFIRM).

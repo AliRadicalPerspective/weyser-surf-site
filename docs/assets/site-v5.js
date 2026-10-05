@@ -5,7 +5,7 @@
   var lang = doc.lang === 'es' ? 'es' : 'en';
   /* words the booking picker writes; Spanish on /es/ */
   var T = lang === 'es' ? {
-    hi: '¡Hola, Weyser! Quiero reservar una clase de surf.', found: 'Te encontré en tu sitio web', stay: 'Me quedo en: ', who: 'Quién: ', people: ' personas', peopleLine: 'Personas: ',
+    hi: '¡Hola, Weyser! Quiero reservar una clase de surf.', found: 'Te encontré en tu sitio web', stay: 'Me quedo en: ', who: 'Quién: ', peopleLine: 'Personas: ',
     kids: ' (niños: ', kidsEnd: ')', session: 'Clase: ', notSure: 'No sé, ¿me ayudas a elegir?', to: ' al ', when: 'Cuándo: ',
     start: '3 toques y listo para WhatsApp', of: ' de 3 listos', done: 'Todo listo: 3 de 3 ✓', send: 'Enviar a Weyser', sendWa: 'Enviar por WhatsApp',
     fewer: 'Menos preguntas', locale: 'es-CR',
@@ -13,7 +13,7 @@
          'Group or family': 'Grupo o familia', 'Group Mini Surf Camp': 'Mini Surf Camp grupal', 'Tomorrow': 'Mañana',
          'This week': 'Esta semana', '4 or more': '4 o más', 'Other': 'Otro lugar' }
   } : {
-    hi: 'Hi Weyser! I’d like to book a surf lesson.', found: 'Found you on your website', stay: 'Staying in: ', who: 'Who: ', people: ' people', peopleLine: 'People: ',
+    hi: 'Hi Weyser! I’d like to book a surf lesson.', found: 'Found you on your website', stay: 'Staying in: ', who: 'Who: ', peopleLine: 'People: ',
     kids: ' (kids ', kidsEnd: ')', session: 'Session: ', notSure: 'Not sure, can you help me pick?', to: ' to ', when: 'When: ',
     start: '3 quick taps, then WhatsApp', of: ' of 3 done', done: 'All set: 3 of 3 done ✓', send: 'Send to Weyser', sendWa: 'Send on WhatsApp',
     fewer: 'Fewer questions', locale: 'en-US', v: {}
@@ -58,8 +58,7 @@
     items.forEach(function (el) { io.observe(el); });
   } else { items.forEach(function (el) { el.classList.add('in'); }); }
 
-
-  /* booking picker v3: builds a complete WhatsApp message, no blanks */
+  /* booking form: builds the WhatsApp message from the visitor's taps (only answered steps) */
   var form = document.querySelector('.book-form');
   if (form) {
     var people = form.querySelector('.people'), kids = form.querySelector('.kids');
@@ -148,7 +147,6 @@
     more.textContent = open ? T.fewer : more.getAttribute('data-label');
   });
   if (more) more.setAttribute('data-label', more.textContent);
-
 
   /* drone loop plays only while on screen, and never for people who prefer reduced motion */
   var loop = document.querySelector('.closing video.bg');
