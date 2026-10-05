@@ -12,13 +12,13 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
 - **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
   families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
 - **Hero:** a student standing up while Weyser cheers (it shows beginners the result). Subline "First timers and families
-  welcome. Three people max, always." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
-  certified"; the stars link to his Google profile. Buttons: "Book a session" (to the booking form) and "See prices".
+  welcome. Three people max, and a coach right beside you." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
+  certified"; the stars link to his Google profile. Buttons: "Book a lesson" (to the booking form) and "See prices".
   On phones the photo sits above the text.
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before), each with a photo, a "Best fit" price, a
   link to the matching guide, and a Book button that opens the booking form with that choice already selected.
 - **Your first lesson, start to finish:** three photos (walk in, pop up, head home). Swipes sideways on phones.
-- **Reviews:** four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
+- **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
   Extras and payment in one line. (The Mini Surf Camp was "Progression Block" at $210 / $180 on the live site.)
@@ -35,6 +35,7 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
 - **Logo:** the same inline SVG lockup and rules as the live site, in Weyser orange.
 - **Footer:** WhatsApp, email, Instagram, Google Maps, and a "Guides" column with the four guides.
+- **Wording:** short, friendly, with contractions; "lesson" (not "session") on the main buttons for beginners.
 - **Sticky bar (phones):** "WhatsApp Weyser · from $65" opens WhatsApp directly. From 860px wide it's hidden, because
   the header button shows instead.
 - **Colour:** orange is used only for things you tap to book; decorative marks are ocean blue and navy.

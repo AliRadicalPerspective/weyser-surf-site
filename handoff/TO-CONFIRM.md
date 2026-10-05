@@ -9,6 +9,7 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 - [ ] One landscape photo each of Playa Hermosa and Mar Azul, for the two placeholder boxes on the beaches guide. Swap them in before that page goes live (README: "Swapping in the two beach photos")
 - [ ] Spanish pages: have Weyser (or any native speaker) read /es/ and /es/clases-de-surf-avanzado-santa-teresa/ once before launch. Both are new, in neutral Spanish with tú
 - [ ] Weyser reads the coaching guide (/surf-coaching-santa-teresa/ and its Spanish version) once: it is written in his voice ("I"), so it should sound like him
+- [ ] Weyser checks two reworded lines in Meet Weyser: "He figured it out himself, wave by wave" and "If the waves are going to be tough, he tells you"
 
 ## Later, when ready
 

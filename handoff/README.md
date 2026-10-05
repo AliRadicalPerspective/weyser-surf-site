@@ -9,6 +9,19 @@ conventions (WebP images in two widths, `/assets/fonts/`, `?v=` cache busting).
 
 Allow about an hour, including testing.
 
+## In short
+
+1. Look at it first: https://aliradicalperspective.github.io/weyser-surf-site/ (or `preview/index.html`).
+2. Read `TO-CONFIRM.md`: a few photos and approvals are still coming from Weyser. Don't publish the beaches guide until
+   its two photos are in, and don't launch with the kids' photos until the parents' OK is in.
+3. Deploy `site/` to the Cloudflare Pages project (steps below), then run the test checklist on a real phone.
+4. Submit the sitemap to Google and Bing.
+5. Fix the hosting items listed below when you can (www redirect, `/api/forecast`, HSTS).
+
+After this handover, **the files in `site/` are the source of truth.** Edit them directly; the section "Editing the site
+by hand" shows where things live. Any later changes from us will come as small, described edits, not a new folder
+that overwrites yours.
+
 ## What's inside
 
 ```
@@ -199,10 +212,12 @@ Already done in these files:
 - **Images:** WebP in two widths with `srcset` and `sizes`, so phones download the small one (25 to 60KB each). All have
   `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
-- **Script:** one small file (about 4KB compressed), loaded with `defer`.
+- **CSS and script:** one stylesheet (about 9KB compressed) and one script (about 4KB compressed), loaded with `defer`.
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
-  2G, or when "reduce motion" is on. People in those cases see the poster image instead.
-- **Result:** the first screen on a phone is about 100KB compressed.
+  2G, or when "reduce motion" is on. People in those cases see the still image instead. The still image is set by the
+  script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.
+- **Result:** the homepage's first load on a phone is about 250KB compressed: the hero photo, the first card photos,
+  fonts, CSS and script. The guide pages are about 115 to 155KB. (The live site's homepage was 475KB, measured the same way.)
 
 Adding photos later:
 

@@ -150,6 +150,14 @@
 
   /* drone loop plays only while on screen, and never for people who prefer reduced motion */
   var loop = document.querySelector('.closing video.bg');
+  /* the still image (poster) loads only when the visitor gets near this section; it shows whenever the video doesn't play */
+  if (loop && loop.getAttribute('data-poster')) {
+    var setPoster = function () { loop.poster = loop.getAttribute('data-poster'); };
+    if ('IntersectionObserver' in window) {
+      var po = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { setPoster(); po.disconnect(); } }, { rootMargin: '800px 0px' });
+      po.observe(loop);
+    } else setPoster();
+  }
   var conn = navigator.connection || {};
   /* data saver or a 2G connection only: phones often report "3g" on normal mobile data */
   var slow = conn.saveData || /2g/.test(conn.effectiveType || '');
