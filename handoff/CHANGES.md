@@ -18,7 +18,8 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
   a bold "Best for you" price line, one link to the matching guide, and a Book button that opens the booking form with
   that choice already selected. Links and buttons line up across the cards.
-- **Your first lesson, start to finish:** three equal-height cards (walk in, pop up, head home). Swipes sideways on phones.
+- **Your first lesson, start to finish:** three steps as a vertical list, photo beside text (walk in, pop up, head home).
+  On desktop the heading sits on the left and the steps on the right, which breaks up the three-column rows.
 - **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.

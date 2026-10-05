@@ -594,10 +594,22 @@ img.avatar{object-fit:cover;flex:none}
 /* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
 @media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
 @media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}
-/* "Your first lesson" cards: all three the same height, whatever the caption length */
-.seq li{display:flex}
-.seq figure{flex:1;display:flex;flex-direction:column}
-.seq figcaption{flex:1}
+/* "Your first lesson": a vertical list of steps (photo left, text right) instead of a third row of three cards */
+.seq{display:flex;flex-direction:column;gap:16px;max-width:820px;margin:28px 0 0;padding:0;overflow:visible}
+.seq li{display:block}
+.seq figure{display:grid;grid-template-columns:clamp(116px,34%,280px) 1fr;align-items:stretch;transform:none}
+.seq img{height:100%;aspect-ratio:3/2;min-height:96px}
+.seq figcaption{padding:18px 22px;font-size:clamp(1rem,1.6vw,1.15rem);gap:14px}
+.seq figcaption b{width:34px;height:34px;font-size:.9rem}
+@media (min-width:820px){.seq{display:flex;grid-template-columns:none;margin-top:34px}}
+/* desktop: heading and intro on the left, the steps on the right (fills the width, no third row of three columns) */
+@media (min-width:1000px){
+  .lesson .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(40px,6vw,88px);align-items:start}
+  .lesson .h2{grid-column:1;grid-row:1;font-size:clamp(2.1rem,3.6vw,3.2rem)}
+  .lesson .lead{grid-column:1;grid-row:2}
+  .lesson .guide-link{grid-column:1;grid-row:3}
+  .lesson .seq{grid-column:2;grid-row:1 / span 4;margin-top:0;max-width:none}
+}
 /* the link under the first-lesson cards reads as a real next step */
 .lesson .guide-link{font-size:1.05rem}
 /* level cards: plain bold price line under a small label; the guide link on its own row, above the button */
