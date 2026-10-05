@@ -594,4 +594,19 @@ img.avatar{object-fit:cover;flex:none}
 /* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
 @media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
 @media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}
+/* "Your first lesson" cards: all three the same height, whatever the caption length */
+.seq li{display:flex}
+.seq figure{flex:1;display:flex;flex-direction:column}
+.seq figcaption{flex:1}
+/* the link under the first-lesson cards reads as a real next step */
+.lesson .guide-link{font-size:1.05rem}
+/* level cards: plain bold price line under a small label; the guide link on its own row, above the button */
+.door .fit{font-size:.98rem;font-weight:700;color:var(--ink);margin:0 0 16px}
+.door .fit-label{display:block;margin-bottom:4px;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.door .door-body .guide-link{flex:none;margin:0 0 18px;padding-top:14px;border-top:1px solid rgba(6,63,92,.1)}
+.door .door-body .fit{flex:none}
+.door .guide-link a{text-decoration:none;font-weight:700}
+.door .guide-link a:hover,.door .guide-link a:focus-visible{text-decoration:underline}
+/* photo strip: three photos from tablets up */
+@media (min-width:900px){.strip{grid-template-columns:repeat(3,1fr)}}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}

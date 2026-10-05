@@ -39,7 +39,7 @@ site/
   sitemap.xml                                       replaces /sitemap.xml (adds the 5 new pages)
   assets/site-v5.css                                new stylesheet (site.css stays, see below)
   assets/site-v5.js                                 new script (site.js stays, see below)
-  assets/img/     37 images (21 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
+  assets/img/     38 images (22 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
   assets/video/   drone-loop.mp4 + its poster image
 preview/           the same seven pages with relative links, for clicking through (don't upload this)

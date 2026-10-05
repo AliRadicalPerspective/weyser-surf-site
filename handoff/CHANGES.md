@@ -15,9 +15,10 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
   welcome. Three people max, and a coach right beside you." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
   certified"; the stars link to his Google profile. Buttons: "Book a lesson" (to the booking form) and "See prices".
   On phones the photo sits above the text.
-- **Who's surfing?** Three cards (First timer, Family & kids, Surfed before), each with a photo, a "Best fit" price, a
-  link to the matching guide, and a Book button that opens the booking form with that choice already selected.
-- **Your first lesson, start to finish:** three photos (walk in, pop up, head home). Swipes sideways on phones.
+- **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
+  a bold "Best for you" price line, one link to the matching guide, and a Book button that opens the booking form with
+  that choice already selected. Links and buttons line up across the cards.
+- **Your first lesson, start to finish:** three equal-height cards (walk in, pop up, head home). Swipes sideways on phones.
 - **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
@@ -28,8 +29,8 @@ Tomorrow's forecast · Three stages · Everyone gets stuck · Photo strip · FAQ
   without WhatsApp.
 - **Meet Weyser:** his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
   certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
-- **Three stages / Everyone gets stuck:** plainer words, less surf jargon.
-- **Photo strip:** aerial turn, jungle walk-out, jeep, spray turn.
+- **Three stages / Everyone gets stuck:** plainer words, less surf jargon. "Level up" shows the aerial drone shot of Weyser.
+- **Photo strip:** jungle walk-out, jeep, palm-point lineup. No photo appears twice on the page.
 - **FAQ:** 18 questions; the 6 families ask most show first, the other 12 sit behind "More questions". Includes the
   lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
