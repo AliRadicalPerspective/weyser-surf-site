@@ -623,4 +623,6 @@ img.avatar{object-fit:cover;flex:none}
 }
 /* photo strip: three photos from tablets up */
 @media (min-width:900px){.strip{grid-template-columns:repeat(3,1fr)}}
+/* "Bad waves? Free reschedule." on one line on desktop: the box hugs the sentence instead of a 720px cap */
+@media (min-width:1000px){.promise{max-width:none;width:fit-content}}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}
