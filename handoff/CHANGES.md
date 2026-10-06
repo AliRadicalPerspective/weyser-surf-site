@@ -6,8 +6,8 @@ is a description of the end result, not a to-do list. (Still needed before launc
 
 ## Homepage (`index.html`)
 
-**Section order:** Hero · Who's surfing (3 cards) · Your first lesson · Reviews · Prices + booking form · Meet Weyser ·
-Three stages · Everyone gets stuck · Photo strip · FAQ · Tomorrow's forecast · Closing.
+**Section order:** Hero · Tomorrow's forecast · Who's surfing (3 cards) · Your first lesson · Reviews · Prices + booking form · Meet Weyser ·
+Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
 
 - **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
   families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
@@ -33,7 +33,8 @@ Three stages · Everyone gets stuck · Photo strip · FAQ · Tomorrow's forecast
   certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
 - **Three stages / Everyone gets stuck:** plainer words, less surf jargon; the ocean-lessons line sits under the "Three
   stages" heading. "Level up" shows the aerial drone shot of Weyser.
-- **Tomorrow's forecast:** the live surf report and "Book tomorrow's waves" sit just before the closing call, as its lead-in.
+- **Tomorrow's forecast:** the live surf report and "Book tomorrow's waves" sit right below the hero, as on the live site.
+  It stays hidden until its data arrives; the hero fills the first screen, so this causes no visible layout shift.
 - **Photo strip:** walking in with Weyser, jungle walk-out, jeep, sunset after the lesson. No photo appears twice on the page.
 - **FAQ:** 18 questions; the 6 families ask most show first, the other 12 sit behind "More questions". Includes the
   lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
