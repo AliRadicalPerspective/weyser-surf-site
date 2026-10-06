@@ -631,3 +631,7 @@ img.avatar{object-fit:cover;flex:none}
 /* surf report right below the hero */
 .forecast .wrap{padding-top:28px;padding-bottom:28px}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}
+
+/* surf report: the source credit sits under the label, so the strip is one row */
+.fc-head{display:flex;flex-direction:column;gap:6px}
+.fc-head .fc-src{width:auto;order:0;margin:0}
