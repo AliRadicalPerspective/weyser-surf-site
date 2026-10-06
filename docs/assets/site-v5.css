@@ -625,7 +625,10 @@ img.avatar{object-fit:cover;flex:none}
 }
 /* "Bad waves? Free reschedule." on one line on desktop: the box hugs the sentence instead of a 720px cap */
 @media (min-width:1000px){.promise,.method-note{max-width:none;width:fit-content}}
-/* the surf report sits right under "Three stages": less space between them, so it reads as part of that section */
-.method{padding-bottom:clamp(20px,3vw,32px)}
-.method + .forecast .wrap{padding-top:8px}
+/* "Three stages": the ocean-lessons line sits under the heading as plain text */
+.method .method-lead{max-width:44em;margin:-6px 0 0;color:rgba(255,255,255,.82)}
+.method .method-cta{margin-top:32px}
+/* surf report as the lead-in to the closing call: no gap between the two navy sections */
+.forecast + .closing{margin-top:0}
+.forecast .wrap{padding-top:28px;padding-bottom:28px}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}
