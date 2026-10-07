@@ -181,8 +181,29 @@ the Meet Weyser stats, the screen-reader sentence just above them, and the "Last
 came from (for example `(Found you on your website · instagram)`), and add `data-track="instagram"` to the link.
 
 **The stylesheet** (`site-v5.css`) is plain CSS: base styles first, then sections that refine them. When a selector appears
-twice, the later rule wins, so add new rules at the end. Colours are CSS variables at the top (`--navy`, `--orange`, ...).
-The guide-page styles are in the "topic pages" section.
+twice, the later rule wins, so add new rules at the end. The guide-page styles are in the "topic pages" section.
+
+**Colours:** every solid colour is a variable (a "token") in the `:root` block at the top of `site-v5.css`. Change a colour
+there and it changes everywhere; don't type hex codes into rules. The first ten are the live site's own tokens, unchanged.
+
+| Token | Value | Used for |
+|---|---|---|
+| `--navy` | `#063F5C` | Headings, navy sections (surf report, Three sessions, Meet Weyser), step numbers, outline buttons |
+| `--navy-deep` | `#042C41` | Hero text panel, closing section, footer |
+| `--blue` | `#419EBD` | Small labels ("Best option", "Session 1"), decorative marks, quote bar |
+| `--orange` | `#F27F0C` | Only things you tap to book: buttons, the sticky bar |
+| `--orange-soft` | `#FF9533` | Button hover |
+| `--ink` / `--ink-soft` | `#242320` / `#4A4843` | Body text / secondary text |
+| `--paper` / `--paper-deep` | `#F2ECE1` / `#E8DFCF` | The two sand backgrounds. After each navy section the first sand section is `--paper-deep`, the next `--paper` |
+| `--white` | `#FFFFFF` | Cards, text on navy |
+| `--green`, `--green-deep`, `--green-soft`, `--green-ink` | `#1B8A5A` `#1B7A4A` `#E7F6EE` `#0B3D2A` | "Bad waves? Free reschedule" box, included-list ticks, the form's "ready" line |
+| `--wa-bubble` / `--wa-ink` | `#DCF8C6` / `#111B21` | The WhatsApp message preview in the booking form |
+| `--placeholder` / `--placeholder-soft` | `#C8102E` / `#FDECEE` | The two PHOTO NEEDED boxes on the beaches guide; delete with the boxes |
+
+See-through tints (shadows, text on navy, the hero fade) are written as `rgba()` of these colours, because older phones
+can't combine a variable with transparency. The numbers map back: `6,63,92` is navy, `4,44,65` navy-deep, `242,127,12`
+orange, `242,236,225` paper, `255,255,255` white. Fonts, corner radius, shadows, page width and side padding are tokens too
+(`--display`, `--body`, `--radius`, `--radius-sm`, `--shadow`, `--shadow-lift`, `--wrap`, `--gutter`).
 
 **Cache:** when you change `site-v5.css` or `site-v5.js`, raise the `?v=` number on every page that links them, so returning
 visitors get the new file.
