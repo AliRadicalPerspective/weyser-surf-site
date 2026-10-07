@@ -15,5 +15,5 @@ All the copy on the pages is confirmed: there is no red placeholder text left. T
 
 ## Later, when ready
 
-- [ ] TripAdvisor: once the listing is live, add it to the footer FOLLOW list and to sameAs in the structured data
-- [ ] Airbnb Experiences: once the listing is live, add "Also on Airbnb Experiences" to the footer FOLLOW list and the URL to sameAs. Keep it out of the booking section: direct WhatsApp bookings pay no fee
+- [ ] TripAdvisor: once the listing is live, switch on the ready-made footer link on all seven pages and add the URL to sameAs (README: "TripAdvisor and Airbnb")
+- [ ] Airbnb Experiences: once the listing is live, switch on the ready-made "Also on Airbnb Experiences" footer link and add the URL to sameAs (README: "TripAdvisor and Airbnb"). Keep it out of the booking section: direct WhatsApp bookings pay no fee

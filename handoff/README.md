@@ -214,6 +214,12 @@ orange, `242,236,225` paper, `255,255,255` white. Fonts, corner radius, shadows,
 **Cache:** every page links `site-v5.css?v=…` and `site-v5.js?v=…`. When you change either file, change that `?v=` value on
 all seven pages (any new value works, for example today's date: `?v=2026-11-02`), so returning visitors get the new file.
 
+**TripAdvisor and Airbnb:** the footer of all seven pages already has both links, switched off as HTML comments under
+"Google Maps" (search for `TRIPADVISOR-LISTING-URL` and `AIRBNB-EXPERIENCE-URL`). When a listing is live:
+1. paste its address over the placeholder and delete the `<!--` and `-->` around that line, on all seven pages;
+2. add the same address to the `"sameAs"` list in the structured data of both homepages (it appears twice in each).
+Keep Airbnb in the footer only, never in the booking section: bookings through Airbnb pay a fee, direct WhatsApp ones don't.
+
 ## Measuring bookings (tracking)
 
 Nothing is tracked yet, and no analytics script is loaded. Two things are already in place:
@@ -243,8 +249,10 @@ Already done in these files:
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
   2G, or when "reduce motion" is on. People in those cases see the still image instead. The still image is set by the
   script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.
-- **Result:** the homepage's first load on a phone is about 250KB compressed: the hero photo, the first card photos,
-  fonts, CSS and script. The guide pages are about 115 to 155KB. (The live site's homepage was 475KB, measured the same way.)
+- **Result:** on an iPhone-size screen, the homepage's first screen loads **about 380KB** over the network (images 242KB,
+  fonts 93KB, CSS 12KB, script 5KB, HTML 19KB). The live homepage loads **about 560KB**, of which 448KB is images, measured
+  the same way on 7 October 2026. The Spanish homepage is the same. The drone video (2.6MB) is not part of the first load:
+  it only downloads when the visitor reaches the closing section.
 
 Adding photos later:
 

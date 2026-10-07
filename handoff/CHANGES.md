@@ -85,4 +85,4 @@ Everything `site.js` did is still there (header, reveal on scroll, the forecast 
 ## Removed compared with the live site
 
 - The "Why paddle out with Weyser?" section (its points live in Meet Weyser and the cards).
-- The TripAdvisor footer link: there's no listing yet. Add it back once there is (TO-CONFIRM).
+- The TripAdvisor footer link: there's no listing yet. It's in the footer of every page, switched off, ready for when there is (README, "TripAdvisor and Airbnb"). An Airbnb Experiences link is ready the same way.
