@@ -3,7 +3,7 @@
   var doc = document.documentElement;
   doc.classList.remove('no-js');
   var lang = doc.lang === 'es' ? 'es' : 'en';
-  /* words the booking picker writes; Spanish on /es/ */
+  /* words the booking form writes; Spanish on /es/ */
   var T = lang === 'es' ? {
     hi: '¡Hola, Weyser! Quiero reservar una clase de surf.', found: 'Te encontré en tu sitio web', stay: 'Me quedo en: ', who: 'Quién: ', peopleLine: 'Personas: ',
     kids: ' (niños: ', kidsEnd: ')', session: 'Clase: ', notSure: 'No sé, ¿me ayudas a elegir?', to: ' al ', when: 'Cuándo: ',
@@ -36,7 +36,7 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  /* sticky WhatsApp: shows once the hero is out of view, hides at the closing call */
+  /* sticky WhatsApp bar (phones): shows once the hero is out of view; hides while the booking form or the closing call is on screen */
   var bar = document.querySelector('.wa-bar');
   var hero = document.querySelector('.hero');
   var closing = document.querySelector('.closing');
@@ -128,7 +128,7 @@
       var w = window.open(url, '_blank');
       if (w) { try { w.opener = null; } catch (err) {} } else { window.location.href = url; }
     });
-    /* every Book button on the page opens the picker with its choice selected */
+    /* every Book button on the page opens the booking form with its choice selected */
     document.querySelectorAll('a[href="#book"]').forEach(function (a) {
       a.addEventListener('click', function () {
         pick('level', a.getAttribute('data-level'));
@@ -179,7 +179,7 @@
   if (!strip || !box) return;
   var L = {
     en: { waves: 'Waves', period: 'Period', from: 'Swell from', water: 'Water', dirs: ['N','NE','E','SE','S','SW','W','NW'] },
-    es: { waves: 'Olas', period: 'Período', from: 'Swell del', water: 'Agua', dirs: ['N','NE','E','SE','S','SO','O','NO'] }
+    es: { waves: 'Olas', period: 'Período', from: 'Dirección', water: 'Agua', dirs: ['N','NE','E','SE','S','SO','O','NO'] }
   }[lang];
   var nf1 = new Intl.NumberFormat(lang === 'es' ? 'es-CR' : 'en-US', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
   var nf0 = new Intl.NumberFormat(lang === 'es' ? 'es-CR' : 'en-US', { maximumFractionDigits: 0 });

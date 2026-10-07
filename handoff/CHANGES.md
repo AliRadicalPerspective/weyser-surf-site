@@ -6,8 +6,9 @@ is a description of the end result, not a to-do list. (Still needed before launc
 
 ## Homepage (`index.html`)
 
-**Section order:** Hero · Tomorrow's forecast · Who's surfing (3 cards) · Your first lesson · Reviews · Prices + booking form · Meet Weyser ·
-Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
+**Section order:** Hero · Tomorrow's forecast (navy) · Who's surfing (3 cards) · Your first lesson · Three sessions is where it
+clicks (navy) · Reviews · Prices + booking form · Meet Weyser (navy) · Photo strip · FAQ · Closing (navy). The camp pitch
+comes before the prices on purpose, and never more than two sand-coloured sections run together. After each navy section the first sand section is the darker one (`--paper-deep`), the next the lighter (`--paper`).
 
 - **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
   families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
@@ -16,7 +17,7 @@ Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
   certified"; the stars link to his Google profile. Buttons: "Book a lesson" (to the booking form) and "See prices".
   On phones the photo sits above the text.
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
-  a bold price line under a small "Recommended" label, one link to the matching guide, and a Book button that opens the booking form with
+  a bold price line under a small "Best option" label, one link to the matching guide, and a Book button that opens the booking form with
   that choice already selected. Links and buttons line up across the cards.
 - **Your first lesson, start to finish:** one large photo (the pop-up, Weyser close by) beside a connected timeline:
   "On the sand · about 15 minutes", "In the water · about 90 minutes", "After", each with a title and one line. On phones
@@ -24,19 +25,21 @@ Three stages · Everyone gets stuck · Photo strip · FAQ · Closing.
 - **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
-  Extras and payment in one line. (The Mini Surf Camp was "Progression Block" at $210 / $180 on the live site.)
+  Extras and payment in one line. The camp cards sell the result ("From 'I stood up' to 'I surf'") and say "$25 less than three single sessions". (The Mini Surf Camp was "Progression Block" at $210 / $180 on the live site.)
 - **Booking form** (`#book`): who's surfing, session, group size and kids' ages (for groups and families), when, and an
-  optional "Staying where?". It opens WhatsApp with a complete, bulleted message, so no more "My level: ___" blanks. The
+  optional "Staying where?". A line above it says December to April mornings fill up a few days ahead. It opens WhatsApp with a complete, bulleted message, so no more "My level: ___" blanks. The
   last line names the button that opened the form (see README, "Measuring bookings"). Email and Instagram for people
   without WhatsApp.
-- **Meet Weyser:** his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
+- **Meet Weyser** (navy section): his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
   certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
-- **Three stages / Everyone gets stuck:** plainer words, less surf jargon; the ocean-lessons line sits under the "Three
-  stages" heading. "Level up" shows the aerial drone shot of Weyser.
+- **Three sessions is where it clicks** (navy section): sells the Mini Surf Camp to beginners as a three-session arc
+  (Session 1 stand up, Session 2 catch waves on your own, Session 3 ride along the wave), with the ocean-lessons line and
+  both camp prices. Buttons: "Book a Mini Surf Camp" and "Already surfing? Coaching for improvers →". The live site's "Three stages" and "Everyone gets stuck"
+  sections are gone from the homepage; both live on the coaching guide.
 - **Tomorrow's forecast:** the live surf report and "Book tomorrow's waves" sit right below the hero, as on the live site.
   It stays hidden until its data arrives; the hero fills the first screen, so this causes no visible layout shift.
 - **Photo strip:** walking in with Weyser, jungle walk-out, jeep, sunset after the lesson. No photo appears twice on the page.
-- **FAQ:** 18 questions; the 6 families ask most show first, the other 12 sit behind "More questions". Includes the
+- **FAQ:** 18 questions; the 4 families ask most show first, the other 14 sit behind "More questions". Includes the
   lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
 - **Logo:** the same inline SVG lockup and rules as the live site, in Weyser orange.

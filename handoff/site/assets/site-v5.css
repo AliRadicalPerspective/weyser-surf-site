@@ -40,7 +40,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
 .section{padding:clamp(72px,11vw,136px) 0}
 
-/* eyebrow with the wave motif */
+/* section headings and lead text */
 
 .h2{font-size:clamp(2.05rem,5.6vw,3.9rem);margin-bottom:22px}
 .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--ink-soft);max-width:36em}
@@ -121,10 +121,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .door p{color:var(--ink-soft);flex:1}
 .door .btn{align-self:flex-start;margin-top:8px}
 
-/* method */
-.method{background:var(--navy);color:#fff}
-.method .h2{color:#fff}
-.method .lead{color:rgba(255,255,255,.82)}
+/* stage cards (coaching guide) */
+
 .stage{display:flex;flex-direction:column;background:var(--white);color:var(--ink);border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 50px -24px rgba(0,0,0,.5);transition:transform .3s var(--ease)}
 .stage:hover{transform:translateY(-4px)}
 .stage .photo-in{aspect-ratio:3/2;overflow:hidden;background:var(--paper-deep)}
@@ -136,7 +134,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .stage p{margin:0;color:var(--ink-soft)}
 .method-note{margin:36px 0 0;padding:20px 24px;border-radius:var(--radius-sm);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-weight:500;max-width:780px}
 
-/* why */
+/* Meet Weyser: stats */
 
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
 .stat{padding:18px 12px;text-align:center;border-radius:var(--radius-sm);background:var(--navy);color:#fff}
@@ -265,9 +263,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .door .fit{flex:none;margin:0 0 14px;font-size:.92rem;font-weight:600;color:var(--navy)}
 .door .fit a{color:inherit;text-underline-offset:3px}
 
-/* stages */
-.method-cta{margin:18px 0 0;font-weight:500;color:rgba(255,255,255,.9)}
-.method-cta a{color:#fff;font-weight:700;text-decoration-color:var(--orange);text-underline-offset:4px}
+/* Meet Weyser: stats spacing */
+
 .coach .stats{margin:6px 0 4px}
 
 /* reviews */
@@ -286,7 +283,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .price .badge{position:static;align-self:flex-start;margin-bottom:12px}
 .price.feature .badge{background:var(--orange)}
 
-/* booking picker */
+/* booking form */
 .book{margin-top:44px;padding:clamp(24px,5vw,44px);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lift);scroll-margin-top:84px}
 .book-h{font-size:clamp(1.6rem,4.6vw,2.4rem);margin-bottom:10px}
 .book-sub{color:var(--ink-soft);margin-bottom:26px;max-width:38em}
@@ -359,7 +356,7 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 }
 
 /* ===== photos, video, reviewer photos, included list ===== */
-/* placeholders for photos and videos still to shoot */
+/* photo placeholders (the PHOTO NEEDED boxes on the beaches guide) */
 .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;text-align:center;background:#FDECEE;border:2px dashed #C8102E;color:#C8102E;font-size:.85rem;font-weight:600;line-height:1.35}
 .ph svg{width:30px;height:30px}
 .ph small{font-weight:500;opacity:.9}
@@ -372,11 +369,11 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .door .door-body{display:flex;flex-direction:column;flex:1;padding:22px 24px 24px}
 .door .num{font-size:1.6rem;margin-bottom:10px}
 
-/* first lesson video */
+/* first lesson section */
 .lesson{background:var(--paper)}
 .lesson .h2{margin-bottom:14px}
 
-/* meet Weyser: intro video over his photo */
+/* Meet Weyser photo */
 .coach .photo{isolation:isolate}
 
 .coach .photo .ph{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;border-radius:14px;background:rgba(253,236,238,.95)}
@@ -401,7 +398,7 @@ html:not(.no-js) .faq-extra:not(.open){display:none}
 .stat b{color:#fff}
 .quote{border-left-color:var(--blue)}
 .standby strong{color:#fff}
-.method-cta a{text-decoration-color:var(--blue)}
+
 .rv .stars{color:var(--navy)}
 .site-footer a:hover{text-decoration-color:var(--blue)}
 .price.feature .badge{background:#fff;color:var(--navy)}
@@ -580,8 +577,8 @@ img.avatar{object-fit:cover;flex:none}
 /* smallest phones (320px): a little less button padding so CTAs stay on one line */
 @media (max-width:360px){.btn{padding-left:14px;padding-right:14px;font-size:.9rem;gap:8px}.btn svg{width:18px;height:18px}.book-band{padding-left:18px;padding-right:18px}}
 
-/* ===== booking form step 4, sticky bar label ===== */
-/* the sticky bar label is longer now (WhatsApp icon + price): tighter on phones */
+/* ===== booking form step 4, sticky bar, first lesson, level cards, surf report, Mini Surf Camp arc ===== */
+/* sticky bar on phones: WhatsApp icon and price, tighter padding */
 @media (max-width:420px){.wa-bar .btn{padding-left:14px;padding-right:14px;gap:8px;font-size:.95rem}}
 @media (max-width:360px){.wa-bar .btn{padding-left:10px;padding-right:10px;font-size:.86rem}}
 /* "Your first lesson": one large photo beside a connected timeline */
@@ -600,7 +597,7 @@ img.avatar{object-fit:cover;flex:none}
 .lesson-timeline h3{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:clamp(1.12rem,1.6vw,1.3rem);margin:0 0 6px;color:var(--navy)}
 .lesson-timeline p{margin:0;color:var(--ink-soft)}
 .lesson-steps .guide-link{margin:26px 0 0 58px}
-/* the link under the first-lesson cards reads as a real next step */
+/* link under the first-lesson timeline */
 .lesson .guide-link{font-size:1.05rem}
 /* level cards: plain bold price line under a small label; the guide link on its own row, above the button */
 .door .fit{font-size:.98rem;font-weight:700;color:var(--ink);margin:0 0 16px}
@@ -625,11 +622,39 @@ img.avatar{object-fit:cover;flex:none}
 }
 /* "Bad waves? Free reschedule." on one line on desktop: the box hugs the sentence instead of a 720px cap */
 @media (min-width:1000px){.promise,.method-note{max-width:none;width:fit-content}}
-/* "Three stages": the ocean-lessons line sits under the heading as plain text */
-.method .method-lead{max-width:44em;margin:-6px 0 0;color:rgba(255,255,255,.82)}
-.method .method-cta{margin-top:32px}
 /* surf report right below the hero */
 .forecast .wrap{padding-top:28px;padding-bottom:28px}
+/* blue section: the Mini Surf Camp as a three-session arc (list, text, buttons, photo) */
+.plateau.on-dark{background:var(--navy);color:#fff}
+.plateau.on-dark .h2{color:#fff}
+@media (min-width:900px){.plateau.on-dark .h2{font-size:clamp(2.2rem,3.6vw,3.3rem)}}
+.plateau.on-dark .stuck-list li{color:var(--ink)}
+.plateau.on-dark .lead{color:rgba(255,255,255,.85)}
+.stuck-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:6px}
+.stuck-ctas .btn{width:auto}
+.plateau.on-dark .stuck-more{color:#fff;font-weight:700;text-underline-offset:4px;text-decoration-thickness:1px}
+
+@media (max-width:560px){.stuck-ctas .btn{width:100%}}
+.plateau .stuck-ctas{margin-bottom:4px}
+/* Meet Weyser in the navy section: white text, outlined stat boxes, white quote */
+.coach.on-dark{background:var(--navy);color:#fff}
+.coach.on-dark .h2,.coach.on-dark .lead{color:#fff}
+.coach.on-dark .lead{color:rgba(255,255,255,.88)}
+.coach.on-dark .stat{background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.coach.on-dark .quote{color:#fff}
+.coach.on-dark .quote cite{color:rgba(255,255,255,.75)}
+.camp-arc{list-style:none}
+@media (min-width:900px){
+  .plateau .split{align-items:start}
+  .plateau .split > .h2{grid-column:1 / -1;margin-bottom:0}
+  .plateau .camp-arc{margin-top:0}
+}
+.br-wide{display:none}
+@media (min-width:900px){.br-wide{display:inline}}
+.camp-arc li strong{display:block;margin-bottom:2px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.book-season{margin:-14px 0 24px;font-size:.92rem;font-weight:700;color:var(--navy)}
+/* sand sections: after each navy section the first one is the darker sand, the next the lighter */
+.reviews{background:var(--paper-deep)}
 legend .opt{font-size:.9em;font-weight:500;letter-spacing:.08em;text-transform:none;color:var(--ink-soft)}
 
 /* surf report: the source credit sits under the label, so the strip is one row */
