@@ -108,8 +108,7 @@ to the Pages project, the same way the current site was published.
 
 ## Placeholders
 
-There is no draft copy left: all text on the seven pages is confirmed, and the old red placeholder style is gone from the CSS.
-Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
+There is no draft copy left: all text on the seven pages is confirmed. Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
 
 - The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul). They stay until Weyser sends the photos.
   Visitors see the words "PHOTO NEEDED", so swap them before the beaches page goes live (steps below).
@@ -163,8 +162,9 @@ homepages also for `"price": "75"` (it appears twice per product) and `"priceRan
 | Private $75, Group or family $65 | both homepages, all four guides, the Spanish coaching page |
 | Mini Surf Camp $200, Group Mini Surf Camp $170 | both homepages, the first-lesson, kids and coaching guides (English and Spanish) |
 
-The "save $25" lines on the price cards are three sessions at the single price minus the camp price; update them if either
-price changes. The sticky bar says "from $65" (the lowest price).
+The two camp cards say "$25 less than three single sessions" and "$25 less per person": three sessions at the single price
+minus the camp price. Update them if either price changes. The "Three sessions is where it clicks" section on both homepages
+also names both camp prices. The sticky bar says "from $65" (the lowest price).
 
 **Changing the lessons count (800+)** or other facts about Weyser: search all pages for the old value. It appears in the hero,
 the Meet Weyser stats, the screen-reader sentence just above them, and the "Last updated" lines on the guides.
@@ -180,8 +180,14 @@ the Meet Weyser stats, the screen-reader sentence just above them, and the "Last
 **Adding a WhatsApp link:** use `https://wa.me/50660084391?text=` plus the URL-encoded message, end the message with where it
 came from (for example `(Found you on your website · instagram)`), and add `data-track="instagram"` to the link.
 
-**The stylesheet** (`site-v5.css`) is plain CSS: base styles first, then sections that refine them. When a selector appears
-twice, the later rule wins, so add new rules at the end. The guide-page styles are in the "topic pages" section.
+**The stylesheet** (`site-v5.css`) is plain CSS with one numbered section per component, in page order: 1. Base,
+2. Layout helpers, 3. Buttons, 4. Header, 5. Hero, then each homepage section down to 18. Sticky WhatsApp bar,
+19. Guide pages and 20. Photo placeholders. The list is at the top of the file, so search for "5. Hero" to jump there.
+- Each selector is written once per `@media`: change a rule where it is instead of adding a second copy lower down.
+- Inside a section the plain rules come first, then that component's `@media` rules (phones, tablets, desktop).
+- Ten rules sit just outside their own section, under a note "From …: kept here". They override a rule above them, and
+  in CSS the later rule wins, so leave them where they are.
+- New styles for a component go at the end of its section.
 
 **Colours:** every solid colour is a variable (a "token") in the `:root` block at the top of `site-v5.css`. Change a colour
 there and it changes everywhere; don't type hex codes into rules. The first ten are the live site's own tokens, unchanged.
@@ -205,8 +211,8 @@ can't combine a variable with transparency. The numbers map back: `6,63,92` is n
 orange, `242,236,225` paper, `255,255,255` white. Fonts, corner radius, shadows, page width and side padding are tokens too
 (`--display`, `--body`, `--radius`, `--radius-sm`, `--shadow`, `--shadow-lift`, `--wrap`, `--gutter`).
 
-**Cache:** when you change `site-v5.css` or `site-v5.js`, raise the `?v=` number on every page that links them, so returning
-visitors get the new file.
+**Cache:** every page links `site-v5.css?v=…` and `site-v5.js?v=…`. When you change either file, change that `?v=` value on
+all seven pages (any new value works, for example today's date: `?v=2026-11-02`), so returning visitors get the new file.
 
 ## Measuring bookings (tracking)
 
@@ -233,7 +239,7 @@ Already done in these files:
 - **Images:** WebP in two widths with `srcset` and `sizes`, so phones download the small one (25 to 60KB each). All have
   `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
-- **CSS and script:** one stylesheet (about 9KB compressed) and one script (about 4KB compressed), loaded with `defer`.
+- **CSS and script:** one stylesheet (about 12KB compressed) and one script (about 5KB compressed), loaded with `defer`.
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
   2G, or when "reduce motion" is on. People in those cases see the still image instead. The still image is set by the
   script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.

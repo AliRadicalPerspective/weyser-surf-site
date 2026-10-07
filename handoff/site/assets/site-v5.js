@@ -1,4 +1,7 @@
-/* Weyser Surf Coach · small, dependency free */
+/* Weyser Surf Coach · site-v5.js · plain JavaScript, no libraries, used by every page
+   In order: 1. booking-form words (English, Spanish on /es/)  2. tracking stub (Plausible, if added)
+   3. header state  4. sticky WhatsApp bar  5. reveal on scroll  6. booking form (WhatsApp message, Book buttons)
+   7. FAQ toggle  8. drone video  9. surf report (the live site's forecast code, unchanged apart from the Spanish labels) */
 (function () {
   var doc = document.documentElement;
   doc.classList.remove('no-js');
