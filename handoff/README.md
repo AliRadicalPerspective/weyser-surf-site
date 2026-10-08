@@ -191,12 +191,14 @@ came from (for example `(Found you on your website · instagram)`), and add `dat
 
 **Colours:** every solid colour is a variable (a "token") in the `:root` block at the top of `site-v5.css`. Change a colour
 there and it changes everywhere; don't type hex codes into rules. The first ten are the live site's own tokens, unchanged.
+One rule for the two blues: **blue words use `--blue-ink`, blue decoration uses `--blue`.**
 
 | Token | Value | Used for |
 |---|---|---|
 | `--navy` | `#063F5C` | Headings, navy sections (surf report, Three sessions, Meet Weyser), step numbers, outline buttons |
 | `--navy-deep` | `#042C41` | Hero text panel, closing section, footer |
-| `--blue` | `#419EBD` | Small labels ("Best option", "Session 1"), decorative marks, quote bar |
+| `--blue` | `#419EBD` | Decoration only: dots, list markers, quote bars, underlines, the big card numbers. It's the logo kit's blue and reads well on navy |
+| `--blue-ink` | `#2B697D` | Blue **text** on sand or white: "Best option", "Session 1", timeline times, stage labels. The same blue, darker, so small text passes contrast (WCAG AA 4.5:1) |
 | `--orange` | `#F27F0C` | Only things you tap to book: buttons, the sticky bar |
 | `--orange-soft` | `#FF9533` | Button hover |
 | `--ink` / `--ink-soft` | `#242320` / `#4A4843` | Body text / secondary text |

@@ -49,6 +49,24 @@ comes before the prices on purpose, and never more than two sand-coloured sectio
   the header button shows instead.
 - **Colour:** orange is used only for things you tap to book; decorative marks are ocean blue and navy.
 
+## Phones (all pages)
+
+Checked with `tests/qa_mobile.mjs` on every page at phone size:
+- Tap targets are thumb-sized and don't overlap.
+- Form fields use 16px text, so iPhones don't zoom in.
+- No text is under 12px, and all text passes WCAG AA contrast.
+- On a slowed-down phone (4x CPU, fast 3G), the main content shows in 1.2 to 1.6s, with no layout shift and near-zero blocking time.
+- Scrolling runs at 60fps.
+
+Fixes from that check:
+- Small blue labels use the new `--blue-ink` token.
+- Small uppercase labels went up to 12px.
+- Hover effects only apply on devices that can hover, so a tap no longer leaves a card lifted.
+- Review cards show straight away on phones.
+- The beaches table becomes one card per beach on phones.
+- Long Spanish words in headings break with a hyphen.
+- The Spanish reviews headline is now "Mi ángel de la guarda en el mar." (it was "guardaespaldas", too long for small phones).
+
 ## Spanish homepage (`es/index.html`)
 
 The same design, sections, prices and booking form, written in neutral, friendly Spanish with *tú*. Weyser's bio comes
