@@ -560,6 +560,14 @@ h3 {
   overflow: hidden;
 }
 /* the wave under "surf" (also shown, already drawn, without motion) */
+.wave-tail {
+  white-space: nowrap;
+}
+/* phones: the headline is three set lines (ACTUALLY / LEARN TO / SURF., APRENDE A / SURFEAR / DE VERDAD.), and its size
+   follows the screen so the longest line (about 10 letters) always fits, from 320px up */
+.br-phone {
+  display: none;
+}
 .wave-word {
   position: relative;
   display: inline-block;
@@ -640,6 +648,15 @@ h3 {
   }
   .hero .trust {
     font-size: .86rem;
+  }
+}
+
+@media (max-width:600px) {
+  .br-phone {
+    display: inline;
+  }
+  .hero h1 {
+    font-size: min(2.9rem,calc((100vw - 2 * var(--gutter)) / 7.3));
   }
 }
 
