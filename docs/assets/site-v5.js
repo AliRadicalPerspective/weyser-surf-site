@@ -36,7 +36,7 @@
   /* header state */
   var header = document.querySelector('.site-header');
   function onScroll() { header && header.classList.toggle('scrolled', window.scrollY > 40); }
-  onScroll();
+  requestAnimationFrame(onScroll);   /* first check one frame later, so it doesn't force a layout during loading */
   window.addEventListener('scroll', onScroll, { passive: true });
 
   /* sticky WhatsApp bar (phones): shows once the hero is out of view; hides while the booking form or the closing call is on screen */
@@ -257,6 +257,7 @@
     var timer = setTimeout(function () { ctrl && ctrl.abort(); }, 5000);
     return fetch(u, ctrl ? { signal: ctrl.signal } : {}).then(function (r) { clearTimeout(timer); if (!r.ok) throw 0; return r.json(); });
   }
-  /* our own cached endpoint first (Cloudflare function), the public API as backup */
-  get('/api/forecast').catch(function () { return get(direct); }).then(render).catch(fail);
+  /* the public API directly. /api/forecast (a Cloudflare function) isn't deployed: it returned 404 on every visit.
+     If it is deployed later: get('/api/forecast').catch(function () { return get(direct); }).then(render).catch(fail); */
+  get(direct).then(render).catch(fail);
 })();

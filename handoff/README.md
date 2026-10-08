@@ -91,9 +91,9 @@ to the Pages project, the same way the current site was published.
 
 - [ ] **`www.weysersurf.com` doesn't resolve.** There's no DNS record, so anyone typing "www" gets an error. In Cloudflare:
       add a proxied `www` record and a redirect rule `www.weysersurf.com/*` → `https://weysersurf.com/$1` (301).
-- [ ] **`/api/forecast` returns 404.** `site.js` and `site-v5.js` try it first, then fall back to Open-Meteo, so the forecast
-      works, but each visit makes one wasted request. Either deploy the Pages Function it expects (`functions/api/forecast.js`)
-      or delete the `get('/api/forecast')` step in the JS.
+- [x] **`/api/forecast` returns 404.** The old `site.js` tries it first and logs a 404 on every visit. `site-v5.js` now asks
+      Open-Meteo directly (Google PageSpeed flagged the error). If you deploy the Pages Function later
+      (`functions/api/forecast.js`), the one line to restore is in a comment at the end of `site-v5.js`.
 - [ ] **Turn on HSTS** (SSL/TLS → Edge Certificates → HTTP Strict Transport Security).
 - [ ] **Cloudflare Crawler Hints** (Caching → Configuration) so Bing and others hear about changes straight away.
 - [ ] **Domain auto-renew**: the domain was registered 2026-09-13 and expires 2027-09-13. Check auto-renew is on.
@@ -101,8 +101,9 @@ to the Pages project, the same way the current site was published.
 ## Things kept exactly as they are on the live site
 
 - **Logo:** the header and footer use the same inline SVG lockup and CSS rules as the live `site.css`.
-- **Forecast strip:** `site-v5.js` uses the live forecast code unchanged: `/api/forecast` (the Cloudflare function) first,
-  `window.__FC` if it's present, the public Open-Meteo API as backup, and the `fc-wait` state until data arrives.
+- **Forecast strip:** `site-v5.js` uses the live forecast code: `window.__FC` if it's present, otherwise the public
+  Open-Meteo API, and the `fc-wait` state until data arrives. Two changes: the Spanish labels, and the `/api/forecast`
+  step is left out because that function isn't deployed (see "Hosting fixes").
 - **Structured data:** based on the live JSON-LD (including `priceSpecification`). Only the descriptions, the page name, the FAQ list and the Mini Surf Camp offers (new name and prices) change.
 - **WhatsApp:** every link and the booking form go to +506 6008 4391, the same number as the live site.
 
@@ -182,7 +183,8 @@ came from (for example `(Found you on your website · instagram)`), and add `dat
 
 **The stylesheet** (`site-v5.css`) is plain CSS with one numbered section per component, in page order: 1. Base,
 2. Layout helpers, 3. Buttons, 4. Header, 5. Hero, then each homepage section down to 18. Sticky WhatsApp bar,
-19. Guide pages and 20. Photo placeholders. The list is at the top of the file, so search for "5. Hero" to jump there.
+19. Guide pages, 20. Photo placeholders and 21. Motion. The list is at the top of the file, so search for "5. Hero" to
+jump there.
 - Each selector is written once per `@media`: change a rule where it is instead of adding a second copy lower down.
 - Inside a section the plain rules come first, then that component's `@media` rules (phones, tablets, desktop).
 - Ten rules sit just outside their own section, under a note "From …: kept here". They override a rule above them, and
@@ -199,7 +201,7 @@ One rule for the two blues: **blue words use `--blue-ink`, blue decoration uses 
 | `--navy-deep` | `#042C41` | Hero text panel, closing section, footer |
 | `--blue` | `#419EBD` | Decoration only: dots, list markers, quote bars, underlines, the big card numbers. It's the logo kit's blue and reads well on navy |
 | `--blue-ink` | `#2B697D` | Blue **text** on sand or white: "Best option", "Session 1", timeline times, stage labels. The same blue, darker, so small text passes contrast (WCAG AA 4.5:1) |
-| `--orange` | `#F27F0C` | Only things you tap to book: buttons, the sticky bar |
+| `--orange` | `#F27F0C` | Things you tap to book: buttons, the sticky bar. Decorative exceptions, on purpose: the waves under "surf" (hero), "water" (closing call) and the guide headlines, and the lines through Three sessions and the guides' step-by-step |
 | `--orange-soft` | `#FF9533` | Button hover |
 | `--ink` / `--ink-soft` | `#242320` / `#4A4843` | Body text / secondary text |
 | `--paper` / `--paper-deep` | `#F2ECE1` / `#E8DFCF` | The two sand backgrounds. After each navy section the first sand section is `--paper-deep`, the next `--paper` |
@@ -213,8 +215,18 @@ can't combine a variable with transparency. The numbers map back: `6,63,92` is n
 orange, `242,236,225` paper, `255,255,255` white. Fonts, corner radius, shadows, page width and side padding are tokens too
 (`--display`, `--body`, `--radius`, `--radius-sm`, `--shadow`, `--shadow-lift`, `--wrap`, `--gutter`).
 
-**Cache:** every page links `site-v5.css?v=…` and `site-v5.js?v=…`. When you change either file, change that `?v=` value on
-all seven pages (any new value works, for example today's date: `?v=2026-11-02`), so returning visitors get the new file.
+**First-screen styles:** each page has a `<style id="critical">` block in its `<head>`. It holds copies of the rules
+that style the first screen (header, hero, surf report, the guides' header photo), so the page can draw before
+`site-v5.css` arrives; the full stylesheet then loads without blocking (Google PageSpeed: "Render-blocking requests").
+- **If you change a header, hero or first-screen style in `site-v5.css`, make the same change in that block on all seven
+  pages**, or the first screen briefly shows the old style before the full file arrives.
+- Every rule in the block is an exact copy, so you can search for its selector in `site-v5.css`.
+- To drop the block: delete the `<style id="critical">…</style>`, and turn the next line back into a normal
+  `<link rel="stylesheet" href="/assets/site-v5.css?v=…">` (delete `media="print" onload="…"` and the `<noscript>` line).
+  The page then simply waits for the full file again.
+
+**Cache:** every page links `site-v5.css?v=…` (twice: the stylesheet line and the `<noscript>` line after it) and
+`site-v5.js?v=…`. When you change either file, change those `?v=` values on all seven pages (any new value works, for example today's date: `?v=2026-11-02`), so returning visitors get the new file.
 
 **TripAdvisor and Airbnb:** the footer of all seven pages already has both links, switched off as HTML comments under
 "Google Maps" (search for `TRIPADVISOR-LISTING-URL` and `AIRBNB-EXPERIENCE-URL`). When a listing is live:
@@ -227,18 +239,33 @@ section 21, "Motion", of `site-v5.css`, and in the "motion" part of `site-v5.js`
 `motion`, which the script adds unless the visitor has turned on "reduce motion". Without that class (reduce motion, or
 no JavaScript) the page shows its calm, finished state, nothing hidden.
 - **Swell (things arriving):** a few strong moments, everything else quiet. The hero headline surfaces and a wave line
-  draws under "surf" ("surfear" in Spanish); the three level cards ride in tilted, one after another; headings pop up
+  draws under "surf" ("surfear" in Spanish), and another under "water" ("agua") when the closing call scrolls in; the
+  three level cards ride in tilted, one after another; headings pop up
   with a little lean; photos settle from a slight zoom. Prices and the booking form only fade in quickly (0.4s), so the
   selling part never makes anyone wait. Paragraphs, buttons, small boxes and the FAQ questions don't move on their own.
 - **Spray (taps):** a ripple spreads from the finger on buttons and booking choices; buttons squash and spring back; a
   chosen option pops.
-- **Three sessions:** a wavy line draws from Session 1 to Session 3 and each step fills as the line reaches it.
+- **Three sessions:** an orange wavy line draws from Session 1 to Session 3 and each step fills as the line reaches it.
+- **Guide pages** (first-lesson guide so far): the headline wave, sections and cards rise in, the step-by-step's orange
+  line draws from step to step, and the "What to bring" ticks pop in one by one. Same `.reveal` and `motion` code.
 - **Surf report:** the dot rises and falls, and sends out a ring, at tomorrow's real swell period (it reads the
   "Period" figure). The forecast code itself is unchanged.
 - **Sticky bar:** rolls in with a small overshoot.
 - **To tone it down,** change the distances and the `cubic-bezier(... 1.35 ...)` curves in section 21 (a value above 1 is
   the overshoot). **To switch it all off,** delete the line `doc.classList.add('motion');` in `site-v5.js`.
-- Only `transform`, `opacity` and the hero headline's `clip-path` move, so phones keep 60fps (tested on a 4x slower CPU).
+- Only `transform`, `opacity` and `clip-path` (the hero headline and the waves) move, so phones keep 60fps (tested on a
+  4x slower CPU).
+
+**Guide page building blocks** (all in section 19, "Guide pages"):
+- **Question cards:** `<div class="qa">` holds one `<div class="qa-card">` per question (an `<h2>` and its answer). Two
+  columns from tablets up; with exactly three questions, add `qa-3` to the `qa` div for one row of three on desktop.
+- **Session chooser:** `<div class="qa-card qa-choose">` with `<ul class="choose">`. Each option ends with a
+  `<a class="choose-book">` link to `/?level=…&session=…&src=…#book`, which opens the booking form with that choice picked.
+- **First-lesson guide only, so far:** `<article class="topic guide-v2">` turns on the full-width checklist. The
+  step-by-step sits in `<section class="guide-band on-dark">` (heading left, steps right on desktop). "At a glance" is
+  `<dl class="glance">` with one `<div class="glance-item">` per fact: add `glance-wide` to make one span two columns on
+  desktop, `glance-long` to give it the full width on phones. The proof line under the first button is
+  `<p class="guide-proof">`.
 
 ## Measuring bookings (tracking)
 

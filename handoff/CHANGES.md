@@ -47,7 +47,7 @@ comes before the prices on purpose, and never more than two sand-coloured sectio
 - **Wording:** short, friendly, with contractions; "lesson" (not "session") on the main buttons for beginners.
 - **Sticky bar (phones):** "WhatsApp Weyser · from $65" opens WhatsApp directly. From 860px wide it's hidden, because
   the header button shows instead.
-- **Colour:** orange is used only for things you tap to book; decorative marks are ocean blue and navy.
+- **Colour:** orange is used for things you tap to book; decorative marks are ocean blue and navy. The one exception is the orange wave under "surf" in the hero, the page's signature.
 
 ## Phones (all pages)
 
@@ -73,8 +73,8 @@ The site moves like water (README, "Motion"):
 - The level cards ride in like a set of waves, with a slight tilt; prices and the booking form just fade in quickly; text and the FAQ don't move.
 - Headings pop up.
 - Photos settle from a zoom.
-- The hero headline surfaces, and a wave line draws under "surf".
-- A wavy line joins the three sessions.
+- The hero headline surfaces, and an orange wave line draws under "surf"; another draws under "water" in the closing call.
+- An orange wavy line joins the three sessions.
 - Taps ripple and spring.
 - The surf-report dot breathes at tomorrow's real swell period.
 - The sticky bar rolls in.
@@ -97,9 +97,36 @@ in Spanish. The three English-only guides are linked with "(en inglés)".
 | `/surf-coaching-santa-teresa/` | Coaching for improvers, in Weyser's own voice, with the forecast |
 | `/es/clases-de-surf-avanzado-santa-teresa/` | The coaching guide in Spanish |
 
-Each guide has a short, quotable answer at the top, an "At a glance" table, questions and answers, booking buttons, a
+Each guide has a short, quotable answer at the top, an "At a glance" summary, question cards, booking buttons, a
 "Last updated" date, and Article, Breadcrumb and FAQ structured data. They're linked from the homepage cards, the lesson
 section, four FAQ answers and the footer of every page, and they link back to the homepage and to each other.
+
+**Guide layout (October 2026):**
+- Short questions are white cards, two or three across on desktop, instead of a long column of headings.
+- On the kids guide, "Which session should we book?" is a navy chooser, and each option has a "Book this" link that opens
+  the booking form with that choice picked.
+- **The first-lesson guide has the full second pass**, with the other guides to follow:
+  - the orange headline wave and the homepage's proof line under the first button;
+  - the step-by-step in a navy band, with an orange line drawn from step to step;
+  - "At a glance" as fact tiles;
+  - "What to bring" across the full width;
+  - the homepage's scroll-in motion.
+
+## Speed (October 2026, from Google PageSpeed Insights)
+
+- **First-screen styles inline:** each page draws its first screen before the full stylesheet arrives (README,
+  "First-screen styles").
+- **Quicker hero entrance:** it now settles in about 1.1s.
+- **No failing request on load:** the forecast asks Open-Meteo directly, with no 404 from `/api/forecast`.
+- **No forced layout while loading:** the header's first scroll check runs one frame later.
+
+## Other details
+
+- **Surf report:** label left, "Book tomorrow's waves" right (one row on wide screens); on phones the four figures are an
+  even 2 × 2 grid with a full-width button.
+- **Numerals for the key claims:** "3 people max" and "3 sessions is where it clicks" (Spanish: "Máximo 3 personas",
+  "Con 3 clases"). Running sentences keep their words.
+- **Hero headline on phones:** always three lines (ACTUALLY / LEARN TO / SURF.; APRENDE A / SURFEAR / DE VERDAD.).
 
 ## Script (`site-v5.js`)
 
