@@ -60,7 +60,7 @@ written in neutral, friendly Spanish (*tú*). It replaces the current `/es/index
 
 ## See it first (no setup)
 
-- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all seven pages, English and Spanish, links work between them; hidden from search engines)
+- **Online:** https://aliradicalperspective.github.io/weyser-surf-site/ (all seven pages, English and Spanish, links work between them; its canonical links point to weysersurf.com, so search engines credit the real site)
 - **Offline:** open `preview/index.html` in a browser. It is the same site with relative links, so it runs from a folder.
   (Browsers sometimes block web fonts from local files, so the headings may show in a fallback font there. That's normal.)
 - **Exactly as the server will run it:** in a terminal, `cd site` then `python3 -m http.server 8000`, and open http://localhost:8000
