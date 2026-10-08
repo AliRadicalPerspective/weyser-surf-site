@@ -1,7 +1,7 @@
 /* Weyser Surf Coach · site-v5.js · plain JavaScript, no libraries, used by every page
    In order: 1. booking-form words (English, Spanish on /es/)  2. tracking stub (Plausible, if added)
    3. header state  4. sticky WhatsApp bar  5. reveal on scroll  6. booking form (WhatsApp message, Book buttons)
-   7. FAQ toggle  8. drone video  9. surf report (the live site's forecast code, unchanged apart from the Spanish labels) */
+   7. FAQ toggle  8. drone video  9. motion (html.motion)  10. surf report (the live site's forecast code, unchanged apart from the Spanish labels) */
 (function () {
   var doc = document.documentElement;
   doc.classList.remove('no-js');
@@ -174,6 +174,45 @@
         document.addEventListener('click', retry, { once: true });
       }); } else loop.pause();
     }, { threshold: 0.2 }).observe(loop);
+  }
+
+  /* motion: html.motion switches on the water-like movement in the CSS. Off for visitors who ask for reduced motion */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    doc.classList.add('motion');
+    /* a set of waves: things that arrive together come in one after another */
+    var groups = new Map();
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      var n = groups.get(el.parentNode) || 0; groups.set(el.parentNode, n + 1);
+      if (n) el.style.setProperty('--d', Math.min(n, 2) * 120 + 'ms');   /* at most 240ms behind the first */
+    });
+    /* once settled, an element drops .reveal, so its own hover and transition rules take over again */
+    if ('IntersectionObserver' in window) {
+      var settle = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          settle.unobserve(en.target);
+          setTimeout(function () { en.target.classList.remove('reveal'); en.target.style.removeProperty('--d'); }, 2200);
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { settle.observe(el); });
+    }
+    /* a ripple spreads from the finger on buttons and booking choices */
+    document.addEventListener('pointerdown', function (e) {
+      var t = e.target.closest && e.target.closest('.btn, .chip > span');
+      if (!t) return;
+      var b = t.getBoundingClientRect(), r = document.createElement('span');
+      r.className = 'ripple';
+      r.style.left = (e.clientX - b.left) + 'px'; r.style.top = (e.clientY - b.top) + 'px';
+      r.style.setProperty('--r', Math.max(b.width, b.height) / 6);
+      t.appendChild(r);
+      r.addEventListener('animationend', function () { r.remove(); });
+    }, { passive: true });
+    /* the surf report dot breathes at tomorrow's real swell period (read from the "Period" figure once it arrives) */
+    var fcBox = document.querySelector('.fc-data'), fcStrip = document.querySelector('.forecast');
+    if (fcBox && fcStrip && 'MutationObserver' in window) new MutationObserver(function () {
+      var m = fcBox.textContent.match(/(\d+)\s*s\b/);
+      if (m) fcStrip.style.setProperty('--swell', Math.min(Math.max(+m[1], 6), 20) + 's');
+    }).observe(fcBox, { childList: true });
   }
 
   /* live forecast for tomorrow in Santa Teresa (Open-Meteo Marine, free, no key) */

@@ -222,6 +222,24 @@ all seven pages (any new value works, for example today's date: `?v=2026-11-02`)
 2. add the same address to the `"sameAs"` list in the structured data of both homepages (it appears twice in each).
 Keep Airbnb in the footer only, never in the booking section: bookings through Airbnb pay a fee, direct WhatsApp ones don't.
 
+**Motion:** the site moves like water. Things lift in, overshoot a little and settle; taps ripple. All of it sits in
+section 21, "Motion", of `site-v5.css`, and in the "motion" part of `site-v5.js`. It only runs while `<html>` has the class
+`motion`, which the script adds unless the visitor has turned on "reduce motion". Without that class (reduce motion, or
+no JavaScript) the page shows its calm, finished state, nothing hidden.
+- **Swell (things arriving):** a few strong moments, everything else quiet. The hero headline surfaces and a wave line
+  draws under "surf" ("surfear" in Spanish); the three level cards ride in tilted, one after another; headings pop up
+  with a little lean; photos settle from a slight zoom. Prices and the booking form only fade in quickly (0.4s), so the
+  selling part never makes anyone wait. Paragraphs, buttons, small boxes and the FAQ questions don't move on their own.
+- **Spray (taps):** a ripple spreads from the finger on buttons and booking choices; buttons squash and spring back; a
+  chosen option pops.
+- **Three sessions:** a wavy line draws from Session 1 to Session 3 and each step fills as the line reaches it.
+- **Surf report:** the dot rises and falls, and sends out a ring, at tomorrow's real swell period (it reads the
+  "Period" figure). The forecast code itself is unchanged.
+- **Sticky bar:** rolls in with a small overshoot.
+- **To tone it down,** change the distances and the `cubic-bezier(... 1.35 ...)` curves in section 21 (a value above 1 is
+  the overshoot). **To switch it all off,** delete the line `doc.classList.add('motion');` in `site-v5.js`.
+- Only `transform`, `opacity` and the hero headline's `clip-path` move, so phones keep 60fps (tested on a 4x slower CPU).
+
 ## Measuring bookings (tracking)
 
 Nothing is tracked yet, and no analytics script is loaded. Two things are already in place:

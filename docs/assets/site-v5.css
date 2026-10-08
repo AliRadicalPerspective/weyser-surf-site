@@ -28,6 +28,7 @@
    18. Sticky WhatsApp bar (phones)
    19. Guide pages
    20. Photo placeholders
+   21. Motion
 */
 
 @font-face {
@@ -558,6 +559,27 @@ h3 {
   isolation: isolate;
   overflow: hidden;
 }
+/* the wave under "surf" (also shown, already drawn, without motion) */
+.wave-word {
+  position: relative;
+  display: inline-block;
+}
+.wave-line {
+  position: absolute;
+  left: -3%;
+  bottom: -.16em;
+  width: 106%;
+  height: .3em;
+  overflow: visible;
+  pointer-events: none;
+}
+.wave-line path {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
 @media (max-width:700px) {
   .hero {
     display: flex;
@@ -666,15 +688,6 @@ h3 {
 .fc-src a {
   color: inherit;
 }
-/* orange is only for things you tap to book; decoration moves to the ocean blue and navy */
-.fc-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: none;
-  animation: none;
-}
 /* forecast strip stays hidden until the data is in (same as the live site.css) */
 .forecast.fc-wait {
   display: none;
@@ -722,6 +735,16 @@ h3 {
   width: auto;
   order: 0;
   margin: 0;
+}
+/* orange is only for things you tap to book; decoration moves to the ocean blue and navy */
+.fc-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: none;
+  animation: none;
+  position: relative;
 }
 
 /* ==========================================================================
@@ -1078,6 +1101,20 @@ h3 {
   letter-spacing: .16em;
   text-transform: uppercase;
   color: var(--blue-ink);
+}
+/* Three sessions: a wavy line joins the three steps (drawn by motion, shown as is without it) */
+.camp-arc li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: 24px;
+  top: calc(50% + 12px);
+  width: 6px;
+  height: calc(100% - 12px);
+  background: var(--blue);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='12'%3E%3Cpath d='M3 0c3 3 3 3 0 6s-3 3 0 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-y;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='12'%3E%3Cpath d='M3 0c3 3 3 3 0 6s-3 3 0 6' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") repeat-y;
+  transform-origin: top;
 }
 @media (min-width:900px) {
   .plateau.on-dark .h2 {
@@ -2819,4 +2856,234 @@ html:not(.no-js) .faq-extra:not(.open) {
   font-weight: 500;
   opacity: .9;
   font-size: .75rem;
+}
+
+/* ==========================================================================
+   21. Motion
+   Water-like movement, all behind html.motion (set by site-v5.js unless the visitor asks for reduced motion). Swell: things lift in and settle. Spray: taps ripple and spring.
+   ========================================================================== */
+
+/* default: sections lift in gently */
+.motion .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .5s ease-out var(--d,0ms),transform .7s cubic-bezier(.2,1.3,.32,1) var(--d,0ms);
+}
+.motion .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+/* the first scroll moment gets the flourish: the level cards ride in like boards on a set, tilted, one after another */
+.motion .door.reveal {
+  transform: translateY(90px) rotate(-2.5deg);
+  transition: opacity .6s ease-out var(--d,0ms),transform 1.1s cubic-bezier(.2,1.35,.32,1) var(--d,0ms);
+}
+.motion .door.reveal:nth-child(even) {
+  transform: translateY(90px) rotate(2.5deg);
+}
+.motion .door.reveal.in {
+  transform: none;
+}
+/* the money section never makes anyone wait: prices and the booking form fade in quickly */
+.motion .price.reveal,
+.motion .book.reveal {
+  transform: translateY(16px);
+  transition: opacity .4s ease-out var(--d,0ms),transform .4s ease-out var(--d,0ms);
+}
+.motion .price.reveal.in,
+.motion .book.reveal.in {
+  transform: none;
+}
+/* text, buttons, small boxes and the FAQ questions appear with their section, with no motion of their own */
+.motion .lead.reveal,
+.motion .guide-link.reveal,
+.motion .btn.reveal,
+.motion .incl.reveal,
+.motion .extras.reveal,
+.motion .promise.reveal,
+.motion .standby.reveal,
+.motion details.reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+/* headings pop up with a little lean that straightens */
+.motion .h2.reveal {
+  transform: translateY(.5em) skewY(2deg);
+  transform-origin: left bottom;
+  transition: opacity .4s ease-out var(--d,0ms),transform .6s cubic-bezier(.2,1.4,.32,1) var(--d,0ms);
+}
+.motion .h2.reveal.in {
+  transform: none;
+}
+/* photos surface: they settle from a slight zoom as they arrive */
+.motion .door.reveal img,
+.motion .photo.reveal img,
+.motion .lesson-photo.reveal img {
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1) var(--d,0ms);
+}
+.motion .door.in img,
+.motion .photo.in img,
+.motion .lesson-photo.in img {
+  transform: none;
+}
+/* ---- hero: the headline surfaces, the rest follows like a set ---- */
+.motion .hero h1 {
+  animation: surface 1.1s cubic-bezier(.2,1.3,.32,1) .15s both;
+}
+.motion .hero h1 + *,
+.motion .hero .trust,
+.motion .hero .hero-ctas {
+  animation: rise .9s cubic-bezier(.2,1.35,.32,1) both;
+}
+.motion .hero h1 + * {
+  animation-delay: .35s;
+}
+.motion .hero .trust {
+  animation-delay: .5s;
+}
+.motion .hero .hero-ctas {
+  animation-delay: .65s;
+}
+.motion .wave-line path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.3s cubic-bezier(.65,0,.25,1) 1s forwards;
+}
+@keyframes surface {
+  from {
+    transform: translateY(42px);
+    clip-path: inset(-10% -5% 100% -5%);
+  }
+  to {
+    transform: none;
+    clip-path: inset(-10% -5% -25% -5%);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* ---- Three sessions: the line you ride draws from step 1 to step 3, each step fills as it reaches it ---- */
+.motion .camp-arc li:not(:last-child)::after {
+  transform: scaleY(0);
+  transition: transform .7s cubic-bezier(.65,0,.25,1);
+}
+.motion .in .camp-arc li:nth-child(1)::after {
+  transform: none;
+  transition-delay: .55s;
+}
+.motion .in .camp-arc li:nth-child(2)::after {
+  transform: none;
+  transition-delay: 1.25s;
+}
+.motion .camp-arc li::before {
+  transition: background-color .3s,transform .5s cubic-bezier(.2,1.6,.35,1);
+}
+.motion .in .camp-arc li::before {
+  background-color: var(--blue);
+  transform: scale(1.15);
+}
+.motion .in .camp-arc li:nth-child(1)::before {
+  transition-delay: .35s;
+}
+.motion .in .camp-arc li:nth-child(2)::before {
+  transition-delay: 1.05s;
+}
+.motion .in .camp-arc li:nth-child(3)::before {
+  transition-delay: 1.75s;
+}
+/* ---- spray: taps splash and spring ---- */
+.motion .btn,
+.motion .chip>span {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.motion .btn {
+  transition: transform .5s cubic-bezier(.2,1.6,.35,1),background .2s,box-shadow .2s;
+}
+.motion .btn:active {
+  transform: scale(.93);
+  transition-duration: .08s;
+}
+.motion .chip>span:active {
+  transform: scale(.95);
+}
+.motion .chip input:checked+span {
+  animation: pop .5s cubic-bezier(.2,1.7,.35,1);
+}
+.ripple {
+  position: absolute;
+  z-index: -1;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .28;
+  pointer-events: none;
+  animation: ripple .75s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes ripple {
+  to {
+    transform: scale(var(--r,18));
+    opacity: 0;
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(.88);
+  }
+  100% {
+    transform: none;
+  }
+}
+/* ---- surf report: the dot rises and falls with tomorrow's real swell period, and sends out a ring each time ---- */
+.motion .fc-dot {
+  animation: swell var(--swell,12s) ease-in-out infinite;
+}
+.motion .fc-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  animation: ring var(--swell,12s) ease-out infinite;
+}
+@keyframes swell {
+  0%,
+  100% {
+    transform: translateY(3px) scale(.8);
+  }
+  50% {
+    transform: translateY(-3px) scale(1.3);
+  }
+}
+@keyframes ring {
+  0% {
+    transform: scale(1);
+    opacity: .9;
+  }
+  45%,
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+/* ---- sticky bar rolls in like a wave ---- */
+.motion .wa-bar {
+  transition: transform .75s cubic-bezier(.2,1.45,.32,1);
 }

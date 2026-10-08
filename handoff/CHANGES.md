@@ -67,6 +67,20 @@ Fixes from that check:
 - Long Spanish words in headings break with a hyphen.
 - The Spanish reviews headline is now "Mi ángel de la guarda en el mar." (it was "guardaespaldas", too long for small phones).
 
+## Motion
+
+The site moves like water (README, "Motion"):
+- The level cards ride in like a set of waves, with a slight tilt; prices and the booking form just fade in quickly; text and the FAQ don't move.
+- Headings pop up.
+- Photos settle from a zoom.
+- The hero headline surfaces, and a wave line draws under "surf".
+- A wavy line joins the three sessions.
+- Taps ripple and spring.
+- The surf-report dot breathes at tomorrow's real swell period.
+- The sticky bar rolls in.
+
+It's switched off for visitors who ask for reduced motion, and costs about 3KB compressed.
+
 ## Spanish homepage (`es/index.html`)
 
 The same design, sections, prices and booking form, written in neutral, friendly Spanish with *tú*. Weyser's bio comes
