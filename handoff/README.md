@@ -144,7 +144,7 @@ On a real phone, over mobile data:
 - [ ] On the coaching page, "Plan it in the booking form" opens the homepage form with "Surfed before" and "Not sure" selected
 - [ ] The booking form's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
-- [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It stays on the still image with data saver, 2G or "reduce motion" on; that's intended. With iPhone Low Power Mode it starts on the first tap.
+- [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It also plays with "reduce motion" on, and a tap on the video pauses it. It stays on the still image only with data saver or 2G; that's intended. With iPhone Low Power Mode (which blocks autoplay on every site) it starts on the first tap.
 - [ ] The guide links work: the three homepage cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
 - [ ] Structured data passes Google's Rich Results Test for all seven pages
@@ -285,7 +285,7 @@ after your own edits.
 | `qa_functional.mjs` | The booking form builds the right WhatsApp message in English and Spanish; every Book button preselects a real option; sticky bar, FAQ toggle, language switch, surf report, WhatsApp number; the coaching guide opens the form preselected | All pass |
 | `qa_mobile.mjs` | On a phone: tap targets thumb-sized and not overlapping, no iPhone zoom on form fields, no text under 12px, WCAG AA contrast, loading on a 4× slower CPU and fast 3G (LCP < 2.5s, CLS < 0.1, TBT < 200ms), 60fps scrolling, jump links below the header, safe area, no sticky hover, sharp photos, swipe rows | All pass on all seven pages |
 | `qa_critical.mjs` | With `site-v5.css` blocked, every first screen (7 pages × 10 widths) looks exactly the same: the inline first-screen styles are complete | 70 of 70 identical |
-| `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, and shows the still image for "reduce motion" | All pass |
+| `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, plays with "reduce motion" too, and a tap on the video pauses it | All pass |
 | `qa_styles.mjs` | A style lock: records every element's position and style (7 pages, 8 widths, before and after taps), so a CSS clean-up can be proven to change nothing | Used for every refactor |
 
 **To run them** (Node 22 and Google Chrome):
@@ -324,8 +324,9 @@ Already done in these files:
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
 - **CSS and script:** one stylesheet (about 16KB compressed), which no longer blocks the first paint (see "First-screen
   styles"), and one script (about 6KB compressed), loaded with `defer`.
-- **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
-  2G, or when "reduce motion" is on. People in those cases see the still image instead. The still image is set by the
+- **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It plays by itself whenever that section is on screen, for
+  everyone (also with "reduce motion"); a tap on the video area pauses it. Only data saver and 2G keep the still image.
+  iPhone Low Power Mode blocks autoplay on every website: then it starts on the visitor's first tap. The still image is set by the
   script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.
 - **Result:** on an iPhone-size screen, the homepage's first screen loads **about 380KB** over the network (images 242KB,
   fonts 93KB, CSS 12KB, script 5KB, HTML 19KB). The live homepage loads **about 560KB**, of which 448KB is images, measured

@@ -1,6 +1,6 @@
 // Drone video at the closing section ("See you in the water."): scrolls down like a person (mouse-wheel steps, no jumps)
-// and checks the video really plays (time moves), pauses when scrolled away, plays again on the way back, and stays on the
-// still image for visitors who ask for reduced motion. English and Spanish, phone and desktop.
+// and checks the video really plays (time moves), pauses when scrolled away, plays again on the way back, also plays with
+// "reduce motion", and a tap on the video pauses it. English and Spanish, phone and desktop.
 //   node tests/qa_video.mjs                 (local site on :8770)
 //   QA_BASE=https://... node tests/qa_video.mjs   (any other copy, e.g. the online preview)
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
@@ -52,14 +52,17 @@ for (const path of ['/', '/es/']) for (const w of [390, 1280]) {
   await T.scrollTo('closing'); await sleep(1500);
   const d = await T.state(); await sleep(1000); const e = await T.state();
   check(`${name}: plays again when scrolled back`, !e.paused && e.t > d.t, `time ${d.t}s → ${e.t}s`);
+  const tapped = await T.ev(`(async()=>{const c=document.querySelector('.closing');c.dispatchEvent(new MouseEvent('click',{bubbles:true}));await new Promise(r=>setTimeout(r,400));const v=document.querySelector('.closing video');const paused=v.paused;c.dispatchEvent(new MouseEvent('click',{bubbles:true}));await new Promise(r=>setTimeout(r,800));return {pausedAfterTap:paused,playingAfterSecondTap:!v.paused,button:!!document.querySelector('.loop-play')}})()`);
+  check(`${name}: a tap on the video pauses it, another plays it, no button`, tapped.pausedAfterTap && tapped.playingAfterSecondTap && !tapped.button, JSON.stringify(tapped));
   await T.close();
 }
 for (const path of ['/', '/es/']) {
   const T = await open(path, 390, true);
   await T.scrollTo('closing'); await sleep(2000);
-  const s = await T.state();
-  check(`${path} reduced motion: shows the still image, no video download`, s.paused && s.poster && s.ready === 0, JSON.stringify(s));
+  const a = await T.state(); await sleep(1200); const b = await T.state();
+  check(`${path} reduced motion: the video still plays by itself`, !b.paused && b.t > a.t, `time ${a.t}s → ${b.t}s`);
   await T.close();
 }
+
 console.log(fails ? `\n${fails} FAILED` : '\nALL PASS');
 process.exit(fails ? 1 : 0);

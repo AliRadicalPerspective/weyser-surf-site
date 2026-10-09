@@ -164,16 +164,29 @@
   var conn = navigator.connection || {};
   /* data saver or a 2G connection only: phones often report "3g" on normal mobile data */
   var slow = conn.saveData || /2g/.test(conn.effectiveType || '');
-  if (loop && !slow && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var loopOn = false;
-    new IntersectionObserver(function (e) {
-      loopOn = e[0].isIntersecting;
-      if (loopOn) { var p = loop.play(); if (p && p.catch) p.catch(function () {
-        var retry = function () { if (loopOn && loop.paused) { var q = loop.play(); if (q && q.catch) q.catch(function () {}); } };
+  if (loop && !slow && 'IntersectionObserver' in window) {
+    /* the drone loop plays by itself whenever the closing section is on screen, for everyone (also with "reduce
+       motion"); only data saver and 2G keep the still image. A tap on the video area pauses it or plays it again.
+       iPhone Low Power Mode blocks all autoplay, on every site: then it starts on the visitor's first tap. */
+    var want = true, loopOn = false;
+    var start = function () {
+      var p = loop.play();
+      if (p && p.catch) p.catch(function () {
+        var retry = function () { if (want && loopOn && loop.paused) { var q = loop.play(); if (q && q.catch) q.catch(function () {}); } };
         document.addEventListener('touchend', retry, { once: true, passive: true });
         document.addEventListener('click', retry, { once: true });
-      }); } else loop.pause();
+      });
+    };
+    new IntersectionObserver(function (e) {
+      loopOn = e[0].isIntersecting;
+      if (loopOn) { if (want) start(); } else loop.pause();
     }, { threshold: 0.2 }).observe(loop);
+    var closingBox = loop.closest('.closing');
+    if (closingBox) closingBox.addEventListener('click', function (e) {
+      if (e.target !== closingBox && e.target !== loop) return;   /* links and buttons work as normal */
+      want = loop.paused;
+      if (want) start(); else loop.pause();
+    });
   }
 
   /* motion: html.motion switches on the water-like movement in the CSS. Off for visitors who ask for reduced motion */
