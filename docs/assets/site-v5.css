@@ -1341,20 +1341,6 @@ img.avatar {
   overflow: hidden;
   transition: transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-/* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .8s var(--ease),transform .8s var(--ease);
-}
-@media (prefers-reduced-motion:reduce) {
-  /* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 .price h3 {
   font-size: 1.45rem;
   margin: 10px 0 4px;
@@ -1500,15 +1486,6 @@ img.avatar {
   }
 }
 
-/* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
-.reveal.in {
-  opacity: 1;
-  transform: none;
-}
-.no-js .reveal {
-  opacity: 1;
-  transform: none;
-}
 @media (min-width:1000px) {
   .promise,
   .method-note {
@@ -2344,6 +2321,20 @@ html:not(.no-js) .faq-extra:not(.open) {
   box-shadow: 0 24px 50px -24px rgba(0,0,0,.5);
   transition: transform .3s var(--ease);
 }
+/* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s var(--ease),transform .8s var(--ease);
+}
+@media (prefers-reduced-motion:reduce) {
+  /* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .stage .photo-in {
   aspect-ratio: 3/2;
   overflow: hidden;
@@ -2795,15 +2786,6 @@ html:not(.no-js) .faq-extra:not(.open) {
   font-weight: 700;
   text-underline-offset: 4px;
 }
-.facts caption {
-  text-align: left;
-  padding: 0 0 12px;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--navy);
-}
 .beach .tag {
   display: inline-block;
   margin-bottom: 10px;
@@ -2909,12 +2891,6 @@ html:not(.no-js) .faq-extra:not(.open) {
 .glance-wrap {
   margin: clamp(48px,7vw,72px) 0 0;
 }
-.glance-h {
-  margin: 0 0 14px;
-  font-size: .75rem;
-  letter-spacing: .2em;
-  color: var(--blue-ink);
-}
 .glance {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2953,10 +2929,53 @@ html:not(.no-js) .faq-extra:not(.open) {
   max-width: none;
   grid-template-columns: 1fr 1fr;
 }
+.band-table .facts.wide {
+  margin: 0;
+  max-width: none;
+  color: var(--ink);
+}
+/* section titles for "At a glance" and the beaches comparison: the same size as the other section titles */
+.table-title {
+  margin: clamp(48px,7vw,72px) 0 18px;
+  font-size: clamp(1.5rem,3.6vw,2.2rem);
+}
+.table-title + .facts,
+.table-title + .glance {
+  margin-top: 0;
+}
+.glance-wrap .table-title {
+  margin-top: 0;
+}
+.band-table .table-title {
+  margin: 0 0 26px;
+}
+.pic-wide {
+  aspect-ratio: 21/9;
+  margin: clamp(48px,7vw,72px) 0 0;
+}
+.band-glance .glance-wrap {
+  margin: 0;
+}
+.band-glance .table-title {
+  margin: 0 0 26px;
+  color: var(--white);
+}
 @media (hover: hover) {
   .stage:hover {
     transform: translateY(-4px);
   }
+}
+
+/* From 2. Layout helpers: kept here, below the rules they override (moving them up changes the look) */
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: hover) {
   .stage:hover .photo-in img {
     transform: scale(1.04);
   }
@@ -3004,9 +3023,6 @@ html:not(.no-js) .faq-extra:not(.open) {
   .facts td {
     padding: 12px 14px;
   }
-  .facts.wide caption {
-    padding: 16px 14px 4px;
-  }
 }
 
 @media (max-width:380px) {
@@ -3044,10 +3060,6 @@ html:not(.no-js) .faq-extra:not(.open) {
     display: block;
     width: auto;
   }
-  .facts.wide caption {
-    display: block;
-    padding: 18px 18px 4px;
-  }
   .facts.wide tr:first-child {
     display: none;
   }
@@ -3070,6 +3082,9 @@ html:not(.no-js) .faq-extra:not(.open) {
     content: attr(data-label) ": ";
     font-weight: 600;
     color: var(--navy);
+  }
+  .pic-wide {
+    aspect-ratio: 4/3;
   }
 }
 
@@ -3376,6 +3391,31 @@ html:not(.no-js) .faq-extra:not(.open) {
 }
 .motion .guide-band .timeline li.reveal:not(.in)::after {
   transform: scaleY(0);
+}
+/* the coaching guide's three stage cards ride in like the homepage level cards: tilted, one after another */
+.motion .stage.reveal {
+  transform: translateY(70px) rotate(-2deg);
+  transition: opacity .6s ease-out var(--d,0ms),transform 1s cubic-bezier(.2,1.35,.32,1) var(--d,0ms);
+}
+.motion .stage.reveal:nth-child(even) {
+  transform: translateY(70px) rotate(2deg);
+}
+.motion .stage.reveal.in {
+  transform: none;
+}
+.motion .stage.reveal img {
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1) var(--d,0ms);
+}
+.motion .stage.in img {
+  transform: none;
+}
+.motion .beach.reveal img {
+  transform: scale(1.08);
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1) var(--d,0ms);
+}
+.motion .beach.in img {
+  transform: none;
 }
 .motion .checklist li.reveal:not(.in) svg {
   transform: scale(0);

@@ -105,12 +105,14 @@ section, four FAQ answers and the footer of every page, and they link back to th
 - Short questions are white cards, two or three across on desktop, instead of a long column of headings.
 - On the kids guide, "Which session should we book?" is a navy chooser, and each option has a "Book this" link that opens
   the booking form with that choice picked.
-- **The first-lesson guide has the full second pass**, with the other guides to follow:
-  - the orange headline wave and the homepage's proof line under the first button;
-  - the step-by-step in a navy band, with an orange line drawn from step to step;
-  - "At a glance" as fact tiles;
-  - "What to bring" across the full width;
-  - the homepage's scroll-in motion.
+- **All five guides** (four English, one Spanish) share the homepage's finish:
+  - an orange wave under one headline word ("first", "kids", "beaches", "improvers", "mejorar");
+  - the homepage's proof line under the first button;
+  - one navy band each: the step-by-step with an orange line drawn from step to step (first lesson, coaching),
+    "At a glance" (kids), the beaches comparison table (beaches);
+  - "At a glance" as fact tiles under a proper section title;
+  - "What to bring" across the full width (first lesson); on the beaches guide the six questions are cards under a wide photo;
+  - the homepage's scroll-in motion; the coaching guide's three stage cards ride in tilted, like the level cards.
 
 ## Speed (October 2026, from Google PageSpeed Insights)
 

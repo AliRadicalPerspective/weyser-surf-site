@@ -16,7 +16,8 @@ Allow about an hour, including testing.
    its two photos are in, and don't launch with the kids' photos until the parents' OK is in.
 3. Deploy `site/` to the Cloudflare Pages project (steps below), then run the test checklist on a real phone.
 4. Submit the sitemap to Google and Bing.
-5. Fix the hosting items listed below when you can (www redirect, `/api/forecast`, HSTS).
+5. Fix the hosting items listed below when you can (www redirect, HSTS).
+6. Optional: run the same browser tests we ran before handover (`tools/`, see "Quality checks").
 
 After this handover, **the files in `site/` are the source of truth.** Edit them directly; the section "Editing the site
 by hand" shows where things live. Any later changes from us will come as small, described edits, not a new folder
@@ -43,6 +44,7 @@ site/
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
   assets/video/   drone-loop.mp4 + its poster image
 preview/           the same seven pages with relative links, for clicking through (don't upload this)
+tools/             the browser tests run before handover, and a local server (see "Quality checks"; don't upload this)
 ```
 
 ## The Spanish page is included
@@ -246,8 +248,9 @@ no JavaScript) the page shows its calm, finished state, nothing hidden.
 - **Spray (taps):** a ripple spreads from the finger on buttons and booking choices; buttons squash and spring back; a
   chosen option pops.
 - **Three sessions:** an orange wavy line draws from Session 1 to Session 3 and each step fills as the line reaches it.
-- **Guide pages** (first-lesson guide so far): the headline wave, sections and cards rise in, the step-by-step's orange
-  line draws from step to step, and the "What to bring" ticks pop in one by one. Same `.reveal` and `motion` code.
+- **Guide pages:** the headline wave, sections and cards rise in, the step-by-step's orange line draws from step to step
+  (first lesson, coaching), the "What to bring" ticks pop in one by one, and the coaching guide's stage cards ride in
+  tilted. Same `.reveal` and `motion` code as the homepage.
 - **Surf report:** the dot rises and falls, and sends out a ring, at tomorrow's real swell period (it reads the
   "Period" figure). The forecast code itself is unchanged.
 - **Sticky bar:** rolls in with a small overshoot.
@@ -261,11 +264,38 @@ no JavaScript) the page shows its calm, finished state, nothing hidden.
   columns from tablets up; with exactly three questions, add `qa-3` to the `qa` div for one row of three on desktop.
 - **Session chooser:** `<div class="qa-card qa-choose">` with `<ul class="choose">`. Each option ends with a
   `<a class="choose-book">` link to `/?level=…&session=…&src=…#book`, which opens the booking form with that choice picked.
-- **First-lesson guide only, so far:** `<article class="topic guide-v2">` turns on the full-width checklist. The
-  step-by-step sits in `<section class="guide-band on-dark">` (heading left, steps right on desktop). "At a glance" is
-  `<dl class="glance">` with one `<div class="glance-item">` per fact: add `glance-wide` to make one span two columns on
-  desktop, `glance-long` to give it the full width on phones. The proof line under the first button is
-  `<p class="guide-proof">`.
+- **Navy bands:** `<section class="guide-band on-dark">` sits between two `<div class="wrap">` blocks of the guide.
+  With `band-split` on its inner wrap it puts the heading left and the steps right on desktop (first lesson, coaching);
+  `band-glance` holds "At a glance" (kids), `band-table` the beaches comparison.
+- **At a glance:** `<h2 class="table-title">` then `<dl class="glance">` with one `<div class="glance-item">` per fact
+  (`<dt>` label, `<dd>` value). Add `glance-wide` to make a fact span two columns on desktop, `glance-long` to give it
+  the full width on phones (used for facts over about 34 characters).
+- **Other pieces:** `<article class="topic guide-v2">` turns on the full-width checklist; `<p class="guide-proof">` is the
+  proof line under the first button; `<div class="pic pic-wide">` is the wide photo above the beaches questions.
+- **Motion on a guide** comes from adding `reveal` to an element's class; the script does the rest.
+
+## Quality checks
+
+These are the checks run before handover, on all seven pages. The same tests are in `tools/`, so you can re-run them
+after your own edits.
+
+| Check | What it proves | Result at handover |
+|---|---|---|
+| `qa_browser.mjs` | 7 pages × 7 widths (320 to 1440px): no sideways scrolling, nothing off-screen, no script errors, no failed requests, no broken images, buttons don't wrap, sticky bar vs header button | 49 of 49 clean |
+| `qa_functional.mjs` | The booking form builds the right WhatsApp message in English and Spanish; every Book button preselects a real option; sticky bar, FAQ toggle, language switch, surf report, WhatsApp number; the coaching guide opens the form preselected | All pass |
+| `qa_mobile.mjs` | On a phone: tap targets thumb-sized and not overlapping, no iPhone zoom on form fields, no text under 12px, WCAG AA contrast, loading on a 4× slower CPU and fast 3G (LCP < 2.5s, CLS < 0.1, TBT < 200ms), 60fps scrolling, jump links below the header, safe area, no sticky hover, sharp photos, swipe rows | All pass on all seven pages |
+| `qa_critical.mjs` | With `site-v5.css` blocked, every first screen (7 pages × 10 widths) looks exactly the same: the inline first-screen styles are complete | 70 of 70 identical |
+| `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, and shows the still image for "reduce motion" | All pass |
+| `qa_styles.mjs` | A style lock: records every element's position and style (7 pages, 8 widths, before and after taps), so a CSS clean-up can be proven to change nothing | Used for every refactor |
+
+**To run them** (Node 22 and Google Chrome):
+1. Serve the site: `python3 tools/serve.py 8770 site` (this server also sends video in pieces, like Cloudflare, so
+   Safari plays it; `python3 -m http.server` does not).
+2. Start a headless Chrome: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --remote-debugging-port=9334 --user-data-dir=/tmp/qa-chrome about:blank`
+3. Run a test: `node tools/qa_browser.mjs` (each prints PASS or FAIL lines and exits non-zero on failure).
+   `QA_BASE=https://your-preview-url node tools/qa_video.mjs` runs one against a deployed copy.
+4. The style lock: `node tools/qa_styles.mjs save before`, make your change, `node tools/qa_styles.mjs save after`,
+   then `node tools/qa_styles.mjs compare before after`.
 
 ## Measuring bookings (tracking)
 
@@ -292,7 +322,8 @@ Already done in these files:
 - **Images:** WebP in two widths with `srcset` and `sizes`, so phones download the small one (25 to 60KB each). All have
   `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
-- **CSS and script:** one stylesheet (about 12KB compressed) and one script (about 5KB compressed), loaded with `defer`.
+- **CSS and script:** one stylesheet (about 16KB compressed), which no longer blocks the first paint (see "First-screen
+  styles"), and one script (about 6KB compressed), loaded with `defer`.
 - **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It only starts when that section is on screen, and never on data saver,
   2G, or when "reduce motion" is on. People in those cases see the still image instead. The still image is set by the
   script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.
