@@ -1,6 +1,8 @@
 // Drone video at the closing section ("See you in the water."): scrolls down like a person (mouse-wheel steps, no jumps)
 // and checks the video really plays (time moves), pauses when scrolled away, plays again on the way back, also plays with
-// "reduce motion", and a tap on the video pauses it. English and Spanish, phone and desktop.
+// "reduce motion", and a tap on the video pauses it. English and Spanish, phone and desktop. Then the fallbacks:
+// a 3G connection gets the light file, and when the browser blocks autoplay (openly or silently) the animated
+// image takes the video's place in the same box.
 //   node tests/qa_video.mjs                 (local site on :8770)
 //   QA_BASE=https://... node tests/qa_video.mjs   (any other copy, e.g. the online preview)
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
@@ -8,7 +10,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 let fails = 0;
 const check = (name, ok, detail = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${name}${detail ? '  · ' + detail : ''}`); if (!ok) fails++; };
 
-async function open(path, w, reduce) {
+async function open(path, w, reduce, init = '') {
   const t = await (await fetch('http://127.0.0.1:9334/json/new?about:blank', {method: 'PUT'})).json();
   const ws = new WebSocket(t.webSocketDebuggerUrl); let id = 0; const P = {};
   ws.onmessage = e => { const m = JSON.parse(e.data); if (m.id && P[m.id]) P[m.id](m.result || m); };
@@ -18,6 +20,7 @@ async function open(path, w, reduce) {
   await send('Emulation.setEmulatedMedia', {features: [{name: 'prefers-reduced-motion', value: reduce ? 'reduce' : 'no-preference'}]});
   await send('Emulation.setDeviceMetricsOverride', {width: w, height: w < 800 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 800});
   await send('Page.enable'); await send('Page.bringToFront');
+  if (init) await send('Page.addScriptToEvaluateOnNewDocument', {source: init});
   await send('Page.navigate', {url: BASE + path}); await sleep(2500);
   const ev = async x => (await send('Runtime.evaluate', {expression: x, returnByValue: true, awaitPromise: true})).result?.value;
   const wheel = async dy => send('Input.dispatchMouseEvent', {type: 'mouseWheel', x: w / 2, y: 400, deltaX: 0, deltaY: dy});
@@ -63,6 +66,35 @@ for (const path of ['/', '/es/']) {
   check(`${path} reduced motion: the video still plays by itself`, !b.paused && b.t > a.t, `time ${a.t}s → ${b.t}s`);
   await T.close();
 }
+
+// fallbacks (phone, English and Spanish)
+const BLOCKED = `HTMLMediaElement.prototype.play = function () { return Promise.reject(new DOMException('blocked', 'NotAllowedError')); };`;
+const SILENT = `HTMLMediaElement.prototype.play = function () { return Promise.resolve(); };`;
+const G3 = `Object.defineProperty(navigator, 'connection', {value: {effectiveType: '3g', saveData: false}});`;
+const box = `(()=>{const c=document.querySelector('.closing').getBoundingClientRect();const v=document.querySelector('.closing .bg');const r=v&&v.getBoundingClientRect();
+  const img=document.querySelector('.closing img.bg');
+  return {tag:v&&v.tagName, video:!!document.querySelector('.closing video'), img:!!img, loaded:!!img&&img.complete&&img.naturalWidth>0,
+    src:img?img.src.split('/').pop():'', fills:!!r&&Math.abs(r.width-c.width)<2&&Math.abs(r.height-c.height)<2, fit:v&&getComputedStyle(v).objectFit}})()`;
+for (const path of ['/', '/es/']) {
+  for (const [label, init] of [['autoplay blocked', BLOCKED], ['autoplay blocked silently', SILENT]]) {
+    const T = await open(path, 390, false, init);
+    const top = await T.ev(`!!document.querySelector('.closing img.bg') || performance.getEntriesByType('resource').some(r=>/drone-loop\.webp/.test(r.name))`);
+    await T.scrollTo('closing'); await sleep(label.includes('silently') ? 4000 : 2000);
+    const s = await T.ev(box);
+    check(`${path} ${label}: the animated image takes the video's place`, !top && s.img && s.loaded && !s.video && s.src === 'drone-loop.webp' && s.fills && s.fit === 'cover', JSON.stringify(s));
+    await T.close();
+  }
+  const T = await open(path, 390, false, G3);
+  await T.scrollTo('closing'); await sleep(1500);
+  const a = await T.state(); await sleep(1200); const b = await T.state();
+  check(`${path} 3G: plays the light file`, !b.paused && b.t > a.t && b.src === 'drone-loop-light.mp4' && !(await T.ev(`!!document.querySelector('.closing img.bg')`)), JSON.stringify(b));
+  await T.close();
+}
+const D = await open('/', 1280, false, G3);
+await D.scrollTo('closing'); await sleep(1500);
+const ds = await D.state();
+check('/ desktop on 3G: still plays the sharp file', !ds.paused && ds.src === 'drone-loop.mp4', JSON.stringify(ds));
+await D.close();
 
 console.log(fails ? `\n${fails} FAILED` : '\nALL PASS');
 process.exit(fails ? 1 : 0);

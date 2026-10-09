@@ -121,6 +121,9 @@ section, four FAQ answers and the footer of every page, and they link back to th
 - **Quicker hero entrance:** it now settles in about 1.1s.
 - **No failing request on load:** the forecast asks Open-Meteo directly, with no 404 from `/api/forecast`.
 - **No forced layout while loading:** the header's first scroll check runs one frame later.
+- **Drone video 0.7MB (was 2.6MB), looks the same.** Phones on 3G get a 0.2MB version; desktop always gets the sharp
+  one. When a browser blocks video autoplay (iPhone Low Power Mode, in-app browsers, embeds), an animated image of
+  the same loop takes its place, so the closing section always moves (README, "The drone video").
 
 ## Other details
 

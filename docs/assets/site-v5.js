@@ -151,7 +151,7 @@
   });
   if (more) more.setAttribute('data-label', more.textContent);
 
-  /* drone loop plays only while on screen, and never for people who prefer reduced motion */
+  /* drone loop behind "See you in the water." (README, "The drone video") */
   var loop = document.querySelector('.closing video.bg');
   /* the still image (poster) loads only when the visitor gets near this section; it shows whenever the video doesn't play */
   if (loop && loop.getAttribute('data-poster')) {
@@ -164,26 +164,40 @@
   var conn = navigator.connection || {};
   /* data saver or a 2G connection only: phones often report "3g" on normal mobile data */
   var slow = conn.saveData || /2g/.test(conn.effectiveType || '');
+  /* the light video (0.2MB instead of 0.7MB): phones on 3G only. Desktop always gets the sharp one */
+  var light = /3g/.test(conn.effectiveType || '') && window.matchMedia('(max-width: 799px)').matches;
   if (loop && !slow && 'IntersectionObserver' in window) {
     /* the drone loop plays by itself whenever the closing section is on screen, for everyone (also with "reduce
-       motion"); only data saver and 2G keep the still image. A tap on the video area pauses it or plays it again.
-       iPhone Low Power Mode blocks all autoplay, on every site: then it starts on the visitor's first tap. */
-    var want = true, loopOn = false;
+       motion"). A tap on the video area pauses it or plays it again. Phones on 3G play the light file.
+       When the browser blocks autoplay (iPhone Low Power Mode, some in-app browsers and embeds), the same loop
+       shows as an animated image instead: images are not blocked. It loads only then. */
+    var want = true, loopOn = false, anim = null;
+    if (light && loop.getAttribute('data-light')) {
+      loop.querySelector('source').src = loop.getAttribute('data-light');
+      loop.load();   /* preload="none": nothing downloads yet */
+    }
+    var toImage = function () {
+      if (anim || !loop.getAttribute('data-anim')) return;
+      anim = document.createElement('img');
+      anim.className = 'bg'; anim.alt = ''; anim.setAttribute('aria-hidden', 'true'); anim.decoding = 'async';
+      anim.onload = function () { loop.pause(); loop.remove(); };   /* the still image stays until it's ready */
+      anim.src = loop.getAttribute('data-anim');
+      loop.after(anim);
+    };
     var start = function () {
       var p = loop.play();
-      if (p && p.catch) p.catch(function () {
-        var retry = function () { if (want && loopOn && loop.paused) { var q = loop.play(); if (q && q.catch) q.catch(function () {}); } };
-        document.addEventListener('touchend', retry, { once: true, passive: true });
-        document.addEventListener('click', retry, { once: true });
-      });
+      if (p && p.catch) p.catch(function (err) { if (err.name !== 'AbortError') toImage(); });
+      /* some browsers block without saying so: still paused a moment later means blocked */
+      setTimeout(function () { if (want && loopOn && loop.paused && !anim) toImage(); }, 2500);
     };
     new IntersectionObserver(function (e) {
       loopOn = e[0].isIntersecting;
+      if (anim) return;
       if (loopOn) { if (want) start(); } else loop.pause();
     }, { threshold: 0.2 }).observe(loop);
     var closingBox = loop.closest('.closing');
     if (closingBox) closingBox.addEventListener('click', function (e) {
-      if (e.target !== closingBox && e.target !== loop) return;   /* links and buttons work as normal */
+      if (anim || (e.target !== closingBox && e.target !== loop)) return;   /* links and buttons work as normal */
       want = loop.paused;
       if (want) start(); else loop.pause();
     });

@@ -42,9 +42,9 @@ site/
   assets/site-v5.js                                 new script (site.js stays, see below)
   assets/img/     38 images (22 new, including 3 Google reviewer photos; 16 identical copies of what's on the server)
   assets/fonts/   the 5 Montserrat files (identical copies of what's on the server)
-  assets/video/   drone-loop.mp4 + its poster image
+  assets/video/   the drone loop in three versions + its still image (see "The drone video")
 preview/           the same seven pages with relative links, for clicking through (don't upload this)
-tools/             the browser tests run before handover, and a local server (see "Quality checks"; don't upload this)
+tools/             the browser tests, a local server and the video script (see "Quality checks"; don't upload this)
 ```
 
 ## The Spanish page is included
@@ -144,7 +144,8 @@ On a real phone, over mobile data:
 - [ ] On the coaching page, "Plan it in the booking form" opens the homepage form with "Surfed before" and "Not sure" selected
 - [ ] The booking form's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
-- [ ] The drone video plays behind "See you in the water." on an iPhone and an Android phone. It also plays with "reduce motion" on, and a tap on the video pauses it. It stays on the still image only with data saver or 2G; that's intended. With iPhone Low Power Mode (which blocks autoplay on every site) it starts on the first tap.
+- [ ] The drone video plays by itself behind "See you in the water." on an iPhone and an Android phone, and a tap
+      pauses it. With iPhone Low Power Mode on, it still moves (as an animated image). Data saver shows the still image only; that's intended.
 - [ ] The guide links work: the three homepage cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
 - [ ] Lighthouse (mobile): aim for 90+ on Performance, Accessibility, Best Practices and SEO
 - [ ] Structured data passes Google's Rich Results Test for all seven pages
@@ -274,6 +275,28 @@ no JavaScript) the page shows its calm, finished state, nothing hidden.
   proof line under the first button; `<div class="pic pic-wide">` is the wide photo above the beaches questions.
 - **Motion on a guide** comes from adding `reveal` to an element's class; the script does the rest.
 
+**The drone video** behind "See you in the water." (both homepages). It plays by itself whenever that section is on
+screen, for everyone, also with "reduce motion"; a tap on the video area pauses it and plays it again. Which file a
+visitor gets:
+
+| Visitor | Gets | Size |
+|---|---|---|
+| Desktop, and phones on wifi or 4G | `drone-loop.mp4` | 0.7MB |
+| Phones on 3G (Android tells the page; slow regions are mostly Android) | `drone-loop-light.mp4`, a smaller picture | 0.2MB |
+| Browser blocks video autoplay (iPhone Low Power Mode, some in-app browsers, embeds) | `drone-loop.webp`, the same loop as an animated image, which browsers never block | 0.7MB |
+| Data saver on, or 2G | `drone-loop-poster-960.webp`, the still image only | 0.1MB |
+
+- Nothing downloads at the top of the page: the video has `preload="none"`, and the script sets the still image
+  (`data-poster`) only when the visitor gets near the section.
+- The other two files are named on the `<video>` tag: `data-light` and `data-anim`. Delete an attribute to switch that
+  version off. The choice is made in the "drone loop" part of `site-v5.js`.
+- The animated image downloads only when autoplay fails. It takes the video's exact place (same box, same crop), so
+  nothing moves on the page.
+
+*Replacing the clip:* you need ffmpeg (`brew install ffmpeg`). From this folder run `tools/encode_video.sh new-clip.mp4`
+with a clip that has no sound, lasts 5 to 8 seconds, is 640 to 960px wide and loops cleanly. It writes all three files
+into `site/assets/video/`. Then export one frame of the clip as `drone-loop-poster-960.webp`.
+
 ## Quality checks
 
 These are the checks run before handover, on all seven pages. The same tests are in `tools/`, so you can re-run them
@@ -285,7 +308,7 @@ after your own edits.
 | `qa_functional.mjs` | The booking form builds the right WhatsApp message in English and Spanish; every Book button preselects a real option; sticky bar, FAQ toggle, language switch, surf report, WhatsApp number; the coaching guide opens the form preselected | All pass |
 | `qa_mobile.mjs` | On a phone: tap targets thumb-sized and not overlapping, no iPhone zoom on form fields, no text under 12px, WCAG AA contrast, loading on a 4× slower CPU and fast 3G (LCP < 2.5s, CLS < 0.1, TBT < 200ms), 60fps scrolling, jump links below the header, safe area, no sticky hover, sharp photos, swipe rows | All pass on all seven pages |
 | `qa_critical.mjs` | With `site-v5.css` blocked, every first screen (7 pages × 10 widths) looks exactly the same: the inline first-screen styles are complete | 70 of 70 identical |
-| `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, plays with "reduce motion" too, and a tap on the video pauses it | All pass |
+| `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, plays with "reduce motion" too, and a tap on the video pauses it. Phones on 3G get the light file, desktop never does; when autoplay is blocked (openly or silently) the animated image fills the same box | All pass |
 | `qa_styles.mjs` | A style lock: records every element's position and style (7 pages, 8 widths, before and after taps), so a CSS clean-up can be proven to change nothing | Used for every refactor |
 
 **To run them** (Node 22 and Google Chrome):
@@ -324,20 +347,18 @@ Already done in these files:
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
 - **CSS and script:** one stylesheet (about 16KB compressed), which no longer blocks the first paint (see "First-screen
   styles"), and one script (about 6KB compressed), loaded with `defer`.
-- **Video:** `preload="none"`, muted, 6 seconds, 2.6MB. It plays by itself whenever that section is on screen, for
-  everyone (also with "reduce motion"); a tap on the video area pauses it. Only data saver and 2G keep the still image.
-  iPhone Low Power Mode blocks autoplay on every website: then it starts on the visitor's first tap. The still image is set by the
-  script (`data-poster`) only when the visitor gets near that section, so it isn't part of the first load.
+- **Video:** 0.7MB (was 2.6MB), and nothing of it loads until the visitor nears the closing section. Phones on slow
+  connections get a 0.2MB version (see "The drone video").
 - **Result:** on an iPhone-size screen, the homepage's first screen loads **about 380KB** over the network (images 242KB,
   fonts 93KB, CSS 12KB, script 5KB, HTML 19KB). The live homepage loads **about 560KB**, of which 448KB is images, measured
-  the same way on 7 October 2026. The Spanish homepage is the same. The drone video (2.6MB) is not part of the first load:
+  the same way on 7 October 2026. The Spanish homepage is the same. The drone video (0.7MB) is not part of the first load:
   it only downloads when the visitor reaches the closing section.
 
 Adding photos later:
 
 - Export two WebP versions at 800 and 1600px wide (portrait photos 600 and 1200), quality around 75 to 80. squoosh.app does this in the browser.
 - Name them `what-it-shows-800.webp` / `-1600.webp`, the same as the rest.
-- Video: under 3MB, 960px wide at most, no sound, 5 to 8 seconds, with a WebP poster.
+- Video: see "Replacing the clip" under "The drone video".
 
 One known gap: the hero photo (`student-cheer`) only exists at 1200px, so it looks slightly soft on large screens.
 When the original turns up, export `student-cheer-1600.webp` and add `1600w` to the hero's `srcset` and the preload line.
