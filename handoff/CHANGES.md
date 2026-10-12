@@ -67,7 +67,8 @@ Fixes from that check:
 - iPhone Safari 26 draws the page behind the clock and behind its floating address bar. Safari fills that area with
   the header's colour only when the header is solid with no blur, so the scrolled header is solid sand without blur, and the film grain is off on phones (Safari read it as the
   page and never reached the header); the sticky WhatsApp button
-  floats on its own with a strong shadow, with no band behind it, so nothing shows through underneath.
+  floats on its own with a strong shadow, with no band behind it, and is fully invisible while tucked away (Safari
+  otherwise painted its address bar orange from it).
 - Review cards show straight away on phones.
 - The beaches table becomes one card per beach on phones.
 - A heading word too long for a small phone breaks onto the next line instead of widening the page; shorter words are never split.

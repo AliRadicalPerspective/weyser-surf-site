@@ -2250,6 +2250,12 @@ html:not(.no-js) .faq-extra:not(.open) {
    Shown by the script once the hero is out of view; hidden from 860px.
    ========================================================================== */
 
+.wa-bar .btn {
+  width: 100%;
+}
+/* hidden, it slides just below the screen, where iPhone Safari 26 looks to colour its address bar: it found the
+   orange button there and turned the bar orange. So once it has slid away it is also invisible (visibility), which
+   Safari skips */
 .wa-bar {
   position: fixed;
   z-index: 70;
@@ -2262,13 +2268,8 @@ html:not(.no-js) .faq-extra:not(.open) {
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 -1px 0 rgba(6,63,92,.1);
   transform: translateY(110%);
-  transition: transform .4s var(--ease);
-}
-.wa-bar .btn {
-  width: 100%;
-}
-.wa-bar.show {
-  transform: none;
+  transition: transform .4s var(--ease),visibility 0s linear .4s;
+  visibility: hidden;
 }
 @media (min-width:860px) {
   .wa-bar {
@@ -3408,6 +3409,12 @@ html:not(.no-js) .faq-extra:not(.open) {
 .motion .wa-bar {
   transition: transform .75s cubic-bezier(.2,1.45,.32,1);
 }
+/* From 18. Sticky WhatsApp bar (phones): kept here, below the rules they override (moving them up changes the look) */
+.wa-bar.show {
+  transform: none;
+  visibility: visible;
+  transition: transform .4s var(--ease),visibility 0s;
+}
 .motion .topic h1 .wave-line {
   animation: wave-in .8s cubic-bezier(.65,0,.25,1) .4s forwards;
 }
@@ -3447,4 +3454,10 @@ html:not(.no-js) .faq-extra:not(.open) {
 }
 .motion .checklist li svg {
   transition: transform .45s cubic-bezier(.2,1.7,.35,1) calc(var(--d,0ms) + .25s);
+}
+.motion .wa-bar {
+  transition: transform .75s cubic-bezier(.2,1.45,.32,1),visibility 0s linear .75s;
+}
+.motion .wa-bar.show {
+  transition: transform .75s cubic-bezier(.2,1.45,.32,1),visibility 0s;
 }
