@@ -44,7 +44,7 @@ comes before the prices on purpose, and never more than two sand-coloured sectio
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
 - **Logo:** the same inline SVG lockup and rules as the live site, in Weyser orange.
 - **Footer:** WhatsApp, email, Instagram, Google Maps, and a "Guides" column with the four guides (the Spanish pages link the Spanish guides).
-- **Sticky bar (phones):** "WhatsApp Weyser · from $65" opens WhatsApp directly. From 860px wide it's hidden, because
+- **Sticky button (phones):** a floating "WhatsApp Weyser · from $65" button opens WhatsApp directly. From 860px wide it's hidden, because
   the header button shows instead.
 - **Wording:** short, friendly, with contractions; "lesson" (not "session") on the main buttons for beginners.
 - **Colour:** orange is for things you tap to book; decorative marks are ocean blue and navy. The exceptions, on purpose,
@@ -64,6 +64,9 @@ Fixes from that check:
 - Small blue labels use the new `--blue-ink` token.
 - Small uppercase labels went up to 12px.
 - Hover effects only apply on devices that can hover, so a tap no longer leaves a card lifted.
+- iPhone Safari 26 draws the page behind the clock and behind its floating address bar. The scrolled header is solid
+  sand and carries its colour up behind the clock, so no page content shows above it; the sticky WhatsApp button
+  floats on its own with a strong shadow, with no band behind it, so nothing shows through underneath.
 - Review cards show straight away on phones.
 - The beaches table becomes one card per beach on phones.
 - A heading word too long for a small phone breaks onto the next line instead of widening the page; shorter words are never split.
