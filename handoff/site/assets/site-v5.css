@@ -2250,9 +2250,6 @@ html:not(.no-js) .faq-extra:not(.open) {
    Shown by the script once the hero is out of view; hidden from 860px.
    ========================================================================== */
 
-.wa-bar .btn {
-  width: 100%;
-}
 /* hidden, it slides just below the screen, where iPhone Safari 26 looks to colour its address bar: it found the
    orange button there and turned the bar orange. So once it has slid away it is also invisible (visibility), which
    Safari skips */
@@ -2270,6 +2267,13 @@ html:not(.no-js) .faq-extra:not(.open) {
   transform: translateY(110%);
   transition: transform .4s var(--ease),visibility 0s linear .4s;
   visibility: hidden;
+}
+/* iPhone Safari 26 also paints its address bar from a solid colour on a pinned element near the bottom, and turned
+   it orange from this button. It ignores gradients, so the button is painted with an orange-to-orange gradient:
+   it looks the same, and Safari leaves its bar alone */
+.wa-bar .btn {
+  width: 100%;
+  background: linear-gradient(var(--orange),var(--orange));
 }
 @media (min-width:860px) {
   .wa-bar {
@@ -2323,6 +2327,12 @@ html:not(.no-js) .faq-extra:not(.open) {
     padding-left: 10px;
     padding-right: 10px;
     font-size: .86rem;
+  }
+}
+
+@media (hover: hover) {
+  .wa-bar .btn:hover {
+    background: linear-gradient(var(--orange-soft),var(--orange-soft));
   }
 }
 
