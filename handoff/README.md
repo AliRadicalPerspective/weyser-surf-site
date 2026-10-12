@@ -215,6 +215,7 @@ homepages also for `"price": "75"` (it appears twice per product) and `"priceRan
 |---|---|
 | Private $75, Group or family $65 | both homepages, the first-lesson, kids and coaching guides, in both languages (the beaches guides only say "From $65" / "Desde $65") |
 | Mini Surf Camp $200, Group Mini Surf Camp $170 (Spanish: "Mini Surf Camp grupal") | both homepages, the first-lesson, kids and coaching guides, in both languages |
+| Board rental $15 a day (still to be confirmed by Weyser) | both homepages, FAQ "Can I rent a board after the lesson?" |
 
 The two camp cards say "$25 less than three single sessions" and "$25 less per person": three sessions at the single price
 minus the camp price. Update them if either price changes. The "Three sessions is where it clicks" section on both homepages
