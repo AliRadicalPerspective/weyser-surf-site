@@ -3,8 +3,8 @@
 // "reduce motion", and a tap on the video pauses it. English and Spanish, phone and desktop. Then the fallbacks:
 // a 3G connection gets the light file, and when the browser blocks autoplay (openly or silently) the animated
 // image takes the video's place in the same box.
-//   node tests/qa_video.mjs                 (local site on :8770)
-//   QA_BASE=https://... node tests/qa_video.mjs   (any other copy, e.g. the online preview)
+//   node tools/qa_video.mjs                 (local site on :8770)
+//   QA_BASE=https://... node tools/qa_video.mjs   (any other copy, e.g. the online preview)
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let fails = 0;
@@ -21,13 +21,24 @@ async function open(path, w, reduce, init = '') {
   await send('Emulation.setDeviceMetricsOverride', {width: w, height: w < 800 ? 844 : 900, deviceScaleFactor: 1, mobile: w < 800});
   await send('Page.enable'); await send('Page.bringToFront');
   if (init) await send('Page.addScriptToEvaluateOnNewDocument', {source: init});
-  await send('Page.navigate', {url: BASE + path}); await sleep(2500);
-  const ev = async x => (await send('Runtime.evaluate', {expression: x, returnByValue: true, awaitPromise: true})).result?.value;
+  await send('Page.navigate', {url: BASE + path});
+  // a deployed copy can be slow to answer: if the browser returns nothing, ask again (up to 5 times)
+  const ev = async x => {
+    for (let k = 0; k < 5; k++) {
+      const r = await send('Runtime.evaluate', {expression: x, returnByValue: true, awaitPromise: true});
+      if (r.result && r.result.type !== 'undefined' && !r.exceptionDetails) return r.result.value;
+      await sleep(500);
+    }
+  };
+  // wait until the page has loaded (a deployed copy can take longer than the local server), then a moment to settle
+  for (let i = 0; i < 60 && !(await ev(`document.readyState === 'complete' && !!document.querySelector('.closing')`)); i++) await sleep(250);
+  await sleep(1500);
   const wheel = async dy => send('Input.dispatchMouseEvent', {type: 'mouseWheel', x: w / 2, y: 400, deltaX: 0, deltaY: dy});
   // scroll with the wheel until the closing section is on screen (or back up to the top)
   const scrollTo = async (target) => {
     for (let i = 0; i < 400; i++) {
-      const s = await ev(`(()=>{const r=document.querySelector('.closing').getBoundingClientRect();return {top:r.top,bottom:r.bottom,y:scrollY}})()`);
+      const s = await ev(`(()=>{const c=document.querySelector('.closing');if(!c)return null;const r=c.getBoundingClientRect();return {top:r.top,bottom:r.bottom,y:scrollY}})()`);
+      if (!s) { await sleep(250); continue; }   // page still loading (slower on a deployed copy)
       if (target === 'closing' && s.top < innerHeightGuess(w) * 0.4) return i;
       if (target === 'top' && s.y < 50) return i;
       await wheel(target === 'closing' ? 300 : -600); await sleep(60);
@@ -37,6 +48,8 @@ async function open(path, w, reduce, init = '') {
   const state = () => ev(`(()=>{const v=document.querySelector('.closing video');return {paused:v.paused,t:+v.currentTime.toFixed(2),ready:v.readyState,poster:!!v.poster,src:v.currentSrc.split('/').pop()}})()`);
   return {ev, scrollTo, state, close: async () => { ws.close(); await fetch('http://127.0.0.1:9334/json/close/' + t.id); }};
 }
+// the loop is 6 seconds long, so time can wrap from 5.x back to 0.x: that still counts as playing
+const moved = (a, b) => b.t !== a.t && (b.t > a.t || a.t > 4);
 const innerHeightGuess = w => (w < 800 ? 844 : 900);
 
 for (const path of ['/', '/es/']) for (const w of [390, 1280]) {
@@ -47,14 +60,14 @@ for (const path of ['/', '/es/']) for (const w of [390, 1280]) {
   const steps = await T.scrollTo('closing');
   await sleep(1500);
   const a = await T.state(); await sleep(1500); const b = await T.state();
-  check(`${name}: plays once scrolled to "See you in the water."`, steps > 0 && !b.paused && b.t > a.t && b.ready >= 3, `${steps} wheel steps · time ${a.t}s → ${b.t}s · ${b.src}`);
+  check(`${name}: plays once scrolled to "See you in the water."`, steps > 0 && !b.paused && moved(a, b) && b.ready >= 3, `${steps} wheel steps · time ${a.t}s → ${b.t}s · ${b.src}`);
   check(`${name}: still image is set as the fallback`, b.poster);
   await T.scrollTo('top'); await sleep(1200);
   const c = await T.state();
   check(`${name}: pauses when scrolled away`, c.paused, JSON.stringify(c));
   await T.scrollTo('closing'); await sleep(1500);
   const d = await T.state(); await sleep(1000); const e = await T.state();
-  check(`${name}: plays again when scrolled back`, !e.paused && e.t > d.t, `time ${d.t}s → ${e.t}s`);
+  check(`${name}: plays again when scrolled back`, !e.paused && moved(d, e), `time ${d.t}s → ${e.t}s`);
   const tapped = await T.ev(`(async()=>{const c=document.querySelector('.closing');c.dispatchEvent(new MouseEvent('click',{bubbles:true}));await new Promise(r=>setTimeout(r,400));const v=document.querySelector('.closing video');const paused=v.paused;c.dispatchEvent(new MouseEvent('click',{bubbles:true}));await new Promise(r=>setTimeout(r,800));return {pausedAfterTap:paused,playingAfterSecondTap:!v.paused,button:!!document.querySelector('.loop-play')}})()`);
   check(`${name}: a tap on the video pauses it, another plays it, no button`, tapped.pausedAfterTap && tapped.playingAfterSecondTap && !tapped.button, JSON.stringify(tapped));
   await T.close();
@@ -63,7 +76,7 @@ for (const path of ['/', '/es/']) {
   const T = await open(path, 390, true);
   await T.scrollTo('closing'); await sleep(2000);
   const a = await T.state(); await sleep(1200); const b = await T.state();
-  check(`${path} reduced motion: the video still plays by itself`, !b.paused && b.t > a.t, `time ${a.t}s → ${b.t}s`);
+  check(`${path} reduced motion: the video still plays by itself`, !b.paused && moved(a, b), `time ${a.t}s → ${b.t}s`);
   await T.close();
 }
 
@@ -87,7 +100,7 @@ for (const path of ['/', '/es/']) {
   const T = await open(path, 390, false, G3);
   await T.scrollTo('closing'); await sleep(1500);
   const a = await T.state(); await sleep(1200); const b = await T.state();
-  check(`${path} 3G: plays the light file`, !b.paused && b.t > a.t && b.src === 'drone-loop-light.mp4' && !(await T.ev(`!!document.querySelector('.closing img.bg')`)), JSON.stringify(b));
+  check(`${path} 3G: plays the light file`, !b.paused && moved(a, b) && b.src === 'drone-loop-light.mp4' && !(await T.ev(`!!document.querySelector('.closing img.bg')`)), JSON.stringify(b));
   await T.close();
 }
 const D = await open('/', 1280, false, G3);

@@ -1,5 +1,5 @@
 // Phone experience: the checks behind "smooth and delightful", on every page at phone width.
-//   node tests/qa_mobile.mjs
+//   node tools/qa_mobile.mjs
 // Needs the site on :8770 and headless Chrome on :9334, like the other tests.
 //
 //  1. Tap targets      every link, button and choice is at least 44x44px (or 24px with room around it, WCAG 2.5.8),
@@ -15,7 +15,7 @@
 //                      (otherwise a tap leaves cards "stuck" lifted); photos sharp on a 3x screen
 //  8. Swipe rows       reviews and photo strip show part of the next card (so people know to swipe) and snap
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
-const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/'];
+const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/', '/es/primera-clase-de-surf-santa-teresa/', '/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/es/playas-para-aprender-surf-santa-teresa/'];
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let fails = 0, warns = 0;
 const check = (name, ok, detail = '') => { console.log(`${ok ? 'PASS' : 'FAIL'}  ${name}${detail ? '  · ' + detail : ''}`); if (!ok) fails++; };

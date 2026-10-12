@@ -1,10 +1,10 @@
 // First screen without the stylesheet: proves the inline first-screen styles (<style id="critical">) are complete.
 // For every page and width, the first screen is drawn twice: normally, and with site-v5.css blocked entirely.
 // Every element visible on the first screen must have the same position and style both times.
-//   node tests/qa_critical.mjs
+//   node tools/qa_critical.mjs
 // Needs the site on :8770 and headless Chrome on :9334, like the other tests.
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
-const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/'];
+const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/', '/es/primera-clase-de-surf-santa-teresa/', '/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/es/playas-para-aprender-surf-santa-teresa/'];
 const WIDTHS = [[320, 640], [375, 812], [390, 844], [414, 896], [600, 960], [768, 1024], [1024, 768], [1280, 800], [1440, 900], [1920, 1080]];
 const PROPS = ['display', 'position', 'color', 'background-color', 'background-image', 'font-family', 'font-size', 'font-weight', 'line-height',
   'letter-spacing', 'text-transform', 'border-top-left-radius', 'box-shadow', 'opacity', 'visibility', 'padding-top', 'padding-left', 'margin-top', 'z-index'];

@@ -1,6 +1,6 @@
 // Functional QA: the things a visitor does. Booking form (both languages), button preselects and source tags,
 // links from other pages, the sticky bar, FAQ toggle, language switch, forecast strip, drone video, tracking stub.
-// Needs the site on :8770 and headless Chrome on :9334 (same as qa_browser.mjs). Run: node tests/qa_functional.mjs
+// Needs the site on :8770 and headless Chrome on :9334 (same as qa_browser.mjs). Run: node tools/qa_functional.mjs
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 let fails = 0;
@@ -63,6 +63,35 @@ for (const [path, home] of [['/surf-coaching-santa-teresa/', '/'], ['/es/clases-
   const m = await H.ev(SUBMIT);
   check(`${path}: the form opens preselected, tagged improver`, /Surfed before|Ya he surfeado/.test(m) && /improver/.test(m), m.replace(/\n/g, ' / '));
   await H.close();
+}
+// kids guide chooser ("Book this" / "Reservar esta") -> that language's form, family + the chosen session
+for (const [path, home, label] of [['/kids-family-surf-lessons-santa-teresa/', '/', 'Book this'], ['/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/es/', 'Reservar esta']]) {
+  const T = await open(path);
+  const links = await T.ev(`[...document.querySelectorAll('.choose-book')].map(a=>[a.textContent.trim(),a.getAttribute('href')])`);
+  await T.close();
+  check(`${path}: 3 chooser links to ${home}, labelled "${label}"`, links.length === 3 && links.every(([t, h]) => t.startsWith(label) && h.startsWith(home + '?')), JSON.stringify(links.map(l => l[1])));
+  const H = await open(links[1][1].replace(/&amp;/g, '&'));
+  const m = await H.ev(SUBMIT);
+  check(`${path}: "${label}" opens the form with family + Group Mini Surf Camp`, /Family with kids|Familia con niños/.test(m) && /Group Mini Surf Camp|Mini Surf Camp grupal/.test(m), m.replace(/\n/g, ' / '));
+  await H.close();
+}
+for (const [path, esPage] of [['/first-surf-lesson-santa-teresa/', '/es/primera-clase-de-surf-santa-teresa/'], ['/kids-family-surf-lessons-santa-teresa/', '/es/clases-de-surf-para-ninos-y-familias-santa-teresa/'],
+                              ['/beginner-surf-beaches-santa-teresa/', '/es/playas-para-aprender-surf-santa-teresa/'], ['/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/']]) {
+  const T = await open(path);
+  const r = await T.ev(`({sw:document.querySelector('.lang a')?.getAttribute('href'), alt:document.querySelector('link[hreflang="es"]')?.getAttribute('href')})`);
+  check(`${path}: ES switch and hreflang go to ${esPage}`, r.sw === esPage && r.alt === 'https://weysersurf.com' + esPage, JSON.stringify(r));
+  await T.close();
+}
+// every Spanish page links to the Spanish guides, never to an English guide
+for (const [path, enPage] of [['/es/', '/'], ['/es/clases-de-surf-avanzado-santa-teresa/', '/surf-coaching-santa-teresa/'], ['/es/primera-clase-de-surf-santa-teresa/', '/first-surf-lesson-santa-teresa/'],
+                              ['/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/'], ['/es/playas-para-aprender-surf-santa-teresa/', '/beginner-surf-beaches-santa-teresa/']]) {
+  const T = await open(path);
+  const r = await T.ev(`(()=>{const en=['/first-surf-lesson-santa-teresa/','/kids-family-surf-lessons-santa-teresa/','/beginner-surf-beaches-santa-teresa/','/surf-coaching-santa-teresa/'];
+    const bad=[...document.querySelectorAll('a[href]')].filter(a=>en.includes(a.getAttribute('href'))&&!a.hasAttribute('hreflang')).map(a=>a.getAttribute('href'));
+    return {bad, lang:document.documentElement.lang, enInText:document.body.innerText.includes('(en inglés)'), sw:document.querySelector('.lang a')?.getAttribute('href'),
+      foot:[...document.querySelectorAll('.site-footer a[hreflang="en"]')].map(a=>a.getAttribute('href'))}})()`);
+  check(`${path}: Spanish links only; EN switch and footer "English" go to ${enPage}`, r.lang === 'es' && !r.bad.length && !r.enInText && r.sw === enPage && r.foot.length && r.foot.every(h => h === enPage), JSON.stringify(r));
+  await T.close();
 }
 console.log(fails ? `\n${fails} FAILED` : '\nALL PASS');
 process.exit(fails ? 1 : 0);

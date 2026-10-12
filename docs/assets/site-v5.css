@@ -154,7 +154,8 @@ body::after {
 [hidden] {
   display: none !important;
 }
-/* long words in headings (Spanish "guardaespaldas" at 320px) break with a hyphen instead of widening the page */
+/* a heading word too long for the line breaks instead of widening the page; shorter words are never split
+   (hyphens:auto split Spanish headlines like "CLA-SE" on phones) */
 h1,
 h2,
 h3 {
@@ -166,7 +167,6 @@ h3 {
   line-height: 1.04;
   color: var(--navy);
   overflow-wrap: break-word;
-  hyphens: auto;
 }
 @media (prefers-reduced-motion:reduce) {
   html {
@@ -2299,7 +2299,7 @@ html:not(.no-js) .faq-extra:not(.open) {
 
 /* ==========================================================================
    19. Guide pages
-   Shared by the four guides and the Spanish coaching page: header photo, quick answer, At a glance, prose, checklist, beaches, stage cards, booking band.
+   Shared by the eight guides (English and Spanish): header photo, quick answer, At a glance, prose, checklist, beaches, stage cards, booking band.
    ========================================================================== */
 
 /* stage cards (coaching guide) */
@@ -2483,9 +2483,6 @@ html:not(.no-js) .faq-extra:not(.open) {
   height: 100%;
   object-fit: cover;
 }
-.beach .ph {
-  border-radius: var(--radius);
-}
 .duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2558,7 +2555,6 @@ html:not(.no-js) .faq-extra:not(.open) {
   box-shadow: var(--shadow);
   overflow: hidden;
 }
-.beach .ph,
 .beach .b-img {
   aspect-ratio: 3/2;
   border-radius: 0;
@@ -3132,7 +3128,10 @@ html:not(.no-js) .faq-extra:not(.open) {
   width: 30px;
   height: 30px;
 }
-/* photo placeholders (the PHOTO NEEDED boxes on the beaches guide) */
+.beach .ph {
+  aspect-ratio: 3/2;
+  border-radius: 0;
+}
 .ph small {
   font-weight: 500;
   opacity: .9;

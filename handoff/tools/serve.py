@@ -1,6 +1,6 @@
 """Local preview server that behaves like the real hosting for video: it answers Range requests (HTTP 206), which
 Safari needs to play the drone video. Python's built-in http.server sends whole files only, so Safari showed the still.
-Run: python3 tests/serve.py 8770 weyser-handoff/site
+Run from the handoff folder: python3 tools/serve.py 8770 site
 """
 import http.server
 import os

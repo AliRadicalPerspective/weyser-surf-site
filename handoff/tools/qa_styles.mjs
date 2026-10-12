@@ -1,15 +1,15 @@
-// Style lock: records the computed style and position of every element (and its ::before / ::after) on all 7 pages,
+// Style lock: records the computed style and position of every element (and its ::before / ::after) on all 10 pages,
 // at 8 widths, in the default state and an "interacted" state (header scrolled, sticky bar shown, FAQ opened, a choice
 // picked in each booking step). Use it to prove a CSS clean-up changes nothing on screen:
-//   node tests/qa_styles.mjs save before      (before the change)
-//   node tests/qa_styles.mjs save after       (after the change)
-//   node tests/qa_styles.mjs compare before after
-// Needs the site on :8770 and headless Chrome on :9334, like qa_browser.mjs. Snapshots go to tests/.styles/.
+//   node tools/qa_styles.mjs save before      (before the change)
+//   node tools/qa_styles.mjs save after       (after the change)
+//   node tools/qa_styles.mjs compare before after
+// Needs the site on :8770 and headless Chrome on :9334, like qa_browser.mjs. Snapshots go to tools/.styles/.
 import fs from 'fs';
 const [mode, a, b] = process.argv.slice(2);
 const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
 const DIR = new URL('./.styles/', import.meta.url).pathname;
-const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/'];
+const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/', '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/', '/es/primera-clase-de-surf-santa-teresa/', '/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/es/playas-para-aprender-surf-santa-teresa/'];
 const WIDTHS = [320, 390, 600, 768, 860, 1024, 1280, 1600];
 const PROPS = ['display', 'position', 'top', 'left', 'right', 'bottom', 'z-index', 'width', 'height', 'min-height', 'max-width',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left',

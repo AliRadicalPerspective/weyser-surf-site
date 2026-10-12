@@ -13,16 +13,22 @@ comes before the prices on purpose, and never more than two sand-coloured sectio
 - **Head / SEO:** title "Surf Lessons & Coaching in Santa Teresa, Costa Rica"; the description mentions first timers and
   families; the structured data (based on the live JSON-LD) has the new offers and an FAQ list matching the 18 questions.
 - **Hero:** a student standing up while Weyser cheers (it shows beginners the result). Subline "First timers and families
-  welcome. Three people max, and a coach right beside you." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
+  welcome. 3 people max, and a coach right beside you." Proof line: "800+ lessons taught · ★★★★★ 5.0 on Google · From $65 · ISA & lifeguard
   certified"; the stars link to his Google profile. Buttons: "Book a lesson" (to the booking form) and "See prices".
   On phones the photo sits above the text.
+- **Tomorrow's forecast:** the live surf report and "Book tomorrow's waves" sit right below the hero, as on the live site.
+  It stays hidden until its data arrives; the hero fills the first screen, so this causes no visible layout shift.
 - **Who's surfing?** Three cards (First timer, Family & kids, Surfed before, with Weyser's spray turn), each with a photo,
   a bold price line under a small "Best option" label, one link to the matching guide, and a Book button that opens the booking form with
   that choice already selected. Links and buttons line up across the cards.
 - **Your first lesson, start to finish:** one large photo (the pop-up, Weyser close by) beside a connected timeline:
   "On the sand · about 15 minutes", "In the water · about 90 minutes", "After", each with a title and one line. On phones
   the photo sits above the steps.
-- **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos, and a link to all reviews.
+- **Three sessions is where it clicks** (navy section): sells the Mini Surf Camp to beginners as a three-session arc
+  (Session 1 stand up, Session 2 catch waves on your own, Session 3 ride along the wave), with the ocean-lessons line and
+  both camp prices. Buttons: "Book a Mini Surf Camp" and "Already surfing? Coaching for improvers →". The live site's "Three stages" and "Everyone gets stuck"
+  sections are gone from the homepage; both live on the coaching guide.
+- **Reviews:** headline "My favorite bodyguard in the ocean." (from Leonie's review), then four real Google reviews, word for word, with the reviewers' Google photos (an initial where there is none), and a link to all reviews.
 - **Prices:** Private $75 · Group or family $65 per person ("Best for families") · Mini Surf Camp $200 (3 private
   sessions) · Group Mini Surf Camp $170 per person. "Bad waves? Free reschedule." Included: board, rashguard, wax, coconut.
   Extras and payment in one line. The camp cards sell the result ("From 'I stood up' to 'I surf'") and say "$25 less than three single sessions". (The Mini Surf Camp was "Progression Block" at $210 / $180 on the live site.)
@@ -32,26 +38,22 @@ comes before the prices on purpose, and never more than two sand-coloured sectio
   without WhatsApp.
 - **Meet Weyser** (navy section): his bio from the live site, four stats (18 years surfing, 7 years coaching, 800+ lessons, ISA
   certified coach with lifeguard & CPR) and his quote: "You're going to have a great time, and you're going to laugh."
-- **Three sessions is where it clicks** (navy section): sells the Mini Surf Camp to beginners as a three-session arc
-  (Session 1 stand up, Session 2 catch waves on your own, Session 3 ride along the wave), with the ocean-lessons line and
-  both camp prices. Buttons: "Book a Mini Surf Camp" and "Already surfing? Coaching for improvers →". The live site's "Three stages" and "Everyone gets stuck"
-  sections are gone from the homepage; both live on the coaching guide.
-- **Tomorrow's forecast:** the live surf report and "Book tomorrow's waves" sit right below the hero, as on the live site.
-  It stays hidden until its data arrives; the hero fills the first screen, so this causes no visible layout shift.
 - **Photo strip:** walking in with Weyser, jungle walk-out, jeep, sunset after the lesson. No photo appears twice on the page.
 - **FAQ:** 18 questions; the 4 families ask most show first, the other 14 sit behind "More questions". Includes the
   lightning and bad-waves policy. Cancellation is free up to 3 hours before, as on the live site.
 - **Closing:** a muted drone loop behind "See you in the water.", the reply-time line and the standby list.
 - **Logo:** the same inline SVG lockup and rules as the live site, in Weyser orange.
-- **Footer:** WhatsApp, email, Instagram, Google Maps, and a "Guides" column with the four guides.
-- **Wording:** short, friendly, with contractions; "lesson" (not "session") on the main buttons for beginners.
+- **Footer:** WhatsApp, email, Instagram, Google Maps, and a "Guides" column with the four guides (the Spanish pages link the Spanish guides).
 - **Sticky bar (phones):** "WhatsApp Weyser · from $65" opens WhatsApp directly. From 860px wide it's hidden, because
   the header button shows instead.
-- **Colour:** orange is used for things you tap to book; decorative marks are ocean blue and navy. The one exception is the orange wave under "surf" in the hero, the page's signature.
+- **Wording:** short, friendly, with contractions; "lesson" (not "session") on the main buttons for beginners.
+- **Colour:** orange is for things you tap to book; decorative marks are ocean blue and navy. The exceptions, on purpose,
+  are the orange wave lines (under "surf" in the hero, "water" in the closing call, one word in each guide headline) and
+  the line through Three sessions (README, "Colours").
 
 ## Phones (all pages)
 
-Checked with `tests/qa_mobile.mjs` on every page at phone size:
+Checked with `tools/qa_mobile.mjs` on every page at phone size:
 - Tap targets are thumb-sized and don't overlap.
 - Form fields use 16px text, so iPhones don't zoom in.
 - No text is under 12px, and all text passes WCAG AA contrast.
@@ -64,7 +66,7 @@ Fixes from that check:
 - Hover effects only apply on devices that can hover, so a tap no longer leaves a card lifted.
 - Review cards show straight away on phones.
 - The beaches table becomes one card per beach on phones.
-- Long Spanish words in headings break with a hyphen.
+- A heading word too long for a small phone breaks onto the next line instead of widening the page; shorter words are never split.
 - The Spanish reviews headline is now "Mi ángel de la guarda en el mar." (it was "guardaespaldas", too long for small phones).
 
 ## Motion
@@ -79,13 +81,13 @@ The site moves like water (README, "Motion"):
 - The surf-report dot breathes at tomorrow's real swell period.
 - The sticky bar rolls in.
 
-It's switched off for visitors who ask for reduced motion, and costs about 3KB compressed.
+It's switched off for visitors who ask for reduced motion, and adds about 9KB of CSS and script (about 3KB gzipped).
 
 ## Spanish homepage (`es/index.html`)
 
 The same design, sections, prices and booking form, written in neutral, friendly Spanish with *tú*. Weyser's bio comes
 from the old Spanish page; his quote is "Te vas a divertir y te vas a reír." The booking form writes its WhatsApp message
-in Spanish. The three English-only guides are linked with "(en inglés)".
+in Spanish. Its guide links go to the Spanish guides.
 
 ## New pages
 
@@ -96,6 +98,12 @@ in Spanish. The three English-only guides are linked with "(en inglés)".
 | `/beginner-surf-beaches-santa-teresa/` | The beaches compared by level (two photos still to come) |
 | `/surf-coaching-santa-teresa/` | Coaching for improvers, in Weyser's own voice, with the forecast |
 | `/es/clases-de-surf-avanzado-santa-teresa/` | The coaching guide in Spanish |
+| `/es/primera-clase-de-surf-santa-teresa/` | The first-lesson guide in Spanish |
+| `/es/clases-de-surf-para-ninos-y-familias-santa-teresa/` | The kids and families guide in Spanish |
+| `/es/playas-para-aprender-surf-santa-teresa/` | The beaches guide in Spanish |
+
+The Spanish guides have the same layout, photos, motion and booking links as the English ones; their "Book" links open
+the Spanish booking form. Reviews are the Spanish homepage's translations, marked "traducida del inglés".
 
 Each guide has a short, quotable answer at the top, an "At a glance" summary, question cards, booking buttons, a
 "Last updated" date, and Article, Breadcrumb and FAQ structured data. They're linked from the homepage cards, the lesson
@@ -105,8 +113,8 @@ section, four FAQ answers and the footer of every page, and they link back to th
 - Short questions are white cards, two or three across on desktop, instead of a long column of headings.
 - On the kids guide, "Which session should we book?" is a navy chooser, and each option has a "Book this" link that opens
   the booking form with that choice picked.
-- **All five guides** (four English, one Spanish) share the homepage's finish:
-  - an orange wave under one headline word ("first", "kids", "beaches", "improvers", "mejorar");
+- **All eight guides** (four English, four Spanish) share the homepage's finish:
+  - an orange wave under one headline word ("first", "kids", "beaches", "improvers"; in Spanish "primera", "niños", "playas", "mejorar");
   - the homepage's proof line under the first button;
   - one navy band each: the step-by-step with an orange line drawn from step to step (first lesson, coaching),
     "At a glance" (kids), the beaches comparison table (beaches);
@@ -121,6 +129,8 @@ section, four FAQ answers and the footer of every page, and they link back to th
 - **Quicker hero entrance:** it now settles in about 1.1s.
 - **No failing request on load:** the forecast asks Open-Meteo directly, with no 404 from `/api/forecast`.
 - **No forced layout while loading:** the header's first scroll check runs one frame later.
+- **Surf report:** an optional Cloudflare function (`functions/api/forecast.js`) can serve a cached copy of the forecast
+  (README, "The surf report").
 - **Drone video 0.7MB (was 2.6MB), looks the same.** Phones on 3G get a 0.2MB version; desktop always gets the sharp
   one. When a browser blocks video autoplay (iPhone Low Power Mode, in-app browsers, embeds), an animated image of
   the same loop takes its place, so the closing section always moves (README, "The drone video").
@@ -135,15 +145,16 @@ section, four FAQ answers and the footer of every page, and they link back to th
 
 ## Script (`site-v5.js`)
 
-Everything `site.js` did is still there (header, reveal on scroll, the forecast code unchanged, the sticky bar). Added:
+Everything `site.js` did is still there (header, reveal on scroll, the forecast code, the sticky bar; the forecast only gains Spanish labels and drops the `/api/forecast` step). Added:
 
 - **Booking form:** builds the WhatsApp message in English or Spanish (it reads `<html lang>`), and shows the group-size,
   kids' ages and date fields only when they apply.
 - **Book buttons:** every `href="#book"` link with `data-level` / `data-session` preselects those choices; `data-src`
   names the button in the message. A link from another page can preselect too: `/?level=...&session=...&src=...#book`.
 - **FAQ toggle** ("More questions").
-- **Drone loop:** plays only while on screen; stays off with reduced motion, data saver and 2G; if the phone blocks
-  autoplay (iPhone Low Power Mode) it starts on the visitor's first tap.
+- **Drone loop:** plays by itself while on screen (also with reduced motion), and a tap pauses it. Phones on 3G get the
+  light file, data saver and 2G the still image, and when autoplay is blocked the animated image takes its place
+  (README, "The drone video").
 - **Tracking stub:** `track()` sends a "WhatsApp" event with a `source` property if Plausible is added; otherwise nothing.
 
 ## Removed compared with the live site

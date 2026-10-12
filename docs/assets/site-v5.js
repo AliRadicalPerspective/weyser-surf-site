@@ -1,7 +1,7 @@
 /* Weyser Surf Coach · site-v5.js · plain JavaScript, no libraries, used by every page
    In order: 1. booking-form words (English, Spanish on /es/)  2. tracking stub (Plausible, if added)
    3. header state  4. sticky WhatsApp bar  5. reveal on scroll  6. booking form (WhatsApp message, Book buttons)
-   7. FAQ toggle  8. drone video  9. motion (html.motion)  10. surf report (the live site's forecast code, unchanged apart from the Spanish labels) */
+   7. FAQ toggle  8. drone video  9. motion (html.motion)  10. surf report (the live site's forecast code, unchanged apart from the Spanish labels and the skipped /api/forecast step) */
 (function () {
   var doc = document.documentElement;
   doc.classList.remove('no-js');
@@ -176,6 +176,10 @@
       loop.querySelector('source').src = loop.getAttribute('data-light');
       loop.load();   /* preload="none": nothing downloads yet */
     }
+    /* start downloading about a screen before the section, so it's already playing when the visitor arrives */
+    new IntersectionObserver(function (e, o) {
+      if (e[0].isIntersecting && !anim) { loop.preload = 'auto'; o.disconnect(); }
+    }, { rootMargin: '800px 0px' }).observe(loop);
     var toImage = function () {
       if (anim || !loop.getAttribute('data-anim')) return;
       anim = document.createElement('img');
@@ -284,7 +288,8 @@
     var timer = setTimeout(function () { ctrl && ctrl.abort(); }, 5000);
     return fetch(u, ctrl ? { signal: ctrl.signal } : {}).then(function (r) { clearTimeout(timer); if (!r.ok) throw 0; return r.json(); });
   }
-  /* the public API directly. /api/forecast (a Cloudflare function) isn't deployed: it returned 404 on every visit.
-     If it is deployed later: get('/api/forecast').catch(function () { return get(direct); }).then(render).catch(fail); */
+  /* the public API directly. To use the optional cached copy instead (functions/api/forecast.js, README "The surf
+     report"), deploy the function, then replace the next line with:
+     get('/api/forecast').catch(function () { return get(direct); }).then(render).catch(fail); */
   get(direct).then(render).catch(fail);
 })();

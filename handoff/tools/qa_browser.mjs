@@ -1,13 +1,13 @@
 // Real-browser QA for the handoff site: every page x every width.
 // Checks sideways overflow, elements off-screen, script errors, failed requests, broken images, buttons that wrap or clip,
 // and the sticky bar / header button rules (phones: bar, 860px+: header button).
-// Needs: the site served on :8770 (python3 -m http.server 8770 --directory weyser-handoff/site), or set QA_BASE
-//        and headless Chrome with --remote-debugging-port=9334. Run: node tests/qa_browser.mjs
-const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';   // the "weyser-site" preview in .claude/launch.json
+// Needs: the site served on :8770 (python3 tools/serve.py 8770 site), or set QA_BASE
+//        and headless Chrome with --remote-debugging-port=9334. Run: node tools/qa_browser.mjs
+const BASE = process.env.QA_BASE || 'http://127.0.0.1:8770';
 try { const r = await fetch(BASE + '/'); if (!r.ok) throw new Error(r.status); }
-catch (e) { console.error(`No site at ${BASE} (${e.message}). Start it first: python3 tools/serve.py 8770 site (or tests/serve.py 8770 weyser-handoff/site)`); process.exit(2); }
+catch (e) { console.error(`No site at ${BASE} (${e.message}). Start it first: python3 tools/serve.py 8770 site`); process.exit(2); }
 const PAGES = ['/', '/es/', '/first-surf-lesson-santa-teresa/', '/kids-family-surf-lessons-santa-teresa/', '/beginner-surf-beaches-santa-teresa/',
-               '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/'];
+               '/surf-coaching-santa-teresa/', '/es/clases-de-surf-avanzado-santa-teresa/', '/es/primera-clase-de-surf-santa-teresa/', '/es/clases-de-surf-para-ninos-y-familias-santa-teresa/', '/es/playas-para-aprender-surf-santa-teresa/'];
 const WIDTHS = [[320,640,1],[375,812,1],[390,844,1],[768,1024,1],[1024,768,0],[1280,800,0],[1440,900,0]];
 const IGNORE = /api\/forecast|favicon|apple-touch|site\.webmanifest/;   // only exist on the live server
 const sleep = ms => new Promise(r => setTimeout(r, ms));
