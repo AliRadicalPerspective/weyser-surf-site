@@ -95,9 +95,8 @@ to the Pages project, the same way the current site was published.
    - Files that stay on the server and are **not** in this folder: `assets/site.css`, `assets/site.js`, `404.html`,
      `robots.txt`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `site.webmanifest` and
      `assets/img/og-weyser.jpg` (the homepages' sharing image). Keep them.
-   - The guide pages arrive as folders (`/first-surf-lesson-santa-teresa/`, `/kids-family-surf-lessons-santa-teresa/`,
-     `/beginner-surf-beaches-santa-teresa/`, `/surf-coaching-santa-teresa/`, `/es/clases-de-surf-avanzado-santa-teresa/`, each with an
-     `index.html`), so their addresses end in a slash.
+   - The eight guide pages arrive as folders, each with an `index.html` (see "What's inside"), so their addresses end
+     in a slash.
 3. **Check the `<head>` of the old homepage (and of the old `/es/` page)** for anything the new one doesn't have, and
    copy it across. Today the live homepage has only a placeholder comment for the Cloudflare Web Analytics beacon, so
    there may be nothing to copy. If you add a beacon, add it to all ten pages: the homepages have a comment marking
@@ -123,24 +122,25 @@ to the Pages project, the same way the current site was published.
 - **Logo:** the header and footer use the same inline SVG lockup and CSS rules as the live `site.css`.
 - **Forecast strip:** `site-v5.js` uses the live forecast code: `window.__FC` if it's present, otherwise the public
   Open-Meteo API, and the `fc-wait` state until data arrives. Two changes: the Spanish labels, and the `/api/forecast`
-  step is left out because that function isn't deployed (see "Hosting fixes").
+  step is left out until that function is deployed (see "The surf report").
 - **Structured data:** based on the live JSON-LD (including `priceSpecification`). Only the descriptions, the page name, the FAQ list and the Mini Surf Camp offers (new name and prices) change.
 - **WhatsApp:** every link and the booking form go to +506 6008 4391, the same number as the live site.
 
 ## Placeholders
 
-There is no draft copy left: all text on the ten pages is confirmed. Two things are still placeholders. Both are listed in `TO-CONFIRM.md`:
+There is no draft copy left: all text on the ten pages is confirmed. Two things are still placeholders. Both are
+listed in `TO-CONFIRM.md`:
 
-- The beaches page has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul), "FOTO PENDIENTE" on its Spanish version. They stay until Weyser sends the photos.
-  Visitors see the words "PHOTO NEEDED", so swap in the photos (steps below) or remove the boxes before launch.
+- The beaches guide has two "PHOTO NEEDED" boxes (Playa Hermosa and Mar Azul), "FOTO PENDIENTE" on its Spanish version.
+  Visitors see those words, so swap in the photos (steps below) or remove the boxes before launch.
 - The kids' photos need written OK from the parents before launch.
 
 ### Swapping in the two beach photos (about 10 minutes)
 
-In `beginner-surf-beaches-santa-teresa/index.html`, each placeholder is a `<div class="ph">…</div>` at the top of its beach card.
-Do the same in the Spanish version, `es/playas-para-aprender-surf-santa-teresa/index.html`, with Spanish alt text
-(for example "Surfistas en la espuma suave de Playa Hermosa, Santa Teresa").
-The Playa Carmen card (between the two placeholders) shows the finished version.
+In `beginner-surf-beaches-santa-teresa/index.html`, each placeholder is a `<div class="ph">…</div>` at the top of its
+beach card. The Playa Carmen card (between the two placeholders) shows the finished version. Do the same in the Spanish
+version, `es/playas-para-aprender-surf-santa-teresa/index.html`, with Spanish alt text (for example "Surfistas en la
+espuma suave de Playa Hermosa, Santa Teresa").
 
 1. Export each photo as two landscape WebP files, 800 and 1600px wide (quality 75 to 80, squoosh.app works), into `assets/img/`:
    `playa-hermosa-800.webp`, `playa-hermosa-1600.webp`, `mar-azul-800.webp`, `mar-azul-1600.webp`.
@@ -158,8 +158,9 @@ The Playa Carmen card (between the two placeholders) shows the finished version.
 `TO-CONFIRM.md` lists what's still coming. If launch can't wait:
 
 - **Beach photos late:** in `beginner-surf-beaches-santa-teresa/index.html` and its Spanish version, delete the two
-  `<div class="ph">…</div>` boxes (Playa Hermosa and Mar Azul). The cards work as text-only cards until the photos arrive. Don't hold the page
-  back instead: every page links to it (footer "Guides", homepage cards, an FAQ answer) and it's in `sitemap.xml`.
+  `<div class="ph">…</div>` boxes (Playa Hermosa and Mar Azul). The cards work as text-only cards until the photos
+  arrive. Don't hold the page back instead: every page links to it (footer "Guides", homepage cards, an FAQ answer)
+  and it's in `sitemap.xml`.
 - **No OK for a photo with kids:** swap in a photo without kids, changing `src`, `srcset`, `width`, `height` and `alt`
   together, on every page that uses it:
 
@@ -178,14 +179,18 @@ On a real phone, over mobile data:
 - [ ] Both homepages and all eight guides (four English, four Spanish) load, with no 404s in the browser console
 - [ ] On `/es/`, the booking form's WhatsApp message is in Spanish (send one test)
 - [ ] "Book" buttons (hero, level cards, price cards, Meet Weyser) scroll to the booking form with the right choices already selected
-- [ ] On a phone, the sticky bar "WhatsApp Weyser · from $65" opens WhatsApp directly
+- [ ] On a phone, the floating "WhatsApp Weyser · from $65" button opens WhatsApp directly
+- [ ] On an iPhone (Safari), scroll the homepage top to bottom: the area behind the clock is sand like the header,
+      and Safari's bottom bar stays sand the whole way (see "iPhone Safari")
 - [ ] On the coaching page, "Plan it in the booking form" opens the homepage form with "Surfed before" and "Not sure" selected
 - [ ] The booking form's "Send on WhatsApp" opens WhatsApp with the full message. Send one test to Weyser's number.
 - [ ] "More questions" opens and closes the rest of the FAQ
 - [ ] The drone video plays by itself behind "See you in the water." on an iPhone and an Android phone, and a tap
-      pauses it. With iPhone Low Power Mode on, it still moves (as an animated image). Data saver shows the still image only; that's intended.
+      pauses it. With iPhone Low Power Mode on, it still moves (as an animated image). Data saver shows the still
+      image only; that's intended.
 - [ ] The guide links work: the three homepage cards, the lesson section, four FAQ answers, and the footer "Guides" column on every page
-- [ ] After launch, run Google PageSpeed Insights (mobile) on https://weysersurf.com/ three times: aim for 90+ on all four scores, and compare with the table in "Speed"
+- [ ] After launch, run Google PageSpeed Insights (mobile) on https://weysersurf.com/ three times: aim for 90+ on all
+      four scores, and compare with the table in "Speed"
 - [ ] Structured data passes Google's Rich Results Test for all ten pages
 
 ## Editing the site by hand
@@ -213,7 +218,7 @@ homepages also for `"price": "75"` (it appears twice per product) and `"priceRan
 
 The two camp cards say "$25 less than three single sessions" and "$25 less per person": three sessions at the single price
 minus the camp price. Update them if either price changes. The "Three sessions is where it clicks" section on both homepages
-also names both camp prices. The sticky bar says "from $65" (the lowest price). Update `llms.txt` too (it is plain text).
+also names both camp prices. The floating WhatsApp button says "from $65" (the lowest price). Update `llms.txt` too (it is plain text).
 
 **Changing the lessons count (800+)** or other facts about Weyser: search all pages for the number alone, `800` (English
 says "800+" and "More than 800", Spanish "Más de 800"). It appears in the hero and the guides' proof line under the first
@@ -232,13 +237,13 @@ updated" lines, and the first-lesson guide's opening answer. Update `llms.txt` t
 came from (for example `(Found you on your website · instagram)`), and add `data-track="instagram"` to the link.
 
 **The stylesheet** (`site-v5.css`) is plain CSS with one numbered section per component, in page order: 1. Base,
-2. Layout helpers, 3. Buttons, 4. Header, 5. Hero, then each homepage section down to 18. Sticky WhatsApp bar,
+2. Layout helpers, 3. Buttons, 4. Header, 5. Hero, then each homepage section down to 18. Floating WhatsApp button,
 19. Guide pages, 20. Photo placeholders and 21. Motion. The list is at the top of the file, so search for "5. Hero" to
 jump there.
 - Each selector is written once per `@media`: change a rule where it is instead of adding a second copy lower down.
 - Inside a section the plain rules come first, then that component's `@media` rules. The widths used most: up to 360px
   (small phones), up to 560px (phones), from 700px and 760px (tablets), from 820px, 860px and 900px (small laptops;
-  the header button replaces the sticky bar at 860px), from 1000px (desktop). Some components have one or two
+  the header button replaces the floating WhatsApp button at 860px), from 1000px (desktop). Some components have one or two
   widths of their own where their layout needed it; that's intentional, so match the component you're editing.
 - Eight small groups of rules sit just outside their own section, each under a note "From …: kept here". They override
   a rule above them, and in CSS the later rule wins, so leave them where they are.
@@ -246,7 +251,8 @@ jump there.
 
 **Colours:** every solid colour is a variable (a "token") in the `:root` block at the top of `site-v5.css`. Change a colour
 there and it changes everywhere; don't type hex codes into rules. The `:root` block is also copied into the
-first-screen styles (`<style id="critical">`) of all ten pages, so change it there too (see "First-screen styles"). The first ten are the live site's own tokens, unchanged.
+first-screen styles (`<style id="critical">`) of all ten pages, so change it there too (see "First-screen styles").
+The first ten tokens are the live site's own, unchanged.
 One rule for the two blues: **blue words use `--blue-ink`, blue decoration uses `--blue`.**
 
 | Token | Value | Used for |
@@ -255,7 +261,7 @@ One rule for the two blues: **blue words use `--blue-ink`, blue decoration uses 
 | `--navy-deep` | `#042C41` | Hero text panel, closing section, footer |
 | `--blue` | `#419EBD` | Decoration only: dots, list markers, quote bars, underlines, the big card numbers. It's the logo kit's blue and reads well on navy |
 | `--blue-ink` | `#2B697D` | Blue **text** on sand or white: "Best option", "Session 1", timeline times, stage labels. The same blue, darker, so small text passes contrast (WCAG AA 4.5:1) |
-| `--orange` | `#F27F0C` | Things you tap to book: buttons, the sticky bar. Decorative exceptions, on purpose: the waves under "surf" (hero), "water" (closing call) and the guide headlines, and the lines through Three sessions and the guides' step-by-step |
+| `--orange` | `#F27F0C` | Things you tap to book: buttons, the floating WhatsApp button. Decorative exceptions, on purpose: the waves under "surf" (hero), "water" (closing call) and the guide headlines, and the lines through Three sessions and the guides' step-by-step |
 | `--orange-soft` | `#FF9533` | Button hover |
 | `--ink` / `--ink-soft` | `#242320` / `#4A4843` | Body text / secondary text |
 | `--paper` / `--paper-deep` | `#F2ECE1` / `#E8DFCF` | The two sand backgrounds. After each navy section the first sand section is `--paper-deep`, the next `--paper` |
@@ -266,8 +272,9 @@ One rule for the two blues: **blue words use `--blue-ink`, blue decoration uses 
 
 See-through tints (shadows, text on navy, the hero fade) are written as `rgba()` of these colours, because older phones
 can't combine a variable with transparency. The numbers map back: `6,63,92` is navy, `4,44,65` navy-deep, `242,127,12`
-orange, `242,236,225` paper, `255,255,255` white, `0,0,0` black (shadows only). Fonts, corner radius, shadows, page width and side padding are tokens too
-(`--display`, `--body`, `--radius`, `--radius-sm`, `--shadow`, `--shadow-lift`, `--wrap`, `--gutter`).
+orange, `242,236,225` paper, `255,255,255` white, `0,0,0` black (shadows only). Fonts, corner radius, shadows, page
+width and side padding are tokens too (`--display`, `--body`, `--radius`, `--radius-sm`, `--shadow`, `--shadow-lift`,
+`--wrap`, `--gutter`).
 
 **First-screen styles:** each page has a `<style id="critical">` block in its `<head>`. It holds copies of the rules
 that style the first screen (header, hero, surf report, the guides' header photo), so the page can draw before
@@ -281,7 +288,8 @@ that style the first screen (header, hero, surf report, the guides' header photo
   The page then simply waits for the full file again.
 
 **Cache:** every page links `site-v5.css?v=…` (twice: the stylesheet line and the `<noscript>` line after it) and
-`site-v5.js?v=…`. When you change either file, change those `?v=` values on all ten pages (any new value works, for example today's date: `?v=2026-11-02`), so returning visitors get the new file.
+`site-v5.js?v=…`. When you change either file, change those `?v=` values on all ten pages (any new value works, for
+example today's date: `?v=2026-11-02`), so returning visitors get the new file.
 
 **TripAdvisor and Airbnb:** the footer of all ten pages already has both links, switched off as HTML comments under
 "Google Maps" (search for `TRIPADVISOR-LISTING-URL` and `AIRBNB-EXPERIENCE-URL`). When a listing is live:
@@ -306,9 +314,10 @@ no JavaScript) the page shows its calm, finished state, nothing hidden.
   tilted. Same `.reveal` and `motion` code as the homepage.
 - **Surf report:** the dot rises and falls, and sends out a ring, at tomorrow's real swell period (it reads the
   "Period" figure). The forecast code itself is unchanged.
-- **Sticky bar:** rolls in with a small overshoot.
+- **Floating WhatsApp button (phones):** rolls in with a small overshoot.
 - **To tone it down,** change the distances and the overshoot curves in section 21: `cubic-bezier(.2,1.3,.32,1)` and
-  similar, about a dozen. The second number is the overshoot (1 means none; they range from 1.3 to 1.7). **To switch it all off,** delete the line `doc.classList.add('motion');` in `site-v5.js`.
+  similar, about a dozen. The second number is the overshoot (1 means none; they range from 1.3 to 1.7).
+  **To switch it all off,** delete the line `doc.classList.add('motion');` in `site-v5.js`.
 - Only `transform`, `opacity` and `clip-path` (the hero headline and the waves) move, so phones keep 60fps (tested on a
   4x slower CPU).
 
@@ -363,8 +372,19 @@ visitor gets:
 
 *Replacing the clip:* you need ffmpeg (`brew install ffmpeg`). From this folder run `tools/encode_video.sh new-clip.mp4`
 with a clip that has no sound, lasts 5 to 8 seconds, is 640 to 960px wide and loops cleanly. It writes all three files
-into `site/assets/video/`. It also writes the still image
-(`drone-loop-poster-960.webp`) from the first frame.
+and the still image (`drone-loop-poster-960.webp`, from the first frame) into `site/assets/video/`.
+
+**iPhone Safari (iOS 26)** draws the page behind the clock and behind its floating address bar, and colours those areas
+from pinned elements. Three things keep that looking right; please keep them when editing (comments in `site-v5.css`
+mark each one):
+- The header, once shown solid, is plain `--paper` with **no `backdrop-filter`** (blur). Safari only takes a solid,
+  unblurred colour; otherwise page content shows through behind the clock.
+- **The film grain (`body::after`) is off on phones.** Safari counted it as the page and never reached the header.
+- The floating WhatsApp button sits 24px above the bottom edge, its shadow fits within those 24px (Safari cuts off
+  anything below the edge), and it's painted with an orange-to-orange **gradient**, not a flat colour: Safari ignores
+  gradients, otherwise it turns its whole bottom bar orange. When tucked away it is also `visibility: hidden`.
+- On iPhones the script adds a 6px sand strip pinned to the bottom edge (`.edge-tint`). Safari colours its bottom bar
+  from it, so the bar is always sand; without it, the bar took whatever scrolled underneath (orange, sand or clear).
 
 ## Quality checks
 
@@ -373,8 +393,8 @@ after your own edits.
 
 | Check | What it proves | Result at handover |
 |---|---|---|
-| `qa_browser.mjs` | 10 pages × 7 widths (320 to 1440px): no sideways scrolling, nothing off-screen, no script errors, no failed requests, no broken images, buttons don't wrap, sticky bar vs header button | 70 of 70 clean |
-| `qa_functional.mjs` | The booking form builds the right WhatsApp message in English and Spanish; every Book button preselects a real option; sticky bar, FAQ toggle, language switch, surf report, WhatsApp number; the coaching and kids guides open the form preselected in both languages; every Spanish page links only to Spanish guides, and each language switch goes to the matching page | All pass |
+| `qa_browser.mjs` | 10 pages × 7 widths (320 to 1440px): no sideways scrolling, nothing off-screen, no script errors, no failed requests, no broken images, buttons don't wrap, floating WhatsApp button on phones vs header button on wider screens | 70 of 70 clean |
+| `qa_functional.mjs` | The booking form builds the right WhatsApp message in English and Spanish; every Book button preselects a real option; floating WhatsApp button, FAQ toggle, language switch, surf report, WhatsApp number; the coaching and kids guides open the form preselected in both languages; every Spanish page links only to Spanish guides, and each language switch goes to the matching page | All pass |
 | `qa_mobile.mjs` | On a phone: tap targets thumb-sized and not overlapping, no iPhone zoom on form fields, no text under 12px, WCAG AA contrast, loading on a 4× slower CPU and fast 3G (LCP < 2.5s, CLS < 0.1, TBT < 200ms), 60fps scrolling, jump links below the header, safe area, no sticky hover, sharp photos, swipe rows | All pass on all ten pages |
 | `qa_critical.mjs` | With `site-v5.css` blocked, every first screen (10 pages × 10 widths) looks exactly the same: the inline first-screen styles are complete | 100 of 100 identical |
 | `qa_video.mjs` | The drone video plays when the closing section scrolls in, pauses when it leaves, plays again, plays with "reduce motion" too, and a tap on the video pauses it. Phones on 3G get the light file, desktop never does; when autoplay is blocked (openly or silently) the animated image fills the same box | All pass |
@@ -389,7 +409,8 @@ three terminals:
    (on Windows or Linux, the same flags on your Chrome or Chromium).
 3. Run a test: `node tools/qa_browser.mjs`. Each test exits non-zero on failure; most print PASS or FAIL per check,
    `qa_browser` prints "no problems" or the problem, `qa_critical` and `qa_styles` print IDENTICAL or the differences.
-   `QA_BASE=https://your-preview-url node tools/qa_video.mjs` runs one against a deployed copy.
+   `QA_BASE=https://weysersurf.com node tools/qa_video.mjs` runs a test against the live site instead (any copy
+   served from the root of its domain).
 4. The style lock: `node tools/qa_styles.mjs save before`, make your change, `node tools/qa_styles.mjs save after`,
    then `node tools/qa_styles.mjs compare before after`.
 
@@ -398,7 +419,7 @@ three terminals:
 Nothing is tracked yet, and no analytics script is loaded. Two things are already in place:
 
 - **Every WhatsApp message says where it came from.** The booking form ends with a tag naming the button that opened it,
-  for example "(Found you on your website · family)". The other WhatsApp links are tagged the same way ("· sticky",
+  for example "(Found you on your website · family)". The other WhatsApp links are tagged the same way ("· sticky" for the floating button,
   "· standby", "· footer"), and the guide pages name the page. Weyser can count these in WhatsApp with no setup at all.
 - **Every WhatsApp link has a `data-track="<source>"` attribute**, and `site-v5.js` has a small `track()` function (also
   available as `window.weyserTrack("WhatsApp", source)` for any other link). When `window.plausible` exists, it sends a custom event
@@ -416,15 +437,15 @@ alongside Plausible.
 
 Already done in these files:
 
-- **Images:** WebP, nearly all in two widths, with `srcset` and `sizes`, so phones download the small one (mostly 20 to 85KB). All have
-  `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
+- **Images:** WebP, nearly all in two widths, with `srcset` and `sizes`, so phones download the small one (mostly 20
+  to 85KB). All have `width` and `height`, so nothing jumps while loading. Everything below the first screen uses `loading="lazy"`.
 - **Hero:** preloaded with `fetchpriority="high"`. Only two fonts (400 and 700) are preloaded.
 - **CSS and script:** one stylesheet (74KB, about 16KB gzipped), which no longer blocks the first paint (see "First-screen
   styles"), and one script (18KB, about 7KB gzipped), loaded with `defer`. Cloudflare's Brotli makes both a little smaller.
 - **Video:** 0.7MB (was 2.6MB), and nothing of it loads until the visitor nears the closing section. Phones on slow
   connections get a 0.2MB version (see "The drone video").
-- **Result:** on an iPhone-size screen, the homepage's first screen loads **about 380KB** over the network. The live homepage loads **about 560KB**, of which 448KB is images, measured
-  the same way on 7 October 2026. The Spanish homepage is the same. The drone video (0.7MB) is not part of the first load:
+- **Result:** on an iPhone-size screen, the homepage's first screen loads **about 380KB** over the network. The live
+  homepage loads **about 560KB**, of which 448KB is images, measured the same way on 7 October 2026. The Spanish homepage is the same. The drone video (0.7MB) is not part of the first load:
   it only downloads when the visitor reaches the closing section.
 
 **Google PageSpeed Insights** (mobile, English homepage, 3 runs each, middle result, October 2026). The redesign ran on
@@ -447,7 +468,8 @@ hosting. **Re-run the test once the redesign is live on Cloudflare** (same hosti
 
 Adding photos later:
 
-- Export two WebP versions at 800 and 1600px wide (portrait photos 600 and 1200), quality around 75 to 80. squoosh.app does this in the browser.
+- Export two WebP versions at 800 and 1600px wide (portrait photos 600 and 1200), quality around 75 to 80.
+  squoosh.app does this in the browser.
 - Name them `what-it-shows-800.webp` / `-1600.webp`, the same as the rest.
 - Video: see "Replacing the clip" under "The drone video".
 

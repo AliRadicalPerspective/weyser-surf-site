@@ -25,7 +25,7 @@
    15. FAQ
    16. Closing
    17. Footer
-   18. Sticky WhatsApp bar (phones)
+   18. Floating WhatsApp button (phones)
    19. Guide pages
    20. Photo placeholders
    21. Motion
@@ -2246,8 +2246,8 @@ html:not(.no-js) .faq-extra:not(.open) {
 
 
 /* ==========================================================================
-   18. Sticky WhatsApp bar (phones)
-   Shown by the script once the hero is out of view; hidden from 860px.
+   18. Floating WhatsApp button (phones)
+   Shown by the script once the hero is out of view; tucked away at the booking form; hidden from 860px. The iPhone edge strip.
    ========================================================================== */
 
 /* hidden, it slides just below the screen, where iPhone Safari 26 looks to colour its address bar: it found the
@@ -2268,9 +2268,17 @@ html:not(.no-js) .faq-extra:not(.open) {
   transition: transform .4s var(--ease),visibility 0s linear .4s;
   visibility: hidden;
 }
-/* iPhone Safari 26 also paints its address bar from a solid colour on a pinned element near the bottom, and turned
-   it orange from this button. It ignores gradients, so the button is painted with an orange-to-orange gradient:
-   it looks the same, and Safari leaves its bar alone */
+/* iPhone: a thin sand strip pinned to the bottom edge (added by site-v5.js), so Safari always tints its bottom bar
+   sand; without it the bar took whatever scrolled underneath (orange, sand or see-through) */
+.edge-tint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: var(--paper);
+  z-index: 65;
+}
 .wa-bar .btn {
   width: 100%;
   background: linear-gradient(var(--orange),var(--orange));
@@ -2313,6 +2321,12 @@ html:not(.no-js) .faq-extra:not(.open) {
   pointer-events: auto;
   box-shadow: 0 6px 20px -2px rgba(4,44,65,.55),0 2px 6px rgba(4,44,65,.35);
 }
+@media (min-width:860px) {
+  .edge-tint {
+    display: none;
+  }
+}
+
 @media (max-width:420px) {
   .wa-bar .btn {
     padding-left: 14px;
@@ -3421,7 +3435,7 @@ html:not(.no-js) .faq-extra:not(.open) {
 .motion .wa-bar {
   transition: transform .75s cubic-bezier(.2,1.45,.32,1);
 }
-/* From 18. Sticky WhatsApp bar (phones): kept here, below the rules they override (moving them up changes the look) */
+/* From 18. Floating WhatsApp button (phones): kept here, below the rules they override (moving them up changes the look) */
 .wa-bar.show {
   transform: none;
   visibility: visible;

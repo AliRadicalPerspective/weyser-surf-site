@@ -1,9 +1,16 @@
 /* Weyser Surf Coach · site-v5.js · plain JavaScript, no libraries, used by every page
    In order: 1. booking-form words (English, Spanish on /es/)  2. tracking stub (Plausible, if added)
-   3. header state  4. sticky WhatsApp bar  5. reveal on scroll  6. booking form (WhatsApp message, Book buttons)
+   3. header state  4. floating WhatsApp button (phones)  5. reveal on scroll  6. booking form (WhatsApp message, Book buttons)
    7. FAQ toggle  8. drone video  9. motion (html.motion)  10. surf report (the live site's forecast code, unchanged apart from the Spanish labels and the skipped /api/forecast step) */
 (function () {
   var doc = document.documentElement;
+  /* iPhone Safari colours its bottom bar from a pinned element at the bottom edge: a thin sand strip keeps it sand
+     (README, "iPhone Safari") */
+  if (/iPhone|iPod/.test(navigator.userAgent)) {
+    var edge = document.createElement('div');
+    edge.className = 'edge-tint'; edge.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(edge);
+  }
   doc.classList.remove('no-js');
   var lang = doc.lang === 'es' ? 'es' : 'en';
   /* words the booking form writes; Spanish on /es/ */
