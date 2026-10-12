@@ -64,8 +64,8 @@ Fixes from that check:
 - Small blue labels use the new `--blue-ink` token.
 - Small uppercase labels went up to 12px.
 - Hover effects only apply on devices that can hover, so a tap no longer leaves a card lifted.
-- iPhone Safari 26 draws the page behind the clock and behind its floating address bar. The scrolled header is solid
-  sand and carries its colour up behind the clock, so no page content shows above it; the sticky WhatsApp button
+- iPhone Safari 26 draws the page behind the clock and behind its floating address bar. Safari fills that area with
+  the header's colour only when the header is solid with no blur, so the scrolled header is solid sand without blur; the sticky WhatsApp button
   floats on its own with a strong shadow, with no band behind it, so nothing shows through underneath.
 - Review cards show straight away on phones.
 - The beaches table becomes one card per beach on phones.
