@@ -183,6 +183,12 @@ html {
   }
 }
 
+@media (max-width:859px) {
+  body::after {
+    display: none;
+  }
+}
+
 
 /* ==========================================================================
    2. Layout helpers
