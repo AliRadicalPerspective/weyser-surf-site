@@ -278,7 +278,15 @@
       if (t.length) { var avg = t.reduce(function (a, b) { return a + b; }, 0) / t.length; box.appendChild(chip(nf0.format(avg) + '°C', L.water)); }
     }
     strip.classList.remove('fc-wait');
+    realign();
   }
+  /* a link from another page straight to a section (a guide's Book link to /#book): the browser jumps there while the
+     page loads, then the surf report appears above and pushes the section down. Jump again once the report is in,
+     unless the visitor has already started scrolling */
+  var anchor = location.hash.length > 1 && document.getElementById(location.hash.slice(1)), touched = false;
+  ['wheel', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, function () { touched = true; }, { once: true, passive: true }); });
+  function realign() { if (anchor && !touched) anchor.scrollIntoView({ behavior: 'instant', block: 'start' }); }
+  window.addEventListener('load', realign);
   if (window.__FC) { try { render(window.__FC); } catch (e) { fail(); } return; }
   var direct = 'https://marine-api.open-meteo.com/v1/marine?latitude=9.64&longitude=-85.17' +
     '&daily=wave_height_max,wave_period_max,wave_direction_dominant' +

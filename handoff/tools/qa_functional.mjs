@@ -71,6 +71,9 @@ for (const [path, home, label] of [['/kids-family-surf-lessons-santa-teresa/', '
   await T.close();
   check(`${path}: 3 chooser links to ${home}, labelled "${label}"`, links.length === 3 && links.every(([t, h]) => t.startsWith(label) && h.startsWith(home + '?')), JSON.stringify(links.map(l => l[1])));
   const H = await open(links[1][1].replace(/&amp;/g, '&'));
+  await sleep(2500);   // the surf report appears above the form while the page loads
+  const land = await H.ev(`Math.round(document.querySelector('#book').getBoundingClientRect().top)`);
+  check(`${path}: on a phone, "${label}" lands on the booking form, not above it`, land >= 0 && land < 260, `form top at ${land}px`);
   const m = await H.ev(SUBMIT);
   check(`${path}: "${label}" opens the form with family + Group Mini Surf Camp`, /Family with kids|Familia con niños/.test(m) && /Group Mini Surf Camp|Mini Surf Camp grupal/.test(m), m.replace(/\n/g, ' / '));
   await H.close();
